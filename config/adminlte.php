@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Solaning Administración',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => '| Solaning Administración',
 
     /*
     |--------------------------------------------------------------------------
@@ -294,11 +294,17 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
+        ['header' => 'Incripciones'],
         [
             'text'        => 'Inscripciones',
             'url'         => 'registrations',
             'icon'        => 'fas fa-fw fa-user-plus',
+        ],
+
+        [
+            'text'        => 'Lista de inscripciones',
+            'url'         => 'list_registrations',
+            'icon'        => 'fas fa-fw fa-list',
         ],
 
         [

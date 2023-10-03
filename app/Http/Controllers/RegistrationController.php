@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Course;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -20,21 +21,19 @@ class RegistrationController extends Controller
     }
     public function store(Request $request)
     {
-        auth()->user()->registrations()->create([
-            'method_payment' => $request->method_payment,
-            'business_name' => $request->business_name,
-            'concept' => $request->concept,
-            'nit' => $request->nit,
-            'mount' => $request->mount,
-            'start_date' => $request->start_date,
-            'client_id' => $request->client_id,
-            'course_id' => $request->course_id,
-        ]);
-        return redirect()->route('registrations.index');
+        $data = auth()->user()->registrations()->create($request->all());
+
+        if ($data->mount > $data->course->price){
+            return redirect()->route('registrations.index')->with('error', 'El monto ingresado es mayor al precio del curso');
+        }else{
+            $pdf = \PDF::loadView('registrations.recibe', compact('request', 'data'));
+            return $pdf->stream('recibe.pdf');
+        }
     }
+
     public function show(string $id)
     {
-        //
+
     }
     public function edit(string $id)
     {

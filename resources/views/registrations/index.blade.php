@@ -10,6 +10,15 @@
             <form action="{{route('registrations.store')}}" method="POST" class="needs-validation" novalidate>
                 @csrf
                 <div class="form-row">
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+
+
+
                     <div class="col-md-6">
                         <label for="validationCustom01">Estudiante :</label>
                         <select class="js-example-basic-single js-states form-control" id="validationCustom01" name="client_id" required>
@@ -42,14 +51,14 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>NIT</label>
-                        <input type="text" class="form-control" name="nit">
+                        <input type="number" class="form-control" name="nit" value="0">
                         <div class="valid-feedback">
                             Bien hecho!
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="validationCustom08">Razón social: </label>
-                        <input type="text" name="business_name" class="form-control" id="validationCustom08">
+                        <input type="text" name="business_name" class="form-control" value="SIN NOMBRE" id="validationCustom08">
                         <div class="valid-feedback">
                             Bien hecho!
                         </div>
@@ -70,7 +79,7 @@
 
                     <div class="col-md-3 mb-3">
                         <label for="validationCustom05">Fecha Inicio :</label>
-                        <input type="date" name="start_date" class="form-control" id="validationCustom05" placeholder="State" required>
+                        <input type="date" name="start_date" class="form-control" id="validationCustom05" required>
                         <div class="invalid-feedback">
                             Por favor ingrese una fecha de inicio.
                         </div>
@@ -78,9 +87,10 @@
                             Bien hecho!
                         </div>
                     </div>
+
                     <div class="col-md-3 mb-3">
                         <label for="validationCustom06">Monto :</label>
-                        <input type="number" class="form-control" name="mount" id="validationCustom06"  required>
+                        <input type="number" class="form-control" name="mount" id="validationCustom06" min="0" required>
                         <div class="invalid-feedback">
                             Por favor ingrese un monto.
                         </div>
@@ -152,4 +162,5 @@
     })
     })()
 </script>
+
 @stop
