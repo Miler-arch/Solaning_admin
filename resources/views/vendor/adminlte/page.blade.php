@@ -4,7 +4,7 @@
 
 @section('adminlte_css')
     @stack('css')
-
+    <link href="{{ asset('vendor/adminlte/dist/css/custom.css') }}" rel="stylesheet">
     @yield('css')
 @stop
 
@@ -14,36 +14,7 @@
 
 @section('body')
     <div class="wrapper">
-        <style>
-            ::-webkit-scrollbar {
-                width: 10px;
-            }
-            ::-webkit-scrollbar-track {
-                background-color: #f1f1f1;
-            }
-            ::-webkit-scrollbar-thumb {
-                background-color: #888;
-                border-radius: 6px;
-            }
-            ::-webkit-scrollbar-corner {
-                background-color: #f1f1f1;
-            }
-            * {
-                scrollbar-width: thin;
-                scrollbar-color: #888 #f1f1f1;
-            }
-            *::-webkit-scrollbar-track {
-                background-color: #f1f1f1;
-            }
-            *::-webkit-scrollbar-thumb {
-                background-color: #888;
-                border-radius: 6px;
-            }
-            *::-webkit-scrollbar-corner {
-                background-color: #f1f1f1;
-            }
-
-        </style>
+        
         {{-- Preloader Animation --}}
         @if($layoutHelper->isPreloaderEnabled())
             @include('adminlte::partials.common.preloader')

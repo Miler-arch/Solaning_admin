@@ -1,0 +1,121 @@
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-corner {
+    background-color: #f1f1f1;
+}
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+*::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+}
+*::-webkit-scrollbar-corner {
+    background-color: #f1f1f1;
+}
+
+
+.body-contenedor-login {
+    background-color: #F0F6FC;
+    width: 100vw;
+    height: 100vh;
+}
+
+.cuerpo-row {
+    margin: 0;
+}
+.cover {
+    background-image: url("../../../../img/cover-login.jpg");
+    height: 80vh;
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.cover-login {
+    padding: 0!important;
+}
+
+.login-cuerpo {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #fff;  
+}
+.login-cuerpo img {
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+.login-cuerpo form {
+    width: 70%;
+    margin: auto;
+}
+.login-iconos {
+    border-top-left-radius: 50rem!important;
+    border-bottom-left-radius: 50rem!important;
+}
+.login-input {
+    border-top-right-radius: 50rem!important;
+    border-bottom-right-radius: 50rem!important;
+    border-left-width: 0;
+    height: 40px;
+}
+.button-container button {
+    background-color: #F18312;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0px 4px 30px 0px rgba(215, 109, 0, 25%);
+    border-radius: 10px;
+}
+.button-container button:hover {
+    background-color: #df7307;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0px 4px 30px 0px rgba(215, 109, 0, 25%);
+    border-radius: 10px;
+}
+
+.reset-password {
+    text-align: end;
+}
+.reset-password a {
+    color: #3893f5;
+}
+
+@media screen and (max-width: 1200px) {
+    .login-cuerpo form {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 991px) {
+    .login-cuerpo {
+        border-radius: 5px;
+    }
+    .login-cuerpo form {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .login-cuerpo form {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 375px) {
+    .login-cuerpo form {
+        width: 90%;
+    }
+}
