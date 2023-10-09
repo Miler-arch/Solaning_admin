@@ -36,12 +36,11 @@
 
 .cuerpo-row {
     margin: 0;
+    padding-top: 6rem;
 }
 .cover {
     background-image: url("../../../../img/cover-login.jpg");
-    height: 80vh;
-    background-attachment: fixed;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
