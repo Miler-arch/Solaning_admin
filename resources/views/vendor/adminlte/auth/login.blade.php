@@ -29,7 +29,7 @@
 
 {{-- @section('auth_body') --}}
 <div class="body-contenedor-login">
-    <div class="row justify-content-center py-5 cuerpo-row rounded">
+    <div class="row justify-content-center cuerpo-row rounded">
 
     <div class="col-5 d-none d-lg-block cover shadow-lg">
         {{-- <img src="{{asset('img/cover-login.jpg')}}" alt="" class="w-100 cover-login"> --}}
