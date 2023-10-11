@@ -106,12 +106,14 @@
             </p>
         @endif
     
-            <div class="button-container my-5">
+            <div class="button-container my-4">
                 <button type=submit class="btn btn-block py-2">
                     {{-- <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }} --}}
                     Iniciar Sesión
                 </button>
+
+                <p class="text-center mt-4 text-black-50 fw-bold">Solaning - <span id="fecha" class="m-auto"></span></p>
             </div>
         </form>
 
@@ -129,6 +131,13 @@
     {{-- @stop --}}
     </div>
 </div>
+
+<script>
+    let fecha = new Date();
+    let year = fecha.getFullYear();
+    let contenedor = document.getElementById('fecha');
+    contenedor.innerHTML = year;
+</script>
 
 {{-- @section('auth_footer') --}}
 {{-- @stop --}}
