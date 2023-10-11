@@ -118,3 +118,41 @@
         width: 90%;
     }
 }
+
+
+
+/** Inscripciones */
+body {
+    color: #fff;
+}
+
+.content-wrapper {
+    background-color: #fff;
+}
+
+.contenedor-header {
+    background-color: #f1efef;
+}
+
+.contenedor-card {
+    background-color: #f6f6f6;
+    border-color: 0;
+    box-shadow: 0px 1px 50px 0px #00000023;
+    color: rgba(1, 7, 14, 60%);
+}
+
+.titulo-header {
+    font-size: 2rem;
+    color: rgba(1, 7, 14, 60%);
+}
+
+.contenedor-inscripciones {
+    width: 70%;
+    margin: auto;
+    color: rgba(1, 7, 14, 70%);
+}
+
+/* Para los spans de los selects */
+.selection span {
+    height: 38px !important;
+}
