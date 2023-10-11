@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Solaning</b>Admin',
+    'logo' => '<b>Solaning</b>',
     'logo_img' => 'vendor/adminlte/dist/img/logo-grande.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
