@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="mt-3 p-3 rounded contenedor-header">
-    <span class="font-weight-bold titulo-header">Alumnos</span>
+    <span class="font-weight-bold titulo-header">Inscripciones</span>
 </div>
 <div class="contenedor-inscripciones mt-3">
     <div class="card mt-4">
