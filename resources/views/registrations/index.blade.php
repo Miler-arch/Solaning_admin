@@ -2,6 +2,7 @@
 
 @section('title', 'Registrations')
 @section('plugins.Select2', true)
+@section('plugins.Datatables', true)
 
 @section('content')
 <div class="mt-3 p-3 rounded contenedor-header">

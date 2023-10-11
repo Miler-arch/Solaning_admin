@@ -294,6 +294,13 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+        ['header' => 'Panel de Administración'],
+        [
+            'text' => 'Dashboard',
+            'url'  => 'dashboard',
+            'icon' => 'fas fa-fw fa-tachometer-alt',
+
+        ],
         ['header' => 'Incripciones'],
         [
             'text'        => 'Inscripciones',

@@ -119,13 +119,6 @@
     }
 }
 
-
-
-/** Inscripciones */
-body {
-    color: #fff;
-}
-
 .content-wrapper {
     background-color: #fff;
 }
@@ -156,8 +149,6 @@ body {
 .selection span {
     height: 38px !important;
 }
-
-
 
 
 /** Table */

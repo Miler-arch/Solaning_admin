@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListRegistrations;
 use App\Http\Controllers\RegistrationController;
 
@@ -13,6 +14,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('clients', ClientController::class)->name('', 'clients');
 
@@ -22,4 +24,4 @@ Route::resource('registrations', RegistrationController::class)->name('', 'regis
 
 Route::get('list_registrations', [ListRegistrations::class, 'index'])->name('list_registrations');
 
-Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');  
+Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
