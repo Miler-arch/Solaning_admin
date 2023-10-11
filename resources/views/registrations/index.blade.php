@@ -49,7 +49,7 @@
                             <div class="valid-feedback">
                                 Bien hecho!
                             </div>
-                        </div>           
+                        </div>
                     </div>
 
                     <div class="col-12 d-flex flex-wrap justify-content-evenly">
@@ -95,7 +95,7 @@
                                 Bien hecho!
                             </div>
                         </div>
-    
+
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom06">Monto :</label>
                             <input type="number" class="form-control" name="mount" id="validationCustom06" min="0" required>
@@ -106,7 +106,7 @@
                                 Bien hecho!
                             </div>
                         </div>
-    
+
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom07">Pago :</label>
                             <select name="method_payment" class="form-control" id="validationCustom07" required>
