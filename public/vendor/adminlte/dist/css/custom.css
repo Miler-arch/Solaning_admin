@@ -157,6 +157,10 @@ body {
     height: 38px !important;
 }
 
+/* cambio de color dropdown */
+.select2-dropdown--below {
+    color: #495057;
+}
 
 
 
