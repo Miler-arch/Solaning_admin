@@ -5,10 +5,13 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-<div class="card mt-2">
-        <div class="card-body">
-            <table id="datatable" class="table table-striped display responsive nowrap" style="width:100%">
-                <thead class="table-dark">
+<div class="mt-3 p-3 rounded contenedor-header">
+    <span class="font-weight-bold titulo-header">Lista de Inscritos</span>
+</div>
+<div class="mt-4">
+        <div class="text-secondary">
+            <table id="datatable" class="table responsive nowrap" style="width:100%">
+                <thead class="thead-light">
                     <tr>
                         <th>ID</th>
                         <th>Usuario</th>

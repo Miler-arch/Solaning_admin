@@ -156,3 +156,12 @@ body {
 .selection span {
     height: 38px !important;
 }
+
+
+
+
+/** Table */
+thead {
+    background-color: #5B5B5B !important;
+    color: #fff !important;
+}
