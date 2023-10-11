@@ -33,7 +33,7 @@
 
     <div class="col-5 d-none d-lg-block cover shadow-lg">
         {{-- <img src="{{asset('img/cover-login.jpg')}}" alt="" class="w-100 cover-login"> --}}
-    </div>   
+    </div>
 
     <div class="col-lg-4 col-md-6 col-sm-8 login-cuerpo shadow-lg">
         <img src="{{asset('img/logo.png')}}" alt="" class="logo-login my-4">
@@ -112,6 +112,8 @@
                     {{ __('adminlte::adminlte.sign_in') }} --}}
                     Iniciar Sesión
                 </button>
+
+                <p class="text-center mt-4 text-black-50 fw-bold">Solaning - <span id="fecha" class="m-auto"></span></p>
             </div>
         </form>
 
@@ -129,6 +131,13 @@
     {{-- @stop --}}
     </div>
 </div>
+
+<script>
+    let fecha = new Date();
+    let year = fecha.getFullYear();
+    let contenedor = document.getElementById('fecha');
+    contenedor.innerHTML = year;
+</script>
 
 {{-- @section('auth_footer') --}}
 {{-- @stop --}}
