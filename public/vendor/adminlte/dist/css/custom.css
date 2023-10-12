@@ -230,3 +230,28 @@ aside .brand-link {
 .contenedor-nav-top .navbar-nav .nav-item .nav-link {
     color: rgba(1, 7, 14, 50%) !important;
 }
+
+
+
+/** DASHBOARD  */
+.d-usuarios {
+    background-color: #80CF00 !important;
+}
+.d-inscritos {
+    background-color: #F18312 !important;
+}
+.d-info-usuarios {
+    color: #fff;
+}
+.d-info-inscritos {
+    color: #fff;
+}
+.d-info-cursos {
+    color: #fff;
+}
+.d-icon i {
+    font-size: 50px!important;
+}
+.d-icon-2 i {
+    font-size: 25px!important;
+}
