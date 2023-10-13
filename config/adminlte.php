@@ -294,6 +294,11 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+
+        [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true, // Or "topnav => true" to place on the left.
+        ],
         ['header' => 'Panel de Administración'],
         [
             'text' => 'Dashboard',

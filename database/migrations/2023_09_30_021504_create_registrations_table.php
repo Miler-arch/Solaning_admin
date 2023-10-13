@@ -17,8 +17,6 @@ return new class extends Migration
             $table->integer('mount');
             $table->string('start_date');
 
-
-
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('client_id')->constrained('clients');
             $table->foreignId('course_id')->constrained('courses');

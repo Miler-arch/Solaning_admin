@@ -112,8 +112,8 @@
                             <label for="validationCustom07">Pago :</label>
                             <select name="method_payment" class="form-control" id="validationCustom07" required>
                                 <option value="">Seleccione una opción</option>
-                                <option value="0">Parcial</option>
-                                <option value="1">Completo</option>
+                                <option value="parcial">Parcial</option>
+                                <option value="completo">Completo</option>
                             </select>
                             <div class="invalid-feedback">
                                 Por favor seleccione un método de pago.

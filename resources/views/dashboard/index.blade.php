@@ -67,6 +67,40 @@
                 </a>
                 </div>
             </div>
+
+
+            <div class="col-lg-3 col-12">
+                <div class="small-box bg-gradient-danger">
+                <div class="inner d-info-cursos">
+                    <h3>{{$inscriptionsStatePartial}}</h3>
+                    <p>Pagos Parciales</p>
+                </div>
+                <div class="icon d-icon">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+
+                    <a href="{{route('list_registrations')}}" class="d-flex justify-content-center align-items-center small-box-footer py-2 d-icon-2">
+                        Más información<i class="fas fa-arrow-alt-circle-right px-2"></i>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-12">
+                <div class="small-box bg-gradient-cyan">
+                <div class="inner d-info-cursos">
+                    <h3>{{$inscriptionsStateComplete}}</h3>
+                    <p>Pagos Completados</p>
+                </div>
+                <div class="icon d-icon">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <a href="{{route('list_registrations')}}" class="d-flex justify-content-center align-items-center small-box-footer py-2 d-icon-2">
+                    Más información<i class="fas fa-arrow-alt-circle-right px-2"></i>
+                </a>
+                </div>
+            </div>
         </div>
     </div>
 @stop
