@@ -215,7 +215,7 @@ aside .brand-link {
     color: rgba(1, 7, 14, 50%) !important;
 }
 .contenedor-nav li :hover {
-    color: rgba(1, 7, 14, 60%) !important;
+    color: rgba(0, 0, 0, 0.747) !important;
 }
 .contenedor-nav .nav-item .nav-link .active {
     color: #fff !important;
