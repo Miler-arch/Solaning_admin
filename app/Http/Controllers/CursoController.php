@@ -22,7 +22,20 @@ class CursoController extends Controller
 
     public function store(StoreCourseRequest $request)
     {
-        Course::create($request->all());
+        $price = $request->price;
+        $discount = $request->discount;
+
+        // Calcular el precio final después de aplicar el descuento
+        $finalPrice = $price - ($price * ($discount / 100));
+
+        Course::create([
+            'name' => $request->name,
+            'version' => $request->version,
+            'category' => $request->category,
+            'price' => $finalPrice,
+            'discount' => $request->discount,
+            'expire_date' => $request->expire_date,
+        ]);
         return response()->json(['success' => 'Curso creado exitosamente.']);
     }
 

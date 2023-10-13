@@ -21,15 +21,19 @@ class RegistrationController extends Controller
     }
     public function store(Request $request)
     {
-        $data = auth()->user()->registrations()->create($request->all());
+        $user = auth()->user();
+        $registrationData = $request->all();
+        $coursePrice = $user->registrations()->first()->course->price;
 
-        if ($data->mount > $data->course->price){
+        if ($registrationData['mount'] > $coursePrice) {
             return redirect()->route('registrations.index')->with('error', 'El monto ingresado es mayor al precio del curso');
-        }else{
+        } else {
+            $data = $user->registrations()->create($registrationData);
             $pdf = \PDF::loadView('registrations.recibe', compact('request', 'data'));
             return $pdf->stream('recibe.pdf');
         }
     }
+
 
     public function show(string $id)
     {

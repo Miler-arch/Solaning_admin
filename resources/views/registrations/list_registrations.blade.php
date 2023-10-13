@@ -17,6 +17,7 @@
                         <th>Usuario</th>
                         <th>Cliente</th>
                         <th>Curso</th>
+                        <th>Método de pago</th>
                         <th>Razón Social</th>
                         <th>Concepto</th>
                         <th>NIT</th>
@@ -32,6 +33,17 @@
                         <td>{{ $registration->user->name }}</td>
                         <td>{{ $registration->client->name }}</td>
                         <td>{{ $registration->course->name }}</td>
+                        <td>
+                            @if ($registration->method_payment == "completo")
+                                <span class="badge-success rounded p-1">Completo
+                                    <span class="fa fa-check-circle"></span>
+                                </span>
+                            @else
+                                <span class="badge-warning rounded p-1">Parcial
+                                    <span class="fa fa-exclamation-circle"></span>
+                                </span>
+                            @endif
+                        </td>
                         <td>{{ $registration->business_name }}</td>
                         <td>{{ $registration->concept }}</td>
                         <td>{{ $registration->nit }}</td>
