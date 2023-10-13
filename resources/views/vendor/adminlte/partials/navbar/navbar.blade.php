@@ -1,6 +1,6 @@
 <nav class="main-header navbar contenedor-nav-top
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
-    {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
+    {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }} ps-4 pe-5">
 
     {{-- Navbar left links --}}
     <ul class="navbar-nav">
