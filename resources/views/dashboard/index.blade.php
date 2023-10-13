@@ -7,6 +7,9 @@
     <div class="mt-3 p-3 rounded contenedor-header">
         <span class="font-weight-bold titulo-header">Dashboard</span>
     </div>
+    <div class="mt-3 p-3 rounded">
+        <span class="font-weight-bold titulo-saludo">Bienvenido Alexander 👋🏻</span>
+    </div>
     <div class="py-5">
         <div class="row">
             <div class="col-lg-3 col-12">

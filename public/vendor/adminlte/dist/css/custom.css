@@ -124,7 +124,7 @@
 }
 
 .contenedor-header {
-    background-color: #f1efef;
+    background-color: #F6F6F6;
 }
 
 .contenedor-card {
@@ -136,6 +136,11 @@
 
 .titulo-header {
     font-size: 2rem;
+    color: rgba(1, 7, 14, 60%);
+}
+
+.titulo-saludo {
+    font-size: 1.5rem;
     color: rgba(1, 7, 14, 60%);
 }
 
