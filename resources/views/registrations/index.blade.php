@@ -119,10 +119,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <button class="btn btn-primary mt-3 mx-3 py-2 px-3" type="submit">Inscribir</button>
                 </div>
 
+                <div class="d-grid gap-2 py-2">
+                    <button class="btn btn-primary mt-3 mx-3 py-2 px-3" type="submit">Inscribir</button>
+                </div>
             </form>
         </div>
     </div>

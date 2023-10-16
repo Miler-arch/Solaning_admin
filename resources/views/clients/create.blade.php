@@ -7,7 +7,7 @@
 </div> --}}
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Alumnos</span>
-    <button type="button" class="btn btn-primary float-right mt-3" data-toggle="modal" data-target="#crearClienteModal">
+    <button type="button" class="btn btn-primary float-right mt-1" data-toggle="modal" data-target="#crearClienteModal">
         <i class="fa fa-solid fa-user-graduate"></i>
         Nuevo Alumno
     </button>
@@ -16,7 +16,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-light">
             <div class="modal-header">
-                <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Crear Nuevo Alumno</h5>
+                <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Alumno</h5>
                 <button type="button" class="bg-danger rounded border-0 ps-3 pb-1 pe-3" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

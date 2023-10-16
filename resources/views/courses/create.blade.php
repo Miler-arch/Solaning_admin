@@ -7,7 +7,7 @@
 </div> --}}
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Cursos</span>
-    <button type="button" class="btn btn-primary float-right mt-3" data-toggle="modal" data-target="#crearCursoModal">
+    <button type="button" class="btn btn-primary float-right mt-1" data-toggle="modal" data-target="#crearCursoModal">
         <i class="fas fa-book-reader"></i>
         Nuevo Curso
     </button>

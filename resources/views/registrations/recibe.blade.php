@@ -9,6 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            color: #002c66
         }
         .receipt-container {
             width: 650px;
@@ -23,8 +24,9 @@
             margin-left: -15px;
             text-align: center;
             border: 2px solid #333;
-            padding: 20px;
+            padding: 10px;
             border-radius: 10px;
+            margin-top: -40px;
         }
         .detail-containter div {
             line-height: 2.1;
@@ -45,7 +47,7 @@
         .item {
             text-align: left;
             margin-bottom: 5px;
-            font-size: .8rem;
+            font-size: .6rem;
             line-height: 1.1;
         }
         .total {
@@ -62,7 +64,7 @@
         .contenedor-1 {
             position: absolute;
             left: 15%;
-            top: 2%
+            top: 2%;
         }
         .numeros-1 {
             position: absolute;
@@ -79,7 +81,7 @@
         }
 
         .contenedor-firmas {
-            margin-top: 5rem;
+            margin-top: 3rem;
         }
         .linea {
             width: 100%;
@@ -106,7 +108,7 @@
         <div class="details">
             <div class="d-flex">
                 <div class="row">
-                    <div class="col-11 ">
+                    <div class="col-11">
                         <div class="espaciado"></div>
                         <div class="contenedor-1">
                             <div class="item"><b>Empresa:</b> SOLANING S.R.L.</div>
@@ -125,26 +127,26 @@
                 </div>
             </div>
             <div class="detail-containter">
-                <div class="item">RECIBO DEL SR.(A): {{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}})  <span class="float-right">LA CANTIDAD DE: <b class="px-3">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</b> </span></div>
-                <div class="item">CANTIDAD EN LETRAS:</div>
-                <div class="item">POR CONCEPTO DE: {{$data->concept}}</div>
-                <div class="item">INICIO:{{$data->start_date}}</div>
+                <div class="item text-uppercase"><b>RECIBO DEL SR.(A):</b> {{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}})  <span class="float-right">LA CANTIDAD DE: <b class="px-3">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</b> </span></div>
+                <div class="item text-uppercase"><b>CANTIDAD EN LETRAS:</b></div>
+                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> {{$data->concept}}</div>
+                <div class="item text-uppercase"><b>INICIO: </b>{{$data->start_date}}</div>
                 <div class="item text-center">
-                    <span class="mx-3">A CUENTA: <b>{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</b></span>
-                    <span class="mx-3">SALDO: <b>{{ $data->course->price - $data->mount }}</b></span>
-                    <span class="mx-3">TOTAL: <b>{{$data->course->price}}</b></span>
+                    <span class="mx-3"><b>A CUENTA:</b>{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span>
+                    <span class="mx-3"><b>SALDO:</b>{{ $data->course->price - $data->mount }}</span>
+                    <span class="mx-3"><b>TOTAL:</b> {{$data->course->price}}</span>
                 </div>
             </div>
-            <div class="item mt-2"><span><b>LUGAR Y FECHA:</b></span> <span>Cochabamba, 26/7/2023</span></div>
+            <div class="item mt-2"><span><b>LUGAR Y FECHA:</b></span> <span><b>Cochabamba, 26/7/2023</b></span></div>
             <div class="contenedor-firmas">
                     <div class="w-25 firma-1">
                         <div class="linea"></div>
-                        <span>RECIBÍ CONFORME</span>
+                        <span><b>RECIBÍ CONFORME</b></span>
                     </div>
 
                     <div class="w-30 firma-2">
                         <div class="linea"></div>
-                        <span>ENTREGUÉ CONFORME</span>
+                        <span><b>ENTREGUÉ CONFORME</b></span>
                     </div>
             </div>
         </div>

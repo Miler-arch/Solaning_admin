@@ -10,7 +10,7 @@
     <div class="mt-3 p-3 rounded">
         <span class="font-weight-bold titulo-saludo">Bienvenido {{Auth::user()->name}}👋🏻</span>
     </div>
-    <div class="py-5">
+    <div class="py-3">
         <div class="row">
             <div class="col-lg-3 col-12">
                 <div class="small-box d-usuarios">

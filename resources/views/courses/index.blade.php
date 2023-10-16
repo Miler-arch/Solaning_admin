@@ -30,9 +30,9 @@
                         <td>{{ $course->name }}</td>
                         <td>
                             @if($course->status === 1)
-                                <span class="bg-success p-1 ps-3 pe-3 rounded">Activo</span>
+                                <span class="badge-success py-1 px-2 rounded">Activo <span class="fa fa-check-circle"></span></span>
                             @else
-                                <span class="bg-danger p-1 ps-3 pe-3 rounded">Inactivo</span>
+                                <span class="badge-danger p-1 ps-3 pe-3 rounded">Inactivo <i class="fas fa-times-circle"></i></span>
                             @endif
                         </td>
                         <td>{{ $course->version }}</td>

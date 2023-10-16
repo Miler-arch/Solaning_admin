@@ -206,6 +206,9 @@ aside .brand-link {
 .nav-sidebar>.nav-item>.nav-link.active {
     color: #fff !important;
 }
+.nav-sidebar>.nav-item .active i:hover {
+    color: #fff !important;
+}
 .nav-sidebar>.nav-item>.nav-link.active p:hover {
     color: #fff !important;
 }
