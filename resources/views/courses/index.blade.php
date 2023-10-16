@@ -6,11 +6,11 @@
 @section('plugins.Sweetalert2', true)
 
 @section('content')
-    <div class="card mt-2">
+    <div class="mt-2">
         @include('courses.create')
-        <div class="card-body">
-            <table id="datatable" class="table table-striped table-bordered display responsive nowrap" style="width:100%">
-                <thead class="table-dark">
+        <div class="text-secondary mt-4">
+            <table id="datatable" class="table responsive nowrap" style="width:100%">
+                <thead class="thead-light">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>

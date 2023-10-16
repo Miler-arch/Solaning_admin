@@ -79,7 +79,7 @@
                     <p>Pagos Parciales</p>
                 </div>
                 <div class="icon d-icon">
-                    <i class="fas fa-book-reader"></i>
+                    <i class="fas fa fa-credit-card"></i>
                 </div>
 
                     <a href="{{route('list_registrations')}}" class="d-flex justify-content-center align-items-center small-box-footer py-2 d-icon-2">
@@ -97,7 +97,7 @@
                     <p>Pagos Completados</p>
                 </div>
                 <div class="icon d-icon">
-                    <i class="fas fa-book-reader"></i>
+                    <i class="fas fa fa-wallet"></i>
                 </div>
                 <a href="{{route('list_registrations')}}" class="d-flex justify-content-center align-items-center small-box-footer py-2 d-icon-2">
                     Más información<i class="fas fa-arrow-alt-circle-right px-2"></i>

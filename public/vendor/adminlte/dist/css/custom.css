@@ -124,7 +124,8 @@
 }
 
 .contenedor-header {
-    background-color: #F6F6F6;
+    background-color: #F4F4F4;
+    /* background-color: #F6F6F6; */
 }
 
 .contenedor-card {
@@ -259,4 +260,12 @@ aside .brand-link {
 }
 .d-icon-2 i {
     font-size: 25px!important;
+}
+
+
+
+
+/** Modales de registro  */
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 450;
 }
