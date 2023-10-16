@@ -17,6 +17,7 @@ class Registration extends Model
         'start_date',
         'client_id',
         'course_id',
+        'user_id',
     ];
 
     public function client()

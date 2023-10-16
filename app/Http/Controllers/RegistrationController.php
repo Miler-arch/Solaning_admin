@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Course;
 use App\Models\Registration;
 use Illuminate\Http\Request;
+use Luecano\NumeroALetras\NumeroALetras;
 
 class RegistrationController extends Controller
 {
@@ -19,20 +20,36 @@ class RegistrationController extends Controller
     {
         return view('registrations.index');
     }
+
     public function store(Request $request)
     {
         $user = auth()->user();
         $registrationData = $request->all();
-        $coursePrice = $user->registrations()->first()->course->price;
+        $coursePrice = Course::find($registrationData['course_id'])->price;
 
         if ($registrationData['mount'] > $coursePrice) {
-            return redirect()->route('registrations.index')->with('error', 'El monto ingresado es mayor al precio del curso');
-        } else {
-            $data = $user->registrations()->create($registrationData);
-            $pdf = \PDF::loadView('registrations.recibe', compact('request', 'data'));
-            return $pdf->stream('recibe.pdf');
+                return redirect()->route('registrations.index')->with('error', 'El monto ingresado es mayor al precio del curso');
+        }else{
+                 // Obtener el próximo ID de registro
+        $nextId = Registration::max('id') + 1;
+
+        // Formatear el ID con ceros al inicio
+        $formattedId = str_pad($nextId, 5, '0', STR_PAD_LEFT);
+
+        // Asignar el ID formateado al registro
+        $registrationData['id'] = $formattedId;
+
+        // Crear el registro con el ID formateado
+        $data = $user->registrations()->create($registrationData);
+
+        // Generar y devolver el PDF
+        $pdf = \PDF::loadView('registrations.recibe', compact('request', 'data', 'formattedId'));
+        return $pdf->stream('recibe.pdf');
         }
+
+
     }
+
 
 
     public function show(string $id)

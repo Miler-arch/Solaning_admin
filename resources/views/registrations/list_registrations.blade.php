@@ -21,7 +21,9 @@
                         <th>Razón Social</th>
                         <th>Concepto</th>
                         <th>NIT</th>
-                        <th>Monto</th>
+                        <th>Pago</th>
+                        <th>Debe</th>
+                        <th>Total</th>
                         <th>Tiempo de inicio</th>
                         <th>Acciones</th>
                     </tr>
@@ -48,6 +50,14 @@
                         <td>{{ $registration->concept }}</td>
                         <td>{{ $registration->nit }}</td>
                         <td>{{ $registration->mount }}</td>
+                        <td>
+                            @if ($registration->course->price - $registration->mount > 0)
+                                <span class="bg-warning rounded p-1 px-2 font-weight-bold">{{ $registration->course->price - $registration->mount }}</span>
+                            @elseif ($registration->course->price - $registration->mount == 0)
+                                <span class="bg-primary rounded py-1 px-3 font-weight-bold">{{ $registration->course->price - $registration->mount }}</span>
+                            @endif
+                        </td>
+                        <td>{{ $registration->course->price }}</td>
                         <td>{{ $registration->start_date }}</td>
                         <td>
                             <div class="d-flex gap-2">

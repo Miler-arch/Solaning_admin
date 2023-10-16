@@ -25,3 +25,4 @@ Route::resource('registrations', RegistrationController::class)->name('', 'regis
 Route::get('list_registrations', [ListRegistrations::class, 'index'])->name('list_registrations');
 
 Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
+

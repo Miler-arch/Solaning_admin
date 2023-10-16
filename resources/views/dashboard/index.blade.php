@@ -8,7 +8,7 @@
         <span class="font-weight-bold titulo-header">Dashboard</span>
     </div>
     <div class="mt-3 p-3 rounded">
-        <span class="font-weight-bold titulo-saludo">Bienvenido Alexander 👋🏻</span>
+        <span class="font-weight-bold titulo-saludo">Bienvenido {{Auth::user()->name}}👋🏻</span>
     </div>
     <div class="py-5">
         <div class="row">
