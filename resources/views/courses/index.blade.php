@@ -37,8 +37,8 @@
                         </td>
                         <td>{{ $course->version }}</td>
                         <td>{{ $course->category }}</td>
-                        <td>{{ $course->price }}</td>
-                        <td>{{ $course->discount }}</td>
+                        <td>{{ $course->price }} Bs.</td>
+                        <td>{{ $course->discount }} Bs.</td>
                         <td>{{ $course->expire_date }}</td>
                         <td>
                             <div class="d-flex gap-2">

@@ -24,7 +24,7 @@
                         <th>Pago</th>
                         <th>Debe</th>
                         <th>Total</th>
-                        <th>Tiempo de inicio</th>
+                        <th>Fecha de inicio</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>

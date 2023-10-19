@@ -86,7 +86,7 @@
         .linea {
             width: 100%;
             border-bottom: 1px;
-            border-bottom-color: #000;
+            border-bottom-color: #002c66;
             border-style: solid;
         }
         .firma-1 {
@@ -96,6 +96,9 @@
         .firma-2 {
             position: absolute;
             left: 60%;
+        }
+        .firmas {
+            font-size: .7rem;
         }
     </style>
 </head>
@@ -141,12 +144,12 @@
             <div class="contenedor-firmas">
                     <div class="w-25 firma-1">
                         <div class="linea"></div>
-                        <span><b>RECIBÍ CONFORME</b></span>
+                        <span class="firmas"><b>RECIBÍ CONFORME</b></span>
                     </div>
 
-                    <div class="w-30 firma-2">
+                    <div class="w-25 firma-2">
                         <div class="linea"></div>
-                        <span><b>ENTREGUÉ CONFORME</b></span>
+                        <span class="firmas"><b>ENTREGUÉ CONFORME</b></span>
                     </div>
             </div>
         </div>

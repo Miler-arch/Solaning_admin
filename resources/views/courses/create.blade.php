@@ -59,7 +59,7 @@
                             <span class="text-danger" id="error-category"></span>
                         </div>
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio :" label-class="text-secondary">
+                            <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio (Bs):" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-book"></i>
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input type="number" min="0" name="discount" id="discount" label="Descuento :" label-class="text-secondary">
+                            <x-adminlte-input type="number" min="0" name="discount" id="discount" label="Descuento (Bs):" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-book"></i>
