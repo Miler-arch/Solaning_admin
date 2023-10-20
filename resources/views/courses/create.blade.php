@@ -36,25 +36,15 @@
                             <span class="text-danger" id="error-name"></span>
                         </div>
 
-                        <div class="col-lg-6 col-12">
-                            <x-adminlte-input type="text" name="version" id="version" label="Versión :" label-class="text-secondary">
-                                <x-slot name="prependSlot">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
-                                    </div>
-                                </x-slot>
-
-                            </x-adminlte-input>
-                            <span class="text-danger" id="error-version"></span>
-                        </div>
+                        <input type="hidden" name="version" id="version" value="version">
 
                         <div class="col-lg-6 col-12">
                             <label>Categorías :</label>
                             <select name="category" id="" class="form-select">
-                                <option value="0">Seleccione una categoría</option>
-                                <option value="1">Cursos Presenciales</option>
-                                <option value="2">Curso virtual en vivo</option>
-                                <option value="3">Curso virtual grabado</option>
+                                <option value="">Seleccione una categoría</option>
+                                <option value="Cursos Presenciales">Cursos Presenciales</option>
+                                <option value="Curso virtual en vivo">Curso virtual en vivo</option>
+                                <option value="Curso virtual grabado">Curso virtual grabado</option>
                             </select>
                             <span class="text-danger" id="error-category"></span>
                         </div>
@@ -70,7 +60,7 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input type="number" min="0" name="discount" id="discount" label="Descuento (Bs):" label-class="text-secondary">
+                            <x-adminlte-input type="number" min="0" name="discount" value="0" id="discount" label="Descuento (%):" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-book"></i>
@@ -79,6 +69,7 @@
                             </x-adminlte-input>
                             <span class="text-danger" id="error-discount"></span>
                         </div>
+
 
                         <div class="col-lg-6 col-12">
                             <x-adminlte-input type="date" name="expire_date" id="expire_date" label="Fecha de expiración :" label-class="text-secondary">

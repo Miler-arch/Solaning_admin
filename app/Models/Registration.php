@@ -11,9 +11,9 @@ class Registration extends Model
     protected $fillable = [
         'method_payment',
         'business_name',
-        'concept',
         'nit',
         'mount',
+        'discount',
         'start_date',
         'client_id',
         'course_id',

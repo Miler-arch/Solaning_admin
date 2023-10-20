@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('method_payment');
             $table->string('business_name')->nullable();
-            $table->string('concept');
             $table->string('nit')->nullable();
             $table->integer('mount');
+            $table->integer('discount');
             $table->string('start_date');
 
             $table->foreignId('user_id')->constrained('users');

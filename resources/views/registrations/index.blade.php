@@ -47,6 +47,29 @@
                                 Bien hecho!
                             </div>
                         </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom07" class="font-weight-bold">Descuento :</label>
+                            <input type="number" class="form-control" name="discount" value="0" id="validationCustom07" min="0">
+                            <div class="valid-feedback">
+                                Bien hecho!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom06" class="font-weight-bold">Monto :</label>
+                            <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required>
+                            <div class="invalid-feedback">
+                                Por favor ingrese un monto.
+                            </div>
+                            <div class="valid-feedback">
+                                Bien hecho!
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="font-weight-bold">Precio con Descuento :</label>
+                            <span id="discountedPrice"></span>
+                        </div>
+
                     </div>
 
                     <div class="col-12 d-flex flex-wrap justify-content-evenly">
@@ -60,19 +83,6 @@
                         <div class="col-md-6 mb-4">
                             <label for="validationCustom08" class="font-weight-bold">Razón social :</label>
                             <input type="text" name="business_name" class="form-control" value="SIN NOMBRE" id="validationCustom08">
-                            <div class="valid-feedback">
-                                Bien hecho!
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 d-flex flex-wrap justify-content-evenly">
-                        <div class="col-md-12 mb-4">
-                            <label for="validationCustom04" class="font-weight-bold">Concepto :</label>
-                            <textarea name="concept" class="form-control" name="concept" cols="30" rows="2" id="validationCustom04" placeholder="Ingrese el concepto..." required></textarea>
-                            <div class="invalid-feedback">
-                                Por favor ingrese un concepto.
-                            </div>
                             <div class="valid-feedback">
                                 Bien hecho!
                             </div>
@@ -94,19 +104,8 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <label for="validationCustom06" class="font-weight-bold">Monto :</label>
-                            <input type="number" class="form-control" name="mount" id="validationCustom06" min="0" required>
-                            <div class="invalid-feedback">
-                                Por favor ingrese un monto.
-                            </div>
-                            <div class="valid-feedback">
-                                Bien hecho!
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom07" class="font-weight-bold">Pago :</label>
-                            <select name="method_payment" class="form-select" id="validationCustom07" required>
+                            <label for="validationCustom08" class="font-weight-bold">Pago :</label>
+                            <select name="method_payment" class="form-select" id="validationCustom08" required>
                                 <option value="">Seleccione una opción</option>
                                 <option value="parcial">Parcial</option>
                                 <option value="completo">Completo</option>
@@ -169,6 +168,18 @@
         }, false)
     })
     })()
+</script>
+<script>
+    let courseSelect = document.getElementById("validationCustom02");
+    let discountInput = document.getElementById("validationCustom07");
+
+    discountInput.addEventListener("input", function() {
+        let selectedCoursePrice = parseFloat(courseSelect.options[courseSelect.selectedIndex].text.split('|')[1].replace(' Bs.', '').trim());
+        let discountValue = parseFloat(discountInput.value);
+        let discountedPrice = selectedCoursePrice - (selectedCoursePrice * (discountValue / 100));
+        let discountedPriceElement = document.getElementById("discountedPrice");
+        discountedPriceElement.textContent = discountedPrice.toFixed(2) + " Bs.";
+    });
 </script>
 @if(session('error'))
     <script>

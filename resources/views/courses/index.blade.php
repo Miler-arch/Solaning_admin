@@ -19,7 +19,7 @@
                         <th>Categoría</th>
                         <th>Precio</th>
                         <th>Descuento</th>
-                        <th>Tiempo de Expiración</th>
+                        <th>Fecha de Expiración</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -37,8 +37,8 @@
                         </td>
                         <td>{{ $course->version }}</td>
                         <td>{{ $course->category }}</td>
-                        <td>{{ $course->price }} Bs.</td>
-                        <td>{{ $course->discount }} Bs.</td>
+                        <td>{{ $course->price." Bs." }}</td>
+                        <td>{{ $course->discount. " %" }}</td>
                         <td>{{ $course->expire_date }}</td>
                         <td>
                             <div class="d-flex gap-2">
@@ -106,7 +106,6 @@
                 $('#crearCursoForm')[0].reset();
                 $('#error-name').text('');
                 $('#error-state').text('');
-                $('#error-version').text('');
                 $('#error-category').text('');
                 $('#error-price').text('');
                 $('#error-discount').text('');
@@ -123,7 +122,6 @@
                     var errors = xhr.responseJSON.errors;
                     $('#error-name').text(errors.name ? errors.name[0] : '');
                     $('#error-state').text(errors.state ? errors.state[0] : '');
-                    $('#error-version').text(errors.version ? errors.version[0] : '');
                     $('#error-category').text(errors.category ? errors.category[0] : '');
                     $('#error-price').text(errors.price ? errors.price[0] : '');
                     $('#error-discount').text(errors.discount ? errors.discount[0] : '');

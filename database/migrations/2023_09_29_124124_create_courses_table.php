@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->tinyInteger('status')->default(1)->comment('1: active, 0: inactive');
-            $table->string('version');
+            $table->string('version')->unique();
             $table->string('category');
-            $table->integer('price');
-            $table->string('discount');
+            $table->double('price', 8, 2);
+            $table->double('discount', 8, 2)->default(0);
             $table->string('expire_date');
             $table->timestamps();
         });

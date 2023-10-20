@@ -132,15 +132,17 @@
             <div class="detail-containter">
                 <div class="item text-uppercase"><b>RECIBO DEL SR.(A):</b> {{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}})  <span class="float-right">LA CANTIDAD DE: <b class="px-3">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</b> </span></div>
                 <div class="item text-uppercase"><b>CANTIDAD EN LETRAS:</b></div>
-                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> {{$data->concept}}</div>
-                <div class="item text-uppercase"><b>INICIO: </b>{{$data->start_date}}</div>
+                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> PAGO POR INSCRIPCIÓN DEL CURSO: <b>{{$data->course->name}}</b> DEL ESTUDIANTE:
+                    <b>{{$data->client->name}} {{$data->client->lastname}}</b> DE LA VERSIÓN: <b>{{$data->course->version}}</b></div>
+                <div class="item"><b>INICIO: </b>{{$data->start_date}}</div>
                 <div class="item text-center">
                     <span class="mx-3"><b>A CUENTA:</b>{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span>
-                    <span class="mx-3"><b>SALDO:</b>{{ $data->course->price - $data->mount }}</span>
-                    <span class="mx-3"><b>TOTAL:</b> {{$data->course->price}}</span>
+                    <span class="mx-3"><b>SALDO:</b>{{"Bs. ".$discountRegistration - $data->mount }}</span>
+                    <span class="mx-3"><b>DESCUENTO:</b>{{ $data->discount."%" }}</span>
+                    <span class="mx-3"><b>TOTAL:</b> {{"Bs. ". $discountRegistration }}</span>
                 </div>
             </div>
-            <div class="item mt-2"><span><b>LUGAR Y FECHA:</b></span> <span><b>Cochabamba, 26/7/2023</b></span></div>
+            <div class="item mt-2"><span><b>LUGAR Y FECHA:</b></span> <span><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
             <div class="contenedor-firmas">
                     <div class="w-25 firma-1">
                         <div class="linea"></div>

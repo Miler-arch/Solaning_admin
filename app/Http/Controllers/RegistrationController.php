@@ -6,7 +6,6 @@ use App\Models\Client;
 use App\Models\Course;
 use App\Models\Registration;
 use Illuminate\Http\Request;
-use Luecano\NumeroALetras\NumeroALetras;
 
 class RegistrationController extends Controller
 {
@@ -25,6 +24,7 @@ class RegistrationController extends Controller
     {
         $user = auth()->user();
         $registrationData = $request->all();
+
         $coursePrice = Course::find($registrationData['course_id'])->price;
 
         if ($registrationData['mount'] > $coursePrice) {
@@ -38,36 +38,16 @@ class RegistrationController extends Controller
 
         // Asignar el ID formateado al registro
         $registrationData['id'] = $formattedId;
+        $registrationData['start_date'] = date('j-M-Y');
 
+        // Discount
+        $discountRegistration = $coursePrice - ($coursePrice * ($registrationData['discount'] / 100));
         // Crear el registro con el ID formateado
         $data = $user->registrations()->create($registrationData);
 
         // Generar y devolver el PDF
-        $pdf = \PDF::loadView('registrations.recibe', compact('request', 'data', 'formattedId'));
+        $pdf = \PDF::loadView('registrations.recibe', compact('request', 'data', 'formattedId', 'discountRegistration'));
         return $pdf->stream('recibe.pdf');
         }
-
-
-    }
-
-
-
-    public function show(string $id)
-    {
-
-    }
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
     }
 }

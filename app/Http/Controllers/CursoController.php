@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
-use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
@@ -24,20 +23,26 @@ class CursoController extends Controller
     {
         $price = $request->price;
         $discount = $request->discount;
-
-        // Calcular el precio final después de aplicar el descuento
+        $expire_date = $request->expire_date;
+        $data = date('d-m-Y', strtotime($expire_date));
         $finalPrice = $price - ($price * ($discount / 100));
+        $nameCode = strtoupper(substr($request->name, 0, 3));
+        $latestCourse = Course::where('version', 'LIKE', $nameCode . '-%')->latest('version')->first();
 
+        $version = ($latestCourse) ? intval(substr($latestCourse->version, 4)) + 1 : 1;
         Course::create([
             'name' => $request->name,
-            'version' => $request->version,
+            'version' => $nameCode . '-' . $version, // Almacenar el código en el campo version
             'category' => $request->category,
             'price' => $finalPrice,
             'discount' => $request->discount,
-            'expire_date' => $request->expire_date,
+            'expire_date' => $data,
         ]);
+
         return response()->json(['success' => 'Curso creado exitosamente.']);
     }
+
+
 
     public function show(string $id)
     {

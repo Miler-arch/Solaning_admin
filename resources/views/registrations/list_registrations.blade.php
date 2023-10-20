@@ -19,7 +19,7 @@
                         <th>Curso</th>
                         <th>Método de pago</th>
                         <th>Razón Social</th>
-                        <th>Concepto</th>
+                        <th>Versión</th>
                         <th>NIT</th>
                         <th>Pago</th>
                         <th>Debe</th>
@@ -47,17 +47,17 @@
                             @endif
                         </td>
                         <td>{{ $registration->business_name }}</td>
-                        <td>{{ $registration->concept }}</td>
+                        <td>{{ $registration->course->version }}</td>
                         <td>{{ $registration->nit }}</td>
-                        <td>{{ $registration->mount }}</td>
+                        <td>{{ $registration->mount." Bs."}}</td>
                         <td>
                             @if ($registration->course->price - $registration->mount > 0)
-                                <span class="bg-warning rounded p-1 px-2 font-weight-bold">{{ $registration->course->price - $registration->mount }}</span>
+                                <span class="bg-warning rounded p-1 px-2 font-weight-bold">{{ $registration->course->price - $registration->mount." Bs." }}</span>
                             @elseif ($registration->course->price - $registration->mount == 0)
-                                <span class="bg-primary rounded py-1 px-3 font-weight-bold">{{ $registration->course->price - $registration->mount }}</span>
+                                <span class="bg-primary rounded py-1 px-3 font-weight-bold">{{ $registration->course->price - $registration->mount." Bs." }}</span>
                             @endif
                         </td>
-                        <td>{{ $registration->course->price }}</td>
+                        <td>{{ $registration->course->price." Bs."}}</td>
                         <td>{{ $registration->start_date }}</td>
                         <td>
                             <div class="d-flex gap-2">
