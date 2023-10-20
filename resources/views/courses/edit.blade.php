@@ -28,7 +28,7 @@
                         <x-adminlte-input type="text" name="version" id="version" label="Versión :" value="{{$course->version}}" label-class="text-light-emphasis">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-code-branch"></i>
                                 </div>
                             </x-slot>
 
@@ -40,7 +40,7 @@
                         <x-adminlte-input type="text" min="0" name="category" id="category" label="Categoría :" value="{{$course->category}}" label-class="text-light-emphasis">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-layer-group"></i>
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
@@ -48,10 +48,10 @@
                     </div>
 
                     <div class="col-lg-6 col-12">
-                        <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio :" value="{{$course->price}}" label-class="text-light-emphasis">
+                        <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio (Bs):" value="{{$course->price}}" label-class="text-light-emphasis">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-money-bill"></i>
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
@@ -59,10 +59,10 @@
                     </div>
 
                     <div class="col-lg-6 col-12">
-                        <x-adminlte-input type="text" name="discount" id="discount" label="Descuento :" value="{{$course->discount}}" label-class="text-light-emphasis">
+                        <x-adminlte-input type="text" name="discount" id="discount" label="Descuento (%):" value="{{$course->discount}}" label-class="text-light-emphasis">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
-                                    <i class="fas fa-book"></i>
+                                    <i class="fas fa-tag"></i>
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
@@ -72,9 +72,9 @@
                     <div class="col-lg-6 col-12">
                         <x-adminlte-input type="date" name="expire_date" id="expire_date" label="Fecha de expiración :" value="{{$course->expire_date}}" label-class="text-light-emphasis">
                             <x-slot name="prependSlot">
-                                <div class="input-group-text">
-                                    <i class="fas fa-book"></i>
-                                </div>
+                                {{-- <div class="input-group-text">
+                                    <i class="fas fa-tag"></i>
+                                </div> --}}
                             </x-slot>
                         </x-adminlte-input>
                         <span class="text-danger" id="error-expire_date"></span>
