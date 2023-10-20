@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <label for="validationCustom07" class="font-weight-bold">Descuento :</label>
+                            <label for="validationCustom07" class="font-weight-bold">Descuento (%):</label>
                             <input type="number" class="form-control" name="discount" value="0" id="validationCustom07" min="0">
                             <div class="valid-feedback">
                                 Bien hecho!
@@ -57,13 +57,13 @@
 
 
                         <div class="col-md-4">
-                            <label class="font-weight-bold">Precio con Descuento :</label>
+                            <label class="font-weight-bold">Precio con Descuento (Bs):</label>
                             {{-- <span id="discountedPrice"></span> --}}
                             <input type="text" class="form-control" min="0" value="0" readonly id="discountedPrice">
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <label for="validationCustom06" class="font-weight-bold">Monto :</label>
+                            <label for="validationCustom06" class="font-weight-bold">Monto (Bs):</label>
                             <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese un monto.
