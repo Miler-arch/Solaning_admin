@@ -266,9 +266,16 @@ aside .brand-link {
 }
 
 
-
-
 /** Modales de registro  */
 label:not(.form-check-label):not(.custom-file-label) {
     font-weight: 450;
+}
+
+/** Botones de los modales */
+.boton-registro-modal {
+    background-color: #28a745;
+    color: #fff;
+}
+.boton-registro-modal:hover {
+    background-color: #1b8033;
 }

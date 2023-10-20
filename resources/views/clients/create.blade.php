@@ -104,7 +104,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Cerrar</button>
-                        <x-adminlte-button class="btn-flat rounded" type="submit" label="Registrar" theme="success" icon="fas fa-lg fa-save"/>
+                        <x-adminlte-button class="btn-flat rounded boton-registro-modal" type="submit" label="Registrar" theme="success" icon="fas fa-lg fa-save"/>
                     </div>
                 </form>
             </div>

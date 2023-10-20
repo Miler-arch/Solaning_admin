@@ -52,7 +52,7 @@
                             <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio (Bs):" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
+                                        <i class="fas fa-money-bill"></i>
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
@@ -63,7 +63,7 @@
                             <x-adminlte-input type="number" min="0" name="discount" value="0" id="discount" label="Descuento (%):" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
+                                        <i class="fas fa-tag"></i>
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
@@ -74,9 +74,9 @@
                         <div class="col-lg-6 col-12">
                             <x-adminlte-input type="date" name="expire_date" id="expire_date" label="Fecha de expiración :" label-class="text-secondary">
                                 <x-slot name="prependSlot">
-                                    <div class="input-group-text">
+                                    {{-- <div class="input-group-text">
                                         <i class="fas fa-book"></i>
-                                    </div>
+                                    </div> --}}
                                 </x-slot>
                             </x-adminlte-input>
                             <span class="text-danger" id="error-expire_date"></span>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Cerrar</button>
-                        <x-adminlte-button class="btn-flat rounded" type="submit" label="Registrar" theme="success" icon="fas fa-lg fa-save"/>
+                        <x-adminlte-button class="btn-flat rounded boton-registro-modal" type="submit" label="Registrar" theme="success" icon="fas fa-lg fa-save"/>
                     </div>
                 </form>
             </div>

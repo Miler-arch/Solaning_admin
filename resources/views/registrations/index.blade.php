@@ -55,6 +55,13 @@
                             </div>
                         </div>
 
+
+                        <div class="col-md-4">
+                            <label class="font-weight-bold">Precio con Descuento :</label>
+                            {{-- <span id="discountedPrice"></span> --}}
+                            <input type="text" class="form-control" min="0" value="0" readonly id="discountedPrice">
+                        </div>
+
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom06" class="font-weight-bold">Monto :</label>
                             <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required>
@@ -64,10 +71,6 @@
                             <div class="valid-feedback">
                                 Bien hecho!
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="font-weight-bold">Precio con Descuento :</label>
-                            <span id="discountedPrice"></span>
                         </div>
 
                     </div>
@@ -92,7 +95,7 @@
 
                 <div class="form-row">
                     <div class="col-12 d-flex flex-wrap justify-content-evenly">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="validationCustom05" class="font-weight-bold">Fecha Inicio :</label>
                             <input type="date" name="start_date" class="form-control" id="validationCustom05" required>
                             <div class="invalid-feedback">
@@ -103,7 +106,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="validationCustom08" class="font-weight-bold">Pago :</label>
                             <select name="method_payment" class="form-select" id="validationCustom08" required>
                                 <option value="">Seleccione una opción</option>
@@ -178,7 +181,7 @@
         let discountValue = parseFloat(discountInput.value);
         let discountedPrice = selectedCoursePrice - (selectedCoursePrice * (discountValue / 100));
         let discountedPriceElement = document.getElementById("discountedPrice");
-        discountedPriceElement.textContent = discountedPrice.toFixed(2) + " Bs.";
+        discountedPriceElement.value = discountedPrice.toFixed(2) + " Bs.";
     });
 </script>
 @if(session('error'))
