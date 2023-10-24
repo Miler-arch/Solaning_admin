@@ -13,14 +13,10 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
+            'ci' => '123456789',
+            'lastname' => 'admin',
+            'phone' => '123456789',
             'password' => bcrypt('admin'),
-        ]);
-
-        User::create([
-            'name' => 'miler',
-            'email' => 'miler@gmail.com',
-            'password' => bcrypt('admin'),
-        ]);
-
+        ])->assignRole('superAdmin');
     }
 }

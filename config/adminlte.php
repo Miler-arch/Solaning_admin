@@ -295,11 +295,12 @@ return [
             'topnav_right' => true,
         ],
 
-        ['header' => 'Panel de Administración'],
+        ['header' => 'Panel de Administración', 'can' => 'dashboard.index'],
         [
             'text' => 'Dashboard',
             'url'  => 'dashboard',
             'icon' => 'fas fa-fw fa-tachometer-alt',
+            'can' => 'dashboard.index',
 
         ],
         ['header' => 'Incripciones'],
@@ -325,28 +326,15 @@ return [
             'url'         => 'courses',
             'icon'        => 'fas fa-book',
         ],
-        ['header' => 'Administración'],
+        ['header' => 'Administración', 'can' => 'users.index'],
+
         [
-            'text'    => 'Personal',
-            'icon'    => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Usuarios',
-                    'url'  => '#',
-                    'icon_color' => 'green',
-                ],
-                [
-                    'text'    => 'Roles',
-                    'url'     => '#',
-                    'icon_color' => 'yellow',
-                ],
-                [
-                    'text' => 'Permisos',
-                    'url'  => '#',
-                    'icon_color' => 'red',
-                ],
-            ],
+                'text' => 'Usuarios',
+                'url'  => 'users',
+                'icon' => 'fas fa-users',
+                'can' => 'users.index',
         ],
+
     ],
 
     /*

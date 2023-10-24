@@ -17,8 +17,8 @@ return new class extends Migration
             $table->tinyInteger('status')->default(1)->comment('1: active, 0: inactive');
             $table->string('version')->unique();
             $table->string('category');
-            $table->double('price', 8, 2);
-            $table->double('discount', 8, 2)->default(0);
+            $table->decimal('price', 8, 2);
+            $table->decimal('discount', 8, 2)->default(0);
             $table->string('expire_date');
             $table->timestamps();
         });

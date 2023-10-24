@@ -70,15 +70,15 @@
                     </div>
 
                     <div class="col-lg-6 col-12">
-                        <x-adminlte-input type="date" name="expire_date" id="expire_date" label="Fecha de expiración :" value="{{$course->expire_date}}" label-class="text-light-emphasis">
+                        <x-adminlte-input type="date" name="expire_date" id="expire_date" label="Fecha de expiración :"
+                                        value="{{ optional($course->expire_date)->format('Y-m-d') }}"
+                                        label-class="text-secondary">
                             <x-slot name="prependSlot">
-                                {{-- <div class="input-group-text">
-                                    <i class="fas fa-tag"></i>
-                                </div> --}}
                             </x-slot>
                         </x-adminlte-input>
                         <span class="text-danger" id="error-expire_date"></span>
                     </div>
+
                 </div>
             </div>
             <div class="text-center py-2 pb-4">
