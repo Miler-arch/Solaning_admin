@@ -22,7 +22,7 @@
                             <select class="js-example-basic-single js-states form-control" id="validationCustom01" name="client_id" required>
                                 @foreach ($clients as $client)
                                     <option></option>
-                                    <option value="{{ $client->id }}">{{ $client->name }} | {{ $client->ci }}</option>
+                                    <option value="{{ $client->id }}">{{ $client->lastname }} | {{ $client->ci }}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
@@ -37,7 +37,7 @@
                             <select class="js-example-basic-single js-states form-control js-courses" id="validationCustom02" name="course_id" required>
                                 @foreach ($courses as $course)
                                     <option></option>
-                                    <option value="{{ $course->id }}">{{ $course->name }} | {{ $course->price." Bs." }}</option>
+                                    <option value="{{ $course->id }}">{{ $course->name }} | {{ $course->price." Bs." }} | {{$course->version}}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
@@ -56,13 +56,13 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label class="font-weight-bold">Precio con Descuento (Bs):</label>
+                            <label class="font-weight-bold">Precio con Descuento (Bs.):</label>
                             {{-- <span id="discountedPrice"></span> --}}
                             <input type="text" class="form-control" min="0" value="0" readonly id="discountedPrice" name="discounted_price">
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <label for="validationCustom06" class="font-weight-bold">Monto (Bs):</label>
+                            <label for="validationCustom06" class="font-weight-bold">A Cuenta (Bs.):</label>
                             <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese un monto.
