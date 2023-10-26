@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const HOME = '/clients';
+    public const HOME = '/registrations';
     public function boot(): void
     {
         RateLimiter::for('api', function (Request $request) {

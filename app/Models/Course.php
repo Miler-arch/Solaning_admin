@@ -23,4 +23,9 @@ class Course extends Model
     {
         return $this->belongsToMany(Client::class, 'clients_courses')->whitPivot('mount');
     }
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
 }

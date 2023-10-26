@@ -22,7 +22,7 @@
                             <select class="js-example-basic-single js-states form-control" id="validationCustom01" name="client_id" required>
                                 @foreach ($clients as $client)
                                     <option></option>
-                                    <option value="{{ $client->id }}">{{ $client->name }} | {{ $client->ci }}</option>
+                                    <option value="{{ $client->id }}">{{ $client->lastname }} | {{ $client->ci }}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
@@ -37,7 +37,7 @@
                             <select class="js-example-basic-single js-states form-control js-courses" id="validationCustom02" name="course_id" required>
                                 @foreach ($courses as $course)
                                     <option></option>
-                                    <option value="{{ $course->id }}">{{ $course->name }} | {{ $course->price." Bs." }}</option>
+                                    <option value="{{ $course->id }}">{{ $course->name }} | {{ $course->price." Bs." }} | {{$course->version}}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
@@ -55,15 +55,14 @@
                             </div>
                         </div>
 
-
                         <div class="col-md-4">
                             <label class="font-weight-bold">Precio con Descuento (Bs):</label>
                             {{-- <span id="discountedPrice"></span> --}}
-                            <input type="text" class="form-control" min="0" value="0" readonly id="discountedPrice">
+                            <input type="text" class="form-control" min="0" value="0" readonly id="discountedPrice" name="discounted_price">
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <label for="validationCustom06" class="font-weight-bold">Monto (Bs):</label>
+                            <label for="validationCustom06" class="font-weight-bold">A cuenta (Bs):</label>
                             <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese un monto.
@@ -73,29 +72,22 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="col-12 d-flex flex-wrap justify-content-evenly">
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-4">
                             <label class="font-weight-bold">NIT :</label>
-                            <input type="number" class="form-control" name="nit" value="0">
+                            <input type="number" class="form-control" name="nit" value="0" min="0">
                             <div class="valid-feedback">
                                 Bien hecho!
                             </div>
                         </div>
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-4">
                             <label for="validationCustom08" class="font-weight-bold">Razón social :</label>
                             <input type="text" name="business_name" class="form-control" value="SIN NOMBRE" id="validationCustom08">
                             <div class="valid-feedback">
                                 Bien hecho!
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="col-12 d-flex flex-wrap justify-content-evenly">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="validationCustom05" class="font-weight-bold">Fecha Inicio :</label>
                             <input type="date" name="start_date" class="form-control" id="validationCustom05" required>
                             <div class="invalid-feedback">
@@ -106,25 +98,11 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-3">
-                            <label for="validationCustom08" class="font-weight-bold">Pago :</label>
-                            <select name="method_payment" class="form-select" id="validationCustom08" required>
-                                <option value="">Seleccione una opción</option>
-                                <option value="parcial">Parcial</option>
-                                <option value="completo">Completo</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Por favor seleccione un método de pago.
-                            </div>
-                            <div class="valid-feedback">
-                                Bien hecho!
-                            </div>
-                        </div>
+                        <input type="hidden" name="method_payment" id="method_payment">
                     </div>
                 </div>
-
                 <div class="d-grid gap-2 py-2">
-                    <button class="btn btn-primary mt-3 mx-3 py-2 px-3" type="submit">Inscribir</button>
+                    <button class="btn btn-primary mt-3 mx-3 py-2 px-3 font-weight-bold" type="submit">INSCRIBIR</button>
                 </div>
             </form>
         </div>
@@ -181,9 +159,10 @@
         let discountValue = parseFloat(discountInput.value);
         let discountedPrice = selectedCoursePrice - (selectedCoursePrice * (discountValue / 100));
         let discountedPriceElement = document.getElementById("discountedPrice");
-        discountedPriceElement.value = discountedPrice.toFixed(2) + " Bs.";
+        discountedPriceElement.value = discountedPrice.toFixed(2);
     });
 </script>
+
 @if(session('error'))
     <script>
         Swal.fire({

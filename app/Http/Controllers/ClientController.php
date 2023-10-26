@@ -11,9 +11,8 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = Client::all();
-        $courses = Course::all();
-        return view('clients.index', compact('clients', 'courses'));
+        $clients = Client::orderBy('id', 'desc')->get();
+        return view('clients.index', compact('clients'));
     }
 
     public function create()
@@ -53,15 +52,19 @@ class ClientController extends Controller
     {
         $client = Client::findOrFail($id);
         $client->update($request->all());
-        toast('Alumno actualizado exitosamente.','success')->autoClose(1500);
+        toastr()->success('Alumno actualizado exitosamente!');
         return redirect()->route('clients.index', compact('client'));
     }
 
     public function destroy($id)
     {
         $client = Client::findOrFail($id);
+        if ($client->registrations->count() > 0) {
+            toastr()->error('No se puede eliminar el alumno porque tiene registros asignados!');
+            return redirect()->route('clients.index');
+        }
         $client->delete();
-        toast('Alumno eliminado exitosamente.','success')->autoClose(1500);
+        toastr()->success('Alumno eliminado exitosamente!');
         return redirect()->route('clients.index');
     }
 

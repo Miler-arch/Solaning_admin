@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
@@ -14,15 +15,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
 
-Route::resource('clients', ClientController::class)->name('', 'clients');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('courses', CursoController::class)->name('', 'courses');
+    Route::resource('clients', ClientController::class)->name('', 'clients');
 
-Route::resource('registrations', RegistrationController::class)->name('', 'registrations');
+    Route::resource('courses', CursoController::class)->name('', 'courses');
 
-Route::get('list_registrations', [ListRegistrations::class, 'index'])->name('list_registrations');
+    Route::resource('registrations', RegistrationController::class)->name('', 'registrations');
 
-Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
+    Route::get('list_registrations', [ListRegistrations::class, 'index'])->name('list_registrations');
+
+    Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
+
+    Route::resource('users', UserController::class)->name('', 'users');
+});
+
 

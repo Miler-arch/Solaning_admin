@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Registration;
-use Illuminate\Http\Request;
 
 class ListRegistrations extends Controller
 {
     public function index()
     {
-        $registrationsList = Registration::all();
+        $registrationsList = Registration::orderBy('id', 'desc')->get();
+
         return view('registrations.list_registrations', compact('registrationsList'));
     }
 

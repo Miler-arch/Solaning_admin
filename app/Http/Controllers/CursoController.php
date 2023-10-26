@@ -10,7 +10,7 @@ class CursoController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::orderBy('id', 'desc')->get();
         return view('courses.index', compact('courses'));
     }
 
@@ -60,15 +60,19 @@ class CursoController extends Controller
     {
         $course = Course::findOrFail($id);
         $course->update($request->all());
-        toast('Curso actualizado exitosamente.','success')->autoClose(1500);
+        toastr()->success('Curso actualizado exitosamente!');
         return redirect()->route('courses.index', compact('course'));
     }
 
     public function destroy(string $id)
     {
         $course = Course::findOrFail($id);
+        if ($course->registrations->count() > 0) {
+            toastr()->error('No se puede eliminar el curso porque tiene registros asignados!');
+            return redirect()->route('clients.index');
+        }
         $course->delete();
-        toast('Curso eliminado exitosamente.','success')->autoClose(1500);
+        toastr()->success('Curso eliminado exitosamente!');
         return redirect()->route('courses.index');
     }
 }

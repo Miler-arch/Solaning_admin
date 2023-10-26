@@ -10,11 +10,12 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
-            $table->string('method_payment');
+            $table->tinyInteger('method_payment')->default(0)->comment("0: 'Parcial', 1 : 'Completo'");
             $table->string('business_name')->nullable();
             $table->string('nit')->nullable();
-            $table->integer('mount');
-            $table->integer('discount');
+            $table->decimal('mount', 8, 2);
+            $table->decimal('discount', 8, 2)->default(0);
+            $table->decimal('discounted_price', 8, 2)->default(0);
             $table->string('start_date');
 
             $table->foreignId('user_id')->constrained('users');

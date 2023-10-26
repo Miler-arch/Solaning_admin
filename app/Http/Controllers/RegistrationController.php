@@ -24,11 +24,21 @@ class RegistrationController extends Controller
     {
         $user = auth()->user();
         $registrationData = $request->all();
+        $discounted_price = $request->input('discounted_price');
+        $registrationData[''] = $discounted_price;
+        $estadoPago = '0';
 
         $coursePrice = Course::find($registrationData['course_id'])->price;
 
+        if ($registrationData['mount'] < $coursePrice && $registrationData['mount'] < $discounted_price) {
+            $estadoPago = '0';
+        } elseif ($registrationData['mount'] == $coursePrice || $registrationData['mount'] == $discounted_price) {
+            $estadoPago = '1';
+        }
+
         if ($registrationData['mount'] > $coursePrice) {
-                return redirect()->route('registrations.index')->with('error', 'El monto ingresado es mayor al precio del curso');
+                toastr()->error('El monto ingresado es mayor al precio del curso');
+                return redirect()->route('registrations.index');
         }else{
                  // Obtener el próximo ID de registro
         $nextId = Registration::max('id') + 1;
@@ -39,6 +49,7 @@ class RegistrationController extends Controller
         // Asignar el ID formateado al registro
         $registrationData['id'] = $formattedId;
         $registrationData['start_date'] = date('j-M-Y');
+        $registrationData['method_payment'] = $estadoPago;
 
         // Discount
         $discountRegistration = $coursePrice - ($coursePrice * ($registrationData['discount'] / 100));

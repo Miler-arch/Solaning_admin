@@ -74,9 +74,6 @@
                         <div class="col-lg-6 col-12">
                             <x-adminlte-input type="date" name="expire_date" id="expire_date" label="Fecha de expiración :" label-class="text-secondary">
                                 <x-slot name="prependSlot">
-                                    {{-- <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
-                                    </div> --}}
                                 </x-slot>
                             </x-adminlte-input>
                             <span class="text-danger" id="error-expire_date"></span>

@@ -21,7 +21,7 @@
                     <div class="icon d-icon">
                         <i class="fas fa-user"></i>
                     </div>
-                    <a href="#" class="d-flex justify-content-center align-items-center small-box-footer py-2 d-icon-2">
+                    <a href="{{route("users.index")}}" class="d-flex justify-content-center align-items-center small-box-footer py-2 d-icon-2">
                         Más información<i class="fas fa-arrow-alt-circle-right px-2"></i>
                     </a>
                 </div>
