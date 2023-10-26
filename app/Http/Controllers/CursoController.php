@@ -23,8 +23,8 @@ class CursoController extends Controller
     {
         $price = $request->price;
         $discount = $request->discount;
-        $expire_date = $request->expire_date;
-        $data = date('d-m-Y', strtotime($expire_date));
+        $start_date = $request->start_date;
+        $data = date('j-M-Y', strtotime($start_date));
         $finalPrice = $price - ($price * ($discount / 100));
         $nameCode = strtoupper(substr($request->name, 0, 3));
         $latestCourse = Course::where('version', 'LIKE', $nameCode . '-%')->latest('version')->first();
@@ -36,9 +36,8 @@ class CursoController extends Controller
             'category' => $request->category,
             'price' => $finalPrice,
             'discount' => $request->discount,
-            'expire_date' => $data,
+            'start_date' => $data,
         ]);
-
         return response()->json(['success' => 'Curso creado exitosamente.']);
     }
 
@@ -59,8 +58,13 @@ class CursoController extends Controller
     public function update(UpdateCourseRequest $request, string $id)
     {
         $course = Course::findOrFail($id);
-        $course->update($request->all());
-        toastr()->success('Curso actualizado exitosamente!');
+        $course->name = $request->name;
+        $course->category = $request->category;
+        $course->price = $request->price;
+        $course->discount = $request->discount;
+        $course->start_date = $request->start_date;
+        $course->save();
+        toastr()->success('Curso actualizado exitosamente!', '¡Curso actualizado!');
         return redirect()->route('courses.index', compact('course'));
     }
 
@@ -68,11 +72,20 @@ class CursoController extends Controller
     {
         $course = Course::findOrFail($id);
         if ($course->registrations->count() > 0) {
-            toastr()->error('No se puede eliminar el curso porque tiene registros asignados!');
-            return redirect()->route('clients.index');
+            toastr()->error('No se puede eliminar el curso porque tiene registros asignados!', '¡Error!');
+            return redirect()->route('courses.index');
         }
         $course->delete();
         toastr()->success('Curso eliminado exitosamente!');
+        return redirect()->route('courses.index');
+    }
+
+    public function updateState(string $id)
+    {
+        $course = Course::findOrFail($id);
+        $course->status = !$course->status;
+        $course->save();
+        toastr()->success('Estado del curso actualizado exitosamente!', '¡Estado actualizado!');
         return redirect()->route('courses.index');
     }
 }

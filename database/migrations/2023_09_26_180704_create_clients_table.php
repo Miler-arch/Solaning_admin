@@ -15,8 +15,8 @@ return new class extends Migration
             $table->integer('age');
             $table->integer('ci')->unique();
             $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('reference_phone');
+            $table->string('phone')->unique();
+            $table->string('reference_phone')->nullable()->unique();
             $table->timestamps();
         });
     }

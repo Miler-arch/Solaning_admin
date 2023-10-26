@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('category');
             $table->decimal('price', 8, 2);
             $table->decimal('discount', 8, 2)->default(0);
-            $table->string('expire_date');
+            $table->string('start_date');
             $table->timestamps();
         });
     }

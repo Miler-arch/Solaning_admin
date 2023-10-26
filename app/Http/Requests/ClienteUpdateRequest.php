@@ -21,7 +21,7 @@ class ClienteUpdateRequest extends FormRequest
             'ci' => 'required|numeric|unique:clients,ci,' . $clientId,
             'email' => 'required|email|unique:clients,email,' . $clientId,
             'phone' => 'required|numeric|unique:clients,phone,' . $clientId,
-            'reference_phone' => 'required|numeric|unique:clients,reference_phone,' . $clientId,
+            'reference_phone' => 'nullable|numeric|unique:clients,reference_phone,' . $clientId,
         ];
     }
 
@@ -39,7 +39,9 @@ class ClienteUpdateRequest extends FormRequest
             'ci.numeric' => 'El carnet de identidad debe ser un número',
             'ci.unique' => 'El carnet de identidad ya existe',
             'email.email' => 'El correo debe ser un correo válido',
+            'email.required' => 'El correo es requerido',
             'email.unique' => 'El correo ya existe',
+            'phone.required' => 'El teléfono es requerido',
             'phone.numeric' => 'El teléfono debe ser un número',
             'phone.unique' => 'El teléfono ya existe',
             'reference_phone.numeric' => 'El teléfono de referencia debe ser un número',

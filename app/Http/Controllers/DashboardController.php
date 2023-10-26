@@ -16,8 +16,8 @@ class DashboardController extends Controller
         $clients = Client::all()->count();
         $inscriptions = Registration::all()->count();
         $courses = Course::all()->count();
-        $inscriptionsStatePartial = Registration::where('method_payment', "parcial")->count();
-        $inscriptionsStateComplete = Registration::where('method_payment', "completo")->count();
+        $inscriptionsStatePartial = Registration::where('method_payment', 0)->count();
+        $inscriptionsStateComplete = Registration::where('method_payment', 1)->count();
 
 
         return view('dashboard.index', compact('users', 'clients', 'inscriptions', 'courses', 'inscriptionsStatePartial', 'inscriptionsStateComplete'));

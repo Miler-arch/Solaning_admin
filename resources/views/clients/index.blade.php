@@ -34,7 +34,13 @@
                         <td>{{ $client->ci }}</td>
                         <td>{{ $client->email }}</td>
                         <td>{{ $client->phone }}</td>
-                        <td>{{ $client->reference_phone }}</td>
+                        <td>
+                            @if ($client->reference_phone == null)
+                                <span class="badge badge-danger p-2">Sin número</span>
+                            @else
+                                {{ $client->reference_phone }}
+                            @endif
+                        </td>
                         <td>{{ $client->created_at->format('d-m-Y H:i:s') }}</td>
                         <td>
                             <div class="d-flex gap-2">

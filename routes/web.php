@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('courses', CursoController::class)->name('', 'courses');
 
+    Route::put("courses/{course}/update_state", [CursoController::class, 'updateState'])->name('courses.updateState');
+
     Route::resource('registrations', RegistrationController::class)->name('', 'registrations');
 
     Route::get('list_registrations', [ListRegistrations::class, 'index'])->name('list_registrations');

@@ -16,7 +16,7 @@ class Course extends Model
         'category',
         'price',
         'discount',
-        'expire_date',
+        'start_date',
     ];
 
     public function clients()

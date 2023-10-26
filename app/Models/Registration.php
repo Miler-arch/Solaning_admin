@@ -14,8 +14,8 @@ class Registration extends Model
         'nit',
         'mount',
         'discount',
-        'start_date',
         'client_id',
+        'type_payment',
         'course_id',
         'user_id',
         'discounted_price'

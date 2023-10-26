@@ -16,7 +16,7 @@ return new class extends Migration
             $table->decimal('mount', 8, 2);
             $table->decimal('discount', 8, 2)->default(0);
             $table->decimal('discounted_price', 8, 2)->default(0);
-            $table->string('start_date');
+            $table->string('type_payment')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
 
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('client_id')->constrained('clients');

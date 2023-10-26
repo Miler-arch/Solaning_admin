@@ -87,12 +87,15 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom05" class="font-weight-bold">Fecha Inicio :</label>
-                            <input type="date" name="start_date" class="form-control" id="validationCustom05" required>
-                            <div class="invalid-feedback">
-                                Por favor ingrese una fecha de inicio.
-                            </div>
+                        <div class="col-md-4 mb-4">
+                            <label for="validationCustom09" class="font-weight-bold">Tipo de Pago :</label>
+                            <select class="form-select" id="validationCustom09" name="type_payment" required>
+                                <option disabled selected>-- Seleccione el tipo de pago --</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Transferencia">Transferencia</option>
+                                <option value="Deposito Bancario">Depósito Bancario</option>
+                                <option value="QR">QR</option>
+                            </select>
                             <div class="valid-feedback">
                                 Bien hecho!
                             </div>

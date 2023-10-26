@@ -14,12 +14,12 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Estado</th>
                         <th>Versión</th>
                         <th>Categoría</th>
                         <th>Precio</th>
                         <th>Descuento</th>
-                        <th>Fecha de Expiración</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -28,18 +28,21 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $course->name }}</td>
-                        <td>
-                            @if($course->status === 1)
-                                <span class="badge-success py-1 px-2 rounded">Activo <span class="fa fa-check-circle"></span></span>
-                            @else
-                                <span class="badge-danger p-1 ps-3 pe-3 rounded">Inactivo <i class="fas fa-times-circle"></i></span>
-                            @endif
-                        </td>
                         <td>{{ $course->version }}</td>
                         <td>{{ $course->category }}</td>
                         <td>{{ $course->price." Bs." }}</td>
                         <td>{{ $course->discount. " %" }}</td>
-                        <td>{{ $course->expire_date }}</td>
+                        <td>{{ $course->start_date }}</td>
+                        <td>
+                            <form action="{{route("courses.updateState", $course)}}" method="POST" class="updateStatus">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="status" value="{{ $course->status }}">
+                                <button type="submit" class="btn btn-xs btn-default text-{{ $course->status ? 'success' : 'danger' }} shadow" title="{{ $course->status ? 'Activo' : 'Inactivo' }}">
+                                    <i class="fa fa-fw fa-{{ $course->status ? 'check-circle' : 'times-circle' }}"></i> {{ $course->status ? 'Activo' : 'Inactivo' }}
+                                </button>
+                            </form>
+                        </td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-xs btn-default text-primary shadow" title="Editar">
@@ -86,6 +89,28 @@
         })
     });
 </script>
+
+<script type="text/javascript">
+    $('.updateStatus').submit(function(e){
+        e.preventDefault();
+            Swal.fire({
+            title: 'Esta seguro de cambiar el estado del curso?',
+            text: "El curso se cambiara de estado.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '<i class="fa fa-fw fa-check-circle"></i> Si, cambiar',
+            cancelButtonText: '<i class="fa fa-fw fa-times-circle"></i> Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>
+
+
 <script>
     $(document).ready(function () {
     $('#crearCursoForm').submit(function (event) {
@@ -109,7 +134,7 @@
                 $('#error-category').text('');
                 $('#error-price').text('');
                 $('#error-discount').text('');
-                $('#error-expire_date').text('');
+                $('#error-start_date').text('');
                 // setTimeout(function() {
                 //     $('#crearCursoModal').modal('hide');
                 // });
@@ -125,7 +150,7 @@
                     $('#error-category').text(errors.category ? errors.category[0] : '');
                     $('#error-price').text(errors.price ? errors.price[0] : '');
                     $('#error-discount').text(errors.discount ? errors.discount[0] : '');
-                    $('#error-expire_date').text(errors.expire_date ? errors.expire_date[0] : '');
+                    $('#error-start_date').text(errors.start_date ? errors.start_date[0] : '');
                 }
             }
         });

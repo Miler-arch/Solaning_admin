@@ -20,7 +20,7 @@ class ClienteStoreRequest extends FormRequest
             'ci'=>'required|numeric|unique:clients',
             'email'=>'required|email|unique:clients',
             'phone'=>'required|numeric|unique:clients',
-            'reference_phone'=>'required|numeric|unique:clients',
+            'reference_phone'=>'nullable|numeric|unique:clients',
         ];
     }
 
@@ -42,7 +42,6 @@ class ClienteStoreRequest extends FormRequest
             'phone.required'=>'El teléfono es requerido',
             'phone.numeric'=>'El teléfono debe ser un número',
             'phone.unique'=>'El teléfono ya existe',
-            'reference_phone.required'=>'El teléfono de referencia es requerido',
             'reference_phone.numeric'=>'El teléfono de referencia debe ser un número',
             'reference_phone.unique'=>'El teléfono de referencia ya existe',
         ];

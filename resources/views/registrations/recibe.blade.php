@@ -134,7 +134,9 @@
                 <div class="item text-uppercase"><b>CANTIDAD EN LETRAS:</b></div>
                 <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE
                     <b>{{$data->client->name}} {{$data->client->lastname}}</b> DE LA VERSIÓN <b>{{$data->course->version}}</b></div>
-                <div class="item"><b>INICIO: </b>{{$data->start_date}}</div>
+                <div class="item"><b>INICIO: </b>
+                    {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
+                </div>
                 <div class="item text-center">
                     <span class="mx-3"><b>A CUENTA:</b>{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span>
                     <span class="mx-3"><b>SALDO:</b>{{"Bs. ".$discountRegistration - $data->mount }}</span>
@@ -143,6 +145,7 @@
                 </div>
             </div>
             <div class="item mt-2"><span><b>LUGAR Y FECHA:</b></span> <span><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
+            <div class="item mt-2"><span><b>REGISTRADO POR:</b></span> <span><b>{{Auth::user()->name}}</b></span></div>
             <div class="contenedor-firmas">
                     <div class="w-25 firma-1">
                         <div class="linea"></div>

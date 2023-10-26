@@ -12,7 +12,7 @@ class RegistrationController extends Controller
     public function index()
     {
         $clients = Client::all();
-        $courses = Course::all();
+        $courses = Course::where('status', '1')->get();
         return view('registrations.index', compact('clients', 'courses'));
     }
     public function create()
@@ -48,7 +48,6 @@ class RegistrationController extends Controller
 
         // Asignar el ID formateado al registro
         $registrationData['id'] = $formattedId;
-        $registrationData['start_date'] = date('j-M-Y');
         $registrationData['method_payment'] = $estadoPago;
 
         // Discount

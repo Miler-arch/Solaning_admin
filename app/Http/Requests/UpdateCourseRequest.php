@@ -21,7 +21,7 @@ class UpdateCourseRequest extends FormRequest
             'category' => 'required|max:255',
             'price' => 'required|numeric',
             'discount' => 'required|numeric',
-            'expire_date' => 'required|max:255',
+            'start_date' => 'required|max:255',
         ];
     }
 
@@ -37,8 +37,8 @@ class UpdateCourseRequest extends FormRequest
             'price.required' => 'El precio es requerido.',
             'discount.required' => 'El descuento es requerido.',
             'discount.numeric' => 'El descuento debe ser numérico.',
-            'expire_date.required' => 'La fecha de expiración es requerido.',
-            'expire_date.max' => 'La fecha de expiración no debe exceder los 255 caracteres.',
+            'start_date.required' => 'La fecha de inicio es requerido.',
+            'start_date.max' => 'La fecha de inicio no debe exceder los 255 caracteres.',
         ];
     }
 }
