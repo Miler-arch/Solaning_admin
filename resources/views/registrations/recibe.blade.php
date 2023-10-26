@@ -13,6 +13,8 @@
         }
         .receipt-container {
             width: 650px;
+            /* width: 680px; */
+            /* margin-left: -1.5%; */
             margin: 0 auto;
             text-align: center;
             border: 2px solid #333;
@@ -21,24 +23,28 @@
         }
         .detail-containter {
             width: 636px;
-            margin-left: -15px;
+            /* width: 665px; */
+            margin-left: -5px;
             text-align: center;
             border: 2px solid #333;
             padding: 10px;
             border-radius: 10px;
-            margin-top: -40px;
+            margin-top: -11%;
         }
         .detail-containter div {
             line-height: 2.1;
+            font-size: 0.8rem
         }
         .logo {
             width: 80px;
             margin-bottom: 10px;
         }
         .header {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-top: -0.2rem;
+            margin-bottom: 15px;
             font-weight: 900;
+            text-decoration: underline;
         }
 
         .details {
@@ -47,8 +53,8 @@
         .item {
             text-align: left;
             margin-bottom: 5px;
-            font-size: .6rem;
-            line-height: 1.1;
+            font-size: .7rem;
+            line-height: 0.7;
         }
         .total {
             font-weight: bold;
@@ -63,17 +69,18 @@
         }
         .contenedor-1 {
             position: absolute;
-            left: 15%;
-            top: 2%;
+            left: 12%;
+            top: 0;
+            margin-top: 4px;
         }
         .numeros-1 {
             position: absolute;
-            left: 63%;
+            left: 64.5%;
             top: 1%;
         }
         .numeros-2 {
             position: absolute;
-            left: 72%;
+            left: 73.5%;
             top: 4%;
         }
         .espaciado {
@@ -81,13 +88,12 @@
         }
 
         .contenedor-firmas {
-            margin-top: 3rem;
+            margin-top: 5rem;
         }
         .linea {
             width: 100%;
-            border-bottom: 1px;
-            border-bottom-color: #002c66;
-            border-style: solid;
+            border-top: 1px solid #002c66;
+
         }
         .firma-1 {
             position: absolute;
@@ -100,13 +106,20 @@
         .firmas {
             font-size: .7rem;
         }
+        .dato {
+            font-style: italic;
+            border-bottom: 1px dotted #002c66;
+        }
+        .dato-f {
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <div class="receipt-container">
         <div class="d-block">
             <div class="header">RECIBO DE PAGO</div>
-            <img src="{{ public_path() . '/img/logo-letras.png' }}" width="200" height="90">
+            <img src="{{ public_path() . '/img/logo-letras.png' }}" width="160" height="70" class="mt-4">
         </div>
         <div class="details">
             <div class="d-flex">
@@ -130,22 +143,26 @@
                 </div>
             </div>
             <div class="detail-containter">
-                <div class="item text-uppercase"><b>RECIBO DEL SR.(A):</b> {{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}})  <span class="float-right">LA CANTIDAD DE: <b class="px-3">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</b> </span></div>
+                <div class="item text-uppercase"><b>RECIBO DEL SR.(A):</b> &nbsp; <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span> <span class="float-right">LA CANTIDAD DE: &nbsp; <b class="px-3"><span class="dato">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span></b></span></div>
                 <div class="item text-uppercase"><b>CANTIDAD EN LETRAS:</b></div>
-                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE
-                    <b>{{$data->client->name}} {{$data->client->lastname}}</b> DE LA VERSIÓN <b>{{$data->course->version}}</b></div>
+                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> &nbsp; 
+                    <span class="dato"> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE <b>{{$data->client->name}} {{$data->client->lastname}}</b> DE LA VERSIÓN <b>{{$data->course->version}}</b>
+                    </span> 
+                </div>
                 <div class="item"><b>INICIO: </b>
-                    {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
+                    <span class="dato">
+                        {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
+                    </span>
                 </div>
                 <div class="item text-center">
-                    <span class="mx-3"><b>A CUENTA:</b>{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span>
-                    <span class="mx-3"><b>SALDO:</b>{{"Bs. ".$discountRegistration - $data->mount }}</span>
-                    <span class="mx-3"><b>DESCUENTO:</b>{{ $data->discount."%" }}</span>
-                    <span class="mx-3"><b>TOTAL:</b> {{"Bs. ". $discountRegistration }}</span>
+                    <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ".$discountRegistration - $data->mount }}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>DESCUENTO:</b> <span class="dato">{{ $data->discount."%" }}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". $discountRegistration }}</span></span>
                 </div>
             </div>
-            <div class="item mt-2"><span><b>LUGAR Y FECHA:</b></span> <span><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
-            <div class="item mt-2"><span><b>REGISTRADO POR:</b></span> <span><b>{{Auth::user()->name}}</b></span></div>
+            <div class="item mt-2 float-left"><span><b>LUGAR Y FECHA:</b></span> <span class="dato-f"><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
+            <div class="item mt-2 float-right"><span><b>REGISTRADO POR:</b></span> <span class="dato-f"><b>{{Auth::user()->name}}</b></span></div>
             <div class="contenedor-firmas">
                     <div class="w-25 firma-1">
                         <div class="linea"></div>
