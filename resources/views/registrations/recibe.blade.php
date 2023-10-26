@@ -108,7 +108,7 @@
         }
         .dato {
             font-style: italic;
-            border-bottom: 1px dotted #002c66;
+            border-bottom: 2px dotted #002c66;
         }
         .dato-f {
             font-style: italic;
@@ -148,6 +148,11 @@
                 <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> &nbsp; 
                     <span class="dato"> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE <b>{{$data->client->name}} {{$data->client->lastname}}</b> DE LA VERSIÓN <b>{{$data->course->version}}</b>
                     </span> 
+                </div>
+                <div class="item"><b>TIPO DE PAGO: </b>
+                    <span class="dato">
+                        {{ $data->type_payment }}
+                    </span>
                 </div>
                 <div class="item"><b>INICIO: </b>
                     <span class="dato">
