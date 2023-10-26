@@ -56,13 +56,13 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label class="font-weight-bold">Precio con Descuento (Bs):</label>
+                            <label class="font-weight-bold">Precio con Descuento (Bs.):</label>
                             {{-- <span id="discountedPrice"></span> --}}
                             <input type="text" class="form-control" min="0" value="0" readonly id="discountedPrice" name="discounted_price">
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <label for="validationCustom06" class="font-weight-bold">A cuenta (Bs):</label>
+                            <label for="validationCustom06" class="font-weight-bold">A Cuenta (Bs.):</label>
                             <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese un monto.
