@@ -48,7 +48,6 @@
         @if(config('adminlte.right_sidebar'))
             @include('adminlte::partials.sidebar.right-sidebar')
         @endif
-        @include('sweetalert::alert')
     </div>
 @stop
 

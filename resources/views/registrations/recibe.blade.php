@@ -136,21 +136,21 @@
                         </div>
 
                         <div class="contenedor-2">
-                            <span class=" numeros-1"><b>RECIBO N°</b> <b class="text-red border border-secondary p-1 px-5">{{$formattedId }}</b></span>
-                            <span class=" numeros-2"><b>POR: <span class="border border-secondary p-1 px-4">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span></b></span>
+                            <span class=" numeros-1"><b>RECIBO N°</b> <b class="text-red border border-secondary p-1 px-5">{{ $formattedId }}</b></span>
+                            <span class=" numeros-2"><b>POR: <span class="border border-secondary p-1 px-4">{{"Bs. ". $data->mount}}</span></b></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="detail-containter">
-                <div class="item text-uppercase"><b>RECIBO DEL SR.(A):</b> &nbsp; <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span> <span class="float-right">LA CANTIDAD DE: &nbsp; <b class="px-3"><span class="dato">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span></b></span></div>
-                <div class="item text-uppercase"><b>CANTIDAD EN LETRAS:</b></div>
-                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> &nbsp; 
+                <div class="item text-uppercase"><b>RECIBO DEL SR.(A):</b> &nbsp; <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span> <span class="float-right">LA CANTIDAD DE: &nbsp; <b class="px-3"><span class="dato">{{"Bs. ". $data->mount }}</span></b></span></div>
+                <div class="item text-uppercase"><b>CANTIDAD EN LETRAS:</b><span class="dato">{{$montoEnPalabrasString}} 00/100 BOLIVIANOS</span></div>
+                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> &nbsp;
                     <span class="dato"> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE <b>{{$data->client->name}} {{$data->client->lastname}}</b> DE LA VERSIÓN <b>{{$data->course->version}}</b>
-                    </span> 
+                    </span>
                 </div>
                 <div class="item"><b>TIPO DE PAGO: </b>
-                    <span class="dato">
+                    <span class="dato text-uppercase">
                         {{ $data->type_payment }}
                     </span>
                 </div>
@@ -160,7 +160,7 @@
                     </span>
                 </div>
                 <div class="item text-center">
-                    <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". number_format($data->mount, 2, '.', ',')}}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". ($data->mount)}}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ".$discountRegistration - $data->mount }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>DESCUENTO:</b> <span class="dato">{{ $data->discount."%" }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". $discountRegistration }}</span></span>

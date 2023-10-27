@@ -5,14 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Registration extends Model
+class DetailRegister extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'client_id',
         'course_id',
-        'user_id'
+        'method_payment',
+        'business_name',
+        'nit',
+        'mount',
+        'discount',
+        'discounted_price',
+        'type_payment'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function client()
     {
@@ -23,11 +35,5 @@ class Registration extends Model
     {
         return $this->belongsTo(Course::class);
     }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-
 }
+

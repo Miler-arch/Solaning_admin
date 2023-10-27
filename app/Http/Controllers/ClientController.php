@@ -59,7 +59,7 @@ class ClientController extends Controller
     public function destroy($id)
     {
         $client = Client::findOrFail($id);
-        if ($client->registrations->count() > 0) {
+        if ($client->detailRegisters->count() > 0) {
             toastr()->error('No se puede eliminar el alumno porque tiene registros asignados!');
             return redirect()->route('clients.index');
         }

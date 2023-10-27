@@ -71,7 +71,7 @@ class CursoController extends Controller
     public function destroy(string $id)
     {
         $course = Course::findOrFail($id);
-        if ($course->registrations->count() > 0) {
+        if ($course->detailRegisters->count() > 0) {
             toastr()->error('No se puede eliminar el curso porque tiene registros asignados!', '¡Error!');
             return redirect()->route('courses.index');
         }

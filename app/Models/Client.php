@@ -18,8 +18,8 @@ class Client extends Model
         'reference_phone',
     ];
 
-    public function registrations()
+    public function detailRegisters()
     {
-        return $this->hasMany(Registration::class);
+        return $this->hasMany(DetailRegister::class);
     }
 }

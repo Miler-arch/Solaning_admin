@@ -42,11 +42,18 @@
                             @endif
                         </td>
                         <td>{{ $registration->course->version }}</td>
-                        <td>{{ $registration->start_date }}</td>
+                        <td>{{ $registration->course->start_date }}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a href="#" class="btn btn-xs btn-default text-primary shadow" data-toggle="modal" data-target="#registrationModal{{ $registration->id }}" title="Ver">
                                     <i class="fa fa-fw fa-eye"></i>
+                                </a>
+                                <a href="{{ route('registrations.edit', $registration) }}" class="btn btn-xs btn-default text-cyan shadow" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </a>
+
+                                <a href="{{ route('list_registrations.pdf', $registration) }}" target="_blank" class="btn btn-xs btn-default text-dark shadow" title="Descargar PDF">
+                                    <i class="fa fa-fw fa-print"></i>
                                 </a>
                             </div>
                             <div class="modal fade" id="registrationModal{{ $registration->id }}" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">

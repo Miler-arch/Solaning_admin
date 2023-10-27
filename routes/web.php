@@ -8,12 +8,17 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListRegistrations;
 use App\Http\Controllers\RegistrationController;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
 Auth::routes();
+
+// DB::listen(function ($query) {
+//     dump($query->sql);
+// });
 
 Route::middleware(['auth'])->group(function () {
 
@@ -28,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('registrations', RegistrationController::class)->name('', 'registrations');
 
     Route::get('list_registrations', [ListRegistrations::class, 'index'])->name('list_registrations');
+
+    Route::get('list_registrations/{id}', [ListRegistrations::class, 'pdf'])->name('list_registrations.pdf');
 
     Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
 
