@@ -19,11 +19,6 @@ class Course extends Model
         'start_date',
     ];
 
-    public function clients()
-    {
-        return $this->belongsToMany(Client::class, 'clients_courses')->whitPivot('mount');
-    }
-
     public function detailRegisters()
     {
         return $this->hasMany(DetailRegister::class);

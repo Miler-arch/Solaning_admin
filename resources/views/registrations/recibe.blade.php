@@ -56,6 +56,12 @@
             font-size: .7rem;
             line-height: 0.7;
         }
+        .item-2 {
+            text-align: left;
+            margin-bottom: 10px;
+            font-size: .7rem;
+            line-height: 1.5 !important;
+        }
         .total {
             font-weight: bold;
         }
@@ -143,31 +149,98 @@
                 </div>
             </div>
             <div class="detail-containter">
-                <div class="item text-uppercase"><b>RECIBO DEL SR.(A):</b> &nbsp; <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span> <span class="float-right">LA CANTIDAD DE: &nbsp; <b class="px-3"><span class="dato">{{"Bs. ". $data->mount }}</span></b></span></div>
-                <div class="item text-uppercase"><b>CANTIDAD EN LETRAS:</b><span class="dato">{{$montoEnPalabrasString}} 00/100 BOLIVIANOS</span></div>
-                <div class="item text-uppercase"><b>POR CONCEPTO DE:</b> &nbsp;
-                    <span class="dato"> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE <b>{{$data->client->name}} {{$data->client->lastname}}</b> DE LA VERSIÓN <b>{{$data->course->version}}</b>
+                {{-- <div class="item-2 text-uppercase"><b>RECIBO DEL SR.(A):</b> &nbsp; <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span> <span class="float-right">LA CANTIDAD DE: &nbsp; <b class="px-3"><span class="dato">{{"Bs. ". $data->mount }}</span></b></span></div>
+                <div class="item-2 text-uppercase"><b>CANTIDAD EN LETRAS:</b> &nbsp; <span class="dato">{{$montoEnPalabrasString}} 00/100 BOLIVIANOS</span></div>
+                <div class="item-2 text-uppercase"><b>POR CONCEPTO DE:</b> &nbsp; <span class="dato"> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE <b>{{$data->client->name}} {{$data->client->lastname}}</b>   DE LA VERSIÓN <b>{{$data->course->version}}</b> </span>
                     </span>
                 </div>
-                <div class="item"><b>TIPO DE PAGO: </b>
+                <div class="item-2"><b>TIPO DE PAGO: </b>
                     <span class="dato text-uppercase">
                         {{ $data->type_payment }}
                     </span>
                 </div>
-                <div class="item"><b>INICIO: </b>
+                <div class="item-2"><b>INICIO: </b>
                     <span class="dato">
                         {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
                     </span>
-                </div>
-                <div class="item text-center">
+                </div> --}}
+
+                <table>
+                    <tr>
+                        <td class="w-25">
+                            <div class="item-2 text-uppercase">
+                               <b>RECIBO DEL SR.(A): </b>
+                            </div>
+                        </td>
+                        <td class="w-50">
+                            <div class="item-2 text-uppercase">
+                                <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span>
+                            </div>
+                        </td>
+                        <td colspan="4">
+                            <div class="item-2 text-uppercase" style="margin-left: -25px !important">
+                               <b>LA CANTIDAD DE:</b> &nbsp; <span class="px-3"><span class="dato">{{"Bs. ". $data->mount }}</span></span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-2 text-uppercase"><b>CANTIDAD EN LETRAS:</b></div>
+                        </td>
+                        <td colspan="3">
+                            <div class="item-2 text-uppercase">
+                                <span class="dato">{{$montoEnPalabrasString}} 00/100 BOLIVIANOS</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-2 text-uppercase"><b>POR CONCEPTO DE:</b></div>
+                        </td>
+                        <td colspan="5" class="w-100">
+                            <div class="item-2 text-uppercase">
+                                <span class="dato">PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE <b>{{$data->client->name}} {{$data->client->lastname}}</b>   DE LA VERSIÓN <b>{{$data->course->version}}</b>  </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="item-2"><b>TIPO DE PAGO: </b></div>
+                        </td>
+                        <td>
+                            <div class="item-2 text-uppercase">
+                                <span class="dato text-uppercase">
+                                    {{ $data->type_payment }}
+                                </span>
+                            </div>
+                        </td>
+
+                        <td colspan="4">
+                            <div class="item-2 text-uppercase" style="margin-left: -50px !important">
+                                <b>INICIO: </b>
+                                <span class="dato">
+                                    {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                    </tr>
+                </table>
+
+                <div class="item-2 text-center mt-3">
                     <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". ($data->mount)}}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ".$discountRegistration - $data->mount }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>DESCUENTO:</b> <span class="dato">{{ $data->discount."%" }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". $discountRegistration }}</span></span>
                 </div>
             </div>
-            <div class="item mt-2 float-left"><span><b>LUGAR Y FECHA:</b></span> <span class="dato-f"><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
-            <div class="item mt-2 float-right"><span><b>REGISTRADO POR:</b></span> <span class="dato-f"><b>{{Auth::user()->name}}</b></span></div>
+
+            
+
+            <div class="item-2 mt-2 float-left"><span><b>LUGAR Y FECHA:</b></span> <span class="dato-f"><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
+            <div class="item-2 mt-2 float-right"><span><b>REGISTRADO POR:</b></span> <span class="dato-f"><b>{{Auth::user()->name}}</b></span></div>
             <div class="contenedor-firmas">
                     <div class="w-25 firma-1">
                         <div class="linea"></div>

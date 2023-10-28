@@ -80,12 +80,13 @@ class CursoController extends Controller
         return redirect()->route('courses.index');
     }
 
-    public function updateState(string $id)
+    public function updateState(Course $course)
     {
-        $course = Course::findOrFail($id);
+        // $course = Course::findOrFail($id);
         $course->status = !$course->status;
         $course->save();
         toastr()->success('Estado del curso actualizado exitosamente!', '¡Estado actualizado!');
-        return redirect()->route('courses.index');
+        return redirect()->route('courses.index', compact('course'));
+        // return view('courses.index', compact('course'));
     }
 }
