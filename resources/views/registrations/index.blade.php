@@ -63,7 +63,7 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom06" class="font-weight-bold">A Cuenta (Bs.):</label>
-                            <input type="number" class="form-control" name="mount" id="validationCustom06" min="0" required>
+                            <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required pattern="[0-9]{1,16}">
                             <div class="invalid-feedback">
                                 Por favor ingrese un monto.
                             </div>
