@@ -63,7 +63,7 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom06" class="font-weight-bold">A Cuenta (Bs.):</label>
-                            <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required>
+                            <input type="number" class="form-control" name="mount" id="validationCustom06" min="0" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese un monto.
                             </div>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="d-grid gap-2 py-2">
-                    <button class="btn btn-primary mt-3 mx-3 py-2 px-3 font-weight-bold" type="submit">INSCRIBIR</button>
+                    <button class="btn ov-btn-slide-left mt-3 mx-3 py-2 px-3 font-weight-bold" type="submit">INSCRIBIR</button>
                 </div>
             </form>
         </div>

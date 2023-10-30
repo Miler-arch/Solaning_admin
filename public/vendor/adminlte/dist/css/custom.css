@@ -162,7 +162,10 @@ thead {
     background-color: #5B5B5B !important;
     color: #fff !important;
 }
-/* para la paginacion */
+/** para la paginacion */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    transition: all ease-in .3s;
+}
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     background: #f0f0f0 !important;
     border: none !important;
@@ -279,3 +282,44 @@ label:not(.form-check-label):not(.custom-file-label) {
 .boton-registro-modal:hover {
     background-color: #1b8033;
 }
+
+
+
+/** Boton de inscribir  */
+.ov-btn-slide-left {
+    background: #0d6efd; /* color de fondo */
+    color: #ffffff; /* color de fuente */
+    border: 2px solid #0d6efd; /* tamaño y color de borde */
+    padding: 16px 20px;
+    border-radius: 3px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 10px;
+  }
+  .ov-btn-slide-left:hover {
+    color: #fff; /* color de fuente hover */
+  }
+  .ov-btn-slide-left::after {
+    content: "";
+    background: #1648ec; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+  .ov-btn-slide-left:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
