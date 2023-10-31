@@ -200,7 +200,7 @@
                         </td>
 
                         <td colspan="4">
-                            <div class="item-2 text-uppercase" style="margin-left: -50px !important">
+                            <div class="item-2 text-uppercase" style="margin-left: -60px !important">
                                 <b>INICIO DEL CURSO: </b>
                                 <span class="dato">
                                     {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
@@ -222,7 +222,7 @@
             </div>
 
             <div class="item-2 mt-2 float-left"><span><b>LUGAR Y FECHA:</b></span> <span class="dato-f"><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
-            <div class="item-2 mt-2 float-right"><span><b>REGISTRADO POR:</b></span> <span class="dato-f"><b>{{Auth::user()->name}}</b></span></div>
+            <div class="item-2 mt-2 float-right"><span><b>EMITIDO POR:</b></span> <span class="dato-f text-uppercase"><b>{{Auth::user()->name}}</b></span></div>
             <div class="contenedor-firmas">
                     <div class="w-25 firma-1">
                         <div class="linea"></div>
