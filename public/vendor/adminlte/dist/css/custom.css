@@ -163,13 +163,9 @@ thead {
     color: #fff !important;
 }
 /** para la paginacion */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    transition: all ease-in .3s;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: #f0f0f0 !important;
-    border: none !important;
-    transition: all ease-in .3s;
+.pagination .page-item:hover {
+    background: #f6f6f6 !important;
+    border-color: #f6f6f6 !important;
 }
 
 /** Sidebar */
