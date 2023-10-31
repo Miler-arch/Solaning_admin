@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Registrations')
+@section('title', 'Inscripciones')
 @section('plugins.Select2', true)
 @section('plugins.Datatables', true)
-@section('plugins.Sweetalert2', true)
+
 @section('content')
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Inscripciones</span>
@@ -63,7 +63,7 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom06" class="font-weight-bold">A Cuenta (Bs.):</label>
-                            <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required pattern="[0-9]{1,16}">
+                            <input type="text" class="form-control" name="mount" id="validationCustom06" min="0" required step="0.01">
                             <div class="invalid-feedback">
                                 Por favor ingrese un monto.
                             </div>
@@ -107,8 +107,10 @@
                         <input type="hidden" name="method_payment" id="method_payment">
                     </div>
                 </div>
-                <div class="d-grid gap-2 py-2">
-                    <button class="btn ov-btn-slide-left mt-3 mx-3 py-2 px-3 font-weight-bold" type="submit">INSCRIBIR</button>
+                <div class="card-footer">
+                    <div class="float-right">
+                        <button class="ov-btn-slide-left" type="submit">INSCRIBIR<span class="arrow"><i class="fas fa-chevron-right fa-fw"></i></span></button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -169,13 +171,4 @@
     });
 </script>
 
-@if(session('error'))
-    <script>
-        Swal.fire({
-            icon: 'warning',
-            title: 'Error',
-            text: '{{ session('error') }}'
-        });
-    </script>
-@endif
 @stop

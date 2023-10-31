@@ -143,28 +143,12 @@
 
                         <div class="contenedor-2">
                             <span class=" numeros-1"><b>RECIBO N°</b> <b class="text-red border border-secondary p-1 px-5">{{ $formattedId }}</b></span>
-                            <span class=" numeros-2"><b>POR: <span class="border border-secondary p-1 px-4">{{"Bs. ". $data->mount}}</span></b></span>
+                            <span class=" numeros-2"><b>POR: <span class="border border-secondary p-1 px-4">{{"Bs. ". number_format($data->mount, 2, ',', ' ')}}</span></b></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="detail-containter">
-                {{-- <div class="item-2 text-uppercase"><b>RECIBO DEL SR.(A):</b> &nbsp; <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span> <span class="float-right">LA CANTIDAD DE: &nbsp; <b class="px-3"><span class="dato">{{"Bs. ". $data->mount }}</span></b></span></div>
-                <div class="item-2 text-uppercase"><b>CANTIDAD EN LETRAS:</b> &nbsp; <span class="dato">{{$montoEnPalabrasString}} 00/100 BOLIVIANOS</span></div>
-                <div class="item-2 text-uppercase"><b>POR CONCEPTO DE:</b> &nbsp; <span class="dato"> PAGO POR INSCRIPCIÓN DEL CURSO <b>{{$data->course->name}}</b> DEL ESTUDIANTE <b>{{$data->client->name}} {{$data->client->lastname}}</b>   DE LA VERSIÓN <b>{{$data->course->version}}</b> </span>
-                    </span>
-                </div>
-                <div class="item-2"><b>TIPO DE PAGO: </b>
-                    <span class="dato text-uppercase">
-                        {{ $data->type_payment }}
-                    </span>
-                </div>
-                <div class="item-2"><b>INICIO: </b>
-                    <span class="dato">
-                        {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
-                    </span>
-                </div> --}}
-
                 <table>
                     <tr>
                         <td class="w-25">
@@ -174,12 +158,12 @@
                         </td>
                         <td class="w-50">
                             <div class="item-2 text-uppercase">
-                                <span class="dato">{{$data->client->name}} {{$data->client->lastname}}({{$data->client->ci}}) </span>
+                                <span class="dato">{{$data->client->name}} {{$data->client->lastname}}</span>
                             </div>
                         </td>
                         <td colspan="4">
                             <div class="item-2 text-uppercase" style="margin-left: -25px !important">
-                               <b>LA CANTIDAD DE:</b> &nbsp; <span class="px-3"><span class="dato">{{"Bs. ". $data->mount }}</span></span></span>
+                               <b>LA CANTIDAD DE:</b> &nbsp; <span class="px-3"><span class="dato">{{"Bs. ". number_format($data->mount, 2, ',', ' ') }}</span></span></span>
                             </div>
                         </td>
                     </tr>
@@ -225,19 +209,17 @@
                         </td>
                     </tr>
                     <tr>
-                        
+
                     </tr>
                 </table>
 
                 <div class="item-2 text-center mt-3">
-                    <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". ($data->mount)}}</span></span>&nbsp;&nbsp;
-                    <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ".$discountRegistration - $data->mount }}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". number_format($data->mount, 2, ',', ' ')}}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ". number_format($discountRegistration - $data->mount, 2, ',', ' ') }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>DESCUENTO:</b> <span class="dato">{{ $data->discount."%" }}</span></span>&nbsp;&nbsp;
-                    <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". $discountRegistration }}</span></span>
+                    <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". number_format($discountRegistration, 2, ',', ' ') }}</span></span>
                 </div>
             </div>
-
-            
 
             <div class="item-2 mt-2 float-left"><span><b>LUGAR Y FECHA:</b></span> <span class="dato-f"><b>Cochabamba, {{ $data->created_at->format("d/m/Y") }}</b></span></div>
             <div class="item-2 mt-2 float-right"><span><b>REGISTRADO POR:</b></span> <span class="dato-f"><b>{{Auth::user()->name}}</b></span></div>

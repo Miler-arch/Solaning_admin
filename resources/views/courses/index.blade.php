@@ -130,7 +130,6 @@
                 });
                 $('#crearCursoForm')[0].reset();
                 $('#error-name').text('');
-                $('#error-status').text('');
                 $('#error-category').text('');
                 $('#error-price').text('');
                 $('#error-discount').text('');
@@ -146,7 +145,6 @@
                 if (xhr.status === 422) {
                     var errors = xhr.responseJSON.errors;
                     $('#error-name').text(errors.name ? errors.name[0] : '');
-                    $('#error-status').text(errors.status ? errors.status[0] : '');
                     $('#error-category').text(errors.category ? errors.category[0] : '');
                     $('#error-price').text(errors.price ? errors.price[0] : '');
                     $('#error-discount').text(errors.discount ? errors.discount[0] : '');

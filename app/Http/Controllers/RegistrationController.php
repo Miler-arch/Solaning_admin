@@ -51,6 +51,11 @@ class RegistrationController extends Controller
             $estadoPago = '1';
         }
 
+        // if ($registrationData['mount'] > $registrationData['discounted_price']){
+        //         toastr()->error('El monto ingresado es mayor al precio del curso o al precio con descuento');
+        //         return redirect()->route('registrations.index');
+        // }
+
         if ($registrationData['mount'] > $coursePrice) {
                 toastr()->error('El monto ingresado es mayor al precio del curso');
                 return redirect()->route('registrations.index');
@@ -61,12 +66,10 @@ class RegistrationController extends Controller
         $montoDecimal = $registrationData['mount'];
         $montoEnPalabras = $numberToWords->toWords($montoDecimal);
         $montoEnPalabrasString = $montoEnPalabras;
-
         // Discount
         $discountRegistration = $coursePrice - ($coursePrice * ($registrationData['discount'] / 100));
         // Crear el registro con el ID formateado
         $data = auth()->user()->detailRegisters()->create($registrationData);
-
         // Generar y devolver el PDF
         $pdf = \PDF::loadView('registrations.recibe', [
             'data' => $data,
