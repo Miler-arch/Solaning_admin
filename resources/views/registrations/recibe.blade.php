@@ -200,7 +200,7 @@
                         </td>
 
                         <td colspan="4">
-                            <div class="item-2 text-uppercase" style="margin-left: -90px !important">
+                            <div class="item-2 text-uppercase" style="margin-left: -50px !important">
                                 <b>INICIO DEL CURSO: </b>
                                 <span class="dato">
                                     {{ \Carbon\Carbon::parse($data->course->start_date)->format('j-M-Y') }}
