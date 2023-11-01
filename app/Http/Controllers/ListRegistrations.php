@@ -25,7 +25,15 @@ class ListRegistrations extends Controller
         $data->id = $formattedId;
         $numberToWords = new NumeroALetras();
         $montoDecimal = $data->mount;
-        $montoEnPalabras = $numberToWords->toWords($montoDecimal);
+        if ($montoDecimal >= 1000) {
+            $montoEnPalabras = "UN MIL";
+            $centavos = $montoDecimal - 1000;
+            if ($centavos > 0) {
+                $montoEnPalabras .= " " . $numberToWords->toWords($centavos);
+            }
+        } else {
+            $montoEnPalabras = $numberToWords->toWords($montoDecimal);
+        }
         $montoEnPalabrasString = $montoEnPalabras;
         $coursePrice = $data->course->price;
         $discountRegistration = $coursePrice - ($coursePrice * ($data->discount / 100));

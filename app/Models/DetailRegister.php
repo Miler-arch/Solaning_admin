@@ -35,5 +35,10 @@ class DetailRegister extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function registrationes()
+    {
+        return $this->hasMany(Registration::class, 'detail_register_id');
+    }
 }
 

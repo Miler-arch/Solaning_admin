@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="float-right">
+                    <div class="d-flex justify-content-center">
                         <button class="ov-btn-slide-left" type="submit">INSCRIBIR<span class="arrow"><i class="fas fa-chevron-right fa-fw"></i></span></button>
                     </div>
                 </div>

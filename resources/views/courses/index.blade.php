@@ -34,21 +34,21 @@
                         <td>{{ $course->discount. " %" }}</td>
                         <td>{{ $course->start_date }}</td>
                         <td>
-                            <form action="{{route("courses.updateState", $course)}}" method="POST" class="updateStatus">
+                            <form action="{{ route('courses.updateState', $course) }}" method="POST" class="updateStatus">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="status" value="{{ $course->status }}">
-                                <button type="submit" class="btn btn-xs btn-default text-{{ $course->status ? 'success' : 'danger' }} shadow" title="{{ $course->status ? 'Activo' : 'Inactivo' }}">
+                                <button type="button" class="btn btn-xs btn-default text-{{ $course->status ? 'success' : 'danger' }} shadow updateButton" title="{{ $course->status ? 'Activo' : 'Inactivo' }}">
                                     <i class="fa fa-fw fa-{{ $course->status ? 'check-circle' : 'times-circle' }}"></i> {{ $course->status ? 'Activo' : 'Inactivo' }}
                                 </button>
                             </form>
                         </td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-xs btn-default text-primary shadow" title="Editar">
+                                <a href="{{ route('courses.edit', $course) }}" class="btn btn-xs btn-default text-primary shadow" title="Editar">
                                     <i class="fa fa-fw fa-pen"></i>
                                 </a>
-                                <form action="{{ route('courses.destroy', $course->id) }}" method="POST" class="form-eliminar">
+                                <form action="{{ route('courses.destroy', $course) }}" method="POST" class="form-eliminar">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-xs btn-default text-danger shadow" title="Eliminar">
@@ -66,50 +66,135 @@
 @stop
 
 @section('js')
-<script type="text/javascript">
-    $('.form-eliminar').submit(function(e){
-        e.preventDefault();
+<script>
+$('.form-eliminar').submit(function(e) {
+    e.preventDefault();
 
-            Swal.fire({
-            title: '¿Está seguro?',
-            text: "El curso se eliminara definitivamente.",
-            icon: 'warning',
-            customClass: {
-                 icon: "no-before-icon",
-             },
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar',
-            cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.value) {
-                this.submit();
-            }
-        })
+    Swal.fire({
+        title: '¿Está seguro?',
+        text: "El curso se eliminará definitivamente.",
+        icon: 'warning',
+        customClass: {
+            icon: "no-before-icon",
+        },
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: 'DELETE',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: response.success,
+                        showConfirmButton: false,
+                        timer: 1000
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: xhr.responseJSON.error,
+                    });
+                }
+            });
+        }
     });
+});
+
 </script>
 
-<script type="text/javascript">
-    $('.updateStatus').submit(function(e){
-        e.preventDefault();
-            Swal.fire({
-            title: 'Esta seguro de cambiar el estado del curso?',
-            text: "El curso se cambiara de estado.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '<i class="fa fa-fw fa-check-circle"></i> Si, cambiar',
-            cancelButtonText: '<i class="fa fa-fw fa-times-circle"></i> Cancelar'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-        })
+<script>
+$('.updateStatus').on('click', '.updateButton', function(e){
+    e.preventDefault();
+
+    let form = $(this).closest('form');
+
+    Swal.fire({
+        title: '¿Está seguro de cambiar el estado del curso?',
+        text: 'El curso se cambiará de estado.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '<i class="fa fa-fw fa-check-circle"></i> Sí, cambiar',
+        cancelButtonText: '<i class="fa fa-fw fa-times-circle"></i> Cancelar',
+        allowOutsideClick: false,
+        allowEscapeKey: false
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function(data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Hecho!',
+                        text: data.success,
+                        showConfirmButton: false,
+                        timer: 1000
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                },
+                error: function(error) {
+                    Swal.fire('Error', data.error, 'error');
+                }
+            });
+        }
     });
+});
+
 </script>
 
+{{-- <script>
+$(document).ready(function() {
+    $('#update-course-btn').on('click', function(event) {
+        event.preventDefault();
+
+        var formData = $('#update-course-form').serialize(); // Serializa los datos del formulario
+
+        $.ajax({
+            url: "{{ route('courses.update', $course->id) }}",
+            type: 'PUT',
+            data: formData,
+            success: function(response) {
+                if (response.success) {
+                    // Redirigir a la página de índice de cursos después de la actualización
+                    window.location.href = "{{ route('courses.index') }}";
+                } else {
+                    // Manejar otros tipos de respuestas JSON si es necesario
+                    console.error(response.error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.error,
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un error al actualizar el curso. Por favor, inténtalo de nuevo más tarde.',
+                });
+            }
+        });
+    });
+});
+
+</script> --}}
 
 <script>
     $(document).ready(function () {
@@ -134,9 +219,6 @@
                 $('#error-price').text('');
                 $('#error-discount').text('');
                 $('#error-start_date').text('');
-                // setTimeout(function() {
-                //     $('#crearCursoModal').modal('hide');
-                // });
                 setTimeout(function() {
                     window.location.reload();
                 }, 700);
@@ -149,6 +231,12 @@
                     $('#error-price').text(errors.price ? errors.price[0] : '');
                     $('#error-discount').text(errors.discount ? errors.discount[0] : '');
                     $('#error-start_date').text(errors.start_date ? errors.start_date[0] : '');
+                } else if (xhr.status === 400){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: xhr.responseJSON.error,
+                    });
                 }
             }
         });

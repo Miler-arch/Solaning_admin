@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Course;
 use App\Models\DetailRegister;
 use App\Models\Registration;
+use Carbon\Carbon;
 use Luecano\NumeroALetras\NumeroALetras;
 use Illuminate\Http\Request;
 
@@ -24,53 +25,49 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
-        // Obtener el próximo ID de registro
-        $nextId = DetailRegister::max('id') + 1;
-        // Formatear el ID con ceros al inicio
-        $formattedId = str_pad($nextId, 5, '0', STR_PAD_LEFT);
+        $course = Course::find($request->input('course_id'));
+        $coursePrice = $course->price;
 
-        $registrationData['id'] = $formattedId;
-        $registrationData['client_id'] = $request->input('client_id');
-        $registrationData['course_id'] = $request->input('course_id');
-        $registrationData['mount'] = $request->input('mount');
-        $registrationData['discount'] = $request->input('discount');
-        $registrationData['discounted_price'] = $request->input('discounted_price');
-        $registrationData['type_payment'] = $request->input('type_payment');
-        $registrationData['business_name'] = $request->input('business_name');
-        $registrationData['nit'] = $request->input('nit');
+        $discountedPrice = $coursePrice - ($coursePrice * ($request->input('discount') / 100));
 
-        $estadoPago = '0';
-
-        // Asignar el ID formateado al registro
-        $registrationData['method_payment'] = $estadoPago;
-        $coursePrice = Course::find($registrationData['course_id'])->price;
-
-        if ($registrationData['mount'] < $coursePrice && $registrationData['mount'] < $registrationData['discounted_price']) {
-            $estadoPago = '0';
-        } elseif ($registrationData['mount'] == $coursePrice || $registrationData['mount'] == $registrationData['discounted_price']) {
-            $estadoPago = '1';
+        if ($request->input('mount') > $discountedPrice) {
+            toastr()->error('El monto ingresado es mayor al precio del curso');
+            return redirect()->route('registrations.index');
         }
 
-        // if ($registrationData['mount'] > $registrationData['discounted_price']){
-        //         toastr()->error('El monto ingresado es mayor al precio del curso o al precio con descuento');
-        //         return redirect()->route('registrations.index');
-        // }
+        $estadoPago = ($request->input('mount') < $discountedPrice) ? '0' : '1';
 
-        if ($registrationData['mount'] > $coursePrice) {
-                toastr()->error('El monto ingresado es mayor al precio del curso');
-                return redirect()->route('registrations.index');
-        }else{
-
-        // Convertir el monto a letras
         $numberToWords = new NumeroALetras();
-        $montoDecimal = $registrationData['mount'];
-        $montoEnPalabras = $numberToWords->toWords($montoDecimal);
+        $montoDecimal = $request->input('mount');
+        if ($montoDecimal >= 1000) {
+            $montoEnPalabras = "UN MIL";
+            $centavos = $montoDecimal - 1000;
+            if ($centavos > 0) {
+                $montoEnPalabras .= " " . $numberToWords->toWords($centavos);
+            }
+        } else {
+            $montoEnPalabras = $numberToWords->toWords($montoDecimal);
+        }
         $montoEnPalabrasString = $montoEnPalabras;
-        // Discount
-        $discountRegistration = $coursePrice - ($coursePrice * ($registrationData['discount'] / 100));
-        // Crear el registro con el ID formateado
+
+        $discountRegistration = $coursePrice - $discountedPrice;
+
+        $formattedId = str_pad(DetailRegister::max('id') + 1, 5, '0', STR_PAD_LEFT);
+        $registrationData = [
+            'id' => $formattedId,
+            'client_id' => $request->input('client_id'),
+            'course_id' => $request->input('course_id'),
+            'mount' => $request->input('mount'),
+            'discount' => $request->input('discount'),
+            'discounted_price' => $discountedPrice,
+            'type_payment' => $request->input('type_payment'),
+            'business_name' => $request->input('business_name'),
+            'nit' => $request->input('nit'),
+            'method_payment' => $estadoPago,
+        ];
+
         $data = auth()->user()->detailRegisters()->create($registrationData);
-        // Generar y devolver el PDF
+
         $pdf = \PDF::loadView('registrations.recibe', [
             'data' => $data,
             'montoEnPalabrasString' => $montoEnPalabrasString,
@@ -78,7 +75,33 @@ class RegistrationController extends Controller
             'formattedId' => $formattedId,
         ]);
         return $pdf->stream('recibe.pdf');
-        }
     }
+
+
+    public function update(Request $request, $id)
+    {
+        $registro = DetailRegister::findOrFail($id);
+
+        // Calcular el mount acumulado sumando el mount original y los mount_update del historial
+        $accumulatedMount = $registro->mount;
+        foreach ($registro->registrationes as $payment) {
+            $accumulatedMount += $payment->mount_update;
+        }
+
+        // Crear un nuevo registro en la tabla 'registrations' con el mount_update y la fecha de actualización
+        Registration::create([
+            'mount_update' => $request->input('updated_amount'),
+            'date_update' => now(),
+            'detail_register_id' => $registro->id,
+            'client_id' => $registro->client_id,
+        ]);
+
+        // Actualizar el campo mount del registro original con el mount acumulado
+        $registro->mount = $accumulatedMount;
+        $registro->save();
+
+        return redirect()->back()->with('success', 'Información de pago actualizada correctamente.');
+    }
+
 
 }

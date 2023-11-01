@@ -10,12 +10,14 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('detail_register_id');
+
+            $table->decimal('mount_update', 8, 2);
+            $table->timestamp('date_update')->nullable();
+
             $table->foreign('client_id')->references('id')->on('clients');
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('detail_register_id')->references('id')->on('detail_registers');
             $table->timestamps();
         });
     }

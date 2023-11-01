@@ -17,7 +17,7 @@
                         <th>Usuario</th>
                         <th>Cliente</th>
                         <th>Curso</th>
-                        <th>Método de pago</th>
+                        <th>Estado de pago</th>
                         <th>Versión</th>
                         <th>Fecha de inicio</th>
                         <th>Acciones</th>
@@ -48,7 +48,8 @@
                                 <a href="#" class="btn btn-xs btn-default text-primary shadow" data-toggle="modal" data-target="#registrationModal{{ $registration->id }}" title="Ver">
                                     <i class="fa fa-fw fa-eye"></i>
                                 </a>
-                                <a href="{{ route('registrations.edit', $registration) }}" class="btn btn-xs btn-default text-cyan shadow" title="Editar">
+
+                                <a href="#" class="btn btn-xs btn-default text-cyan shadow" data-toggle="modal" data-target="#updateModal{{ $registration->id }}" title="Actualizar Pago">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </a>
 
@@ -57,65 +58,126 @@
                                 </a>
                             </div>
                             <div class="modal fade" id="registrationModal{{ $registration->id }}" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title" id="registrationModalLabel">Detalles del Registro</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="table-responsive mb-4">
+                                            <table class="table table-bordered">
+                                                <thead class="table-primary text-white">
+                                                    <tr>
+                                                        <th>Descuento</th>
+                                                        <th>Pago</th>
+                                                        <th>Debe</th>
+                                                        <th>Total</th>
+                                                        <th>Fecha</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="table-light">
+                                                        <td scope="row">{{$registration->discount." %"}}</td>
+                                                        <td>{{ $registration->mount." Bs."}}</td>
+                                                        <td>
+                                                            @if ($registration->discounted_price - $registration->mount > 0)
+                                                                <span class="bg-warning rounded p-1 font-weight-bold">{{ $registration->discounted_price - $registration->mount." Bs." }}</span>
+                                                            @elseif ($registration->discounted_price - $registration->mount == 0)
+                                                                <span class="bg-primary rounded p-1 font-weight-bold">{{ $registration->discounted_price - $registration->mount." Bs." }}</span>
+                                                            @elseif ($registration->course->price - $registration->mount > 0)
+                                                                <span class="bg-warning rounded p-1 font-weight-bold">{{ $registration->course->price - $registration->mount." Bs." }}</span>
+                                                            @elseif ($registration->course->price - $registration->mount == 0)
+                                                                <span class="bg-primary rounded p-1 font-weight-bold">{{ $registration->course->price - $registration->mount." Bs."  }}</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if($registration->discounted_price > 0)
+                                                                <span class="badge-success rounded p-1 font-weight-bold">{{ $registration->discounted_price. " Bs." }}</span>
+                                                            @else
+                                                                <span class="badge-success rounded p-1 font-weight-bold">{{ $registration->course->price. " Bs." }}</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $registration->created_at }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="mb-3">
+                                                <label class="fw-bold">NIT:</label>
+                                                <span>{{ $registration->nit }}</span>
+                                            </div>
+                                            <div>
+                                                <label class="fw-bold">Razón Social:</label>
+                                                <span>{{ $registration->business_name }}</span>
+                                            </div>
+                                            <div>
+                                                <label class="fw-bold">Método de Pago:</label>
+                                                <span>{{ $registration->type_payment }}</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Historial de Pagos -->
+                                        <h6 class="mt-4">Historial de Pagos</h6>
+                                        <div class="table-responsive mb-4">
+                                            <table class="table table-bordered">
+                                                <thead class="table-primary text-white">
+                                                    <tr>
+                                                        <th>Monto Acumulado</th>
+                                                        <th>Fecha de Actualización</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $accumulatedAmount = 0;
+                                                    @endphp
+                                                    @foreach($registration->registrationes as $payment)
+                                                        <tr class="table-light">
+                                                            @php
+                                                                $accumulatedAmount += $payment->mount_update;
+                                                            @endphp
+                                                            <td>{{ $accumulatedAmount . " Bs." }}</td>
+                                                            <td>{{ $payment->date_update }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="modal fade" id="updateModal{{ $registration->id }}" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header bg-primary text-white">
-                                            <h5 class="modal-title" id="registrationModalLabel">Detalles del Registro</h5>
+                                            <h5 class="modal-title" id="registrationModalLabel">Actualizar Pago</h5>
                                             <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="table-responsive mb-4">
-                                                <table class="table table-bordered">
-                                                    <thead class="table-primary text-white">
-                                                        <tr>
-                                                            <th>Descuento</th>
-                                                            <th>Pago</th>
-                                                            <th>Debe</th>
-                                                            <th>Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="table-light">
-                                                            <td scope="row">{{$registration->discount." %"}}</td>
-                                                            <td>{{ $registration->mount." Bs."}}</td>
-                                                            <td>
-                                                                @if ($registration->discounted_price - $registration->mount > 0)
-                                                                    <span class="bg-warning rounded p-1 font-weight-bold">{{ $registration->discounted_price - $registration->mount." Bs." }}</span>
-                                                                @elseif ($registration->discounted_price - $registration->mount == 0)
-                                                                    <span class="bg-primary rounded p-1 font-weight-bold">{{ $registration->discounted_price - $registration->mount." Bs." }}</span>
-                                                                @elseif ($registration->course->price - $registration->mount > 0)
-                                                                    <span class="bg-warning rounded p-1 font-weight-bold">{{ $registration->course->price - $registration->mount." Bs." }}</span>
-                                                                @elseif ($registration->course->price - $registration->mount == 0)
-                                                                    <span class="bg-primary rounded p-1 font-weight-bold">{{ $registration->course->price - $registration->mount." Bs."  }}</span>
-                                                                @endif
-                                                            </td>
-                                                            <td>
-                                                                @if($registration->discounted_price > 0)
-                                                                    <span class="badge-success rounded p-1 font-weight-bold">{{ $registration->discounted_price. " Bs." }}</span>
-                                                                @else
-                                                                    <span class="badge-success rounded p-1 font-weight-bold">{{ $registration->course->price. " Bs." }}</span>
-                                                                @endif
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="mb-3">
-                                                    <label class="fw-bold">NIT:</label>
-                                                    <span>{{ $registration->nit }}</span>
+                                            <form action="{{ route('registrations.update', $registration->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="form-group">
+                                                    <label for="updatedAmount">Nuevo Monto:</label>
+                                                    <input type="number" class="form-control" id="updatedAmount" name="updated_amount" required>
                                                 </div>
-                                                <div>
-                                                    <label class="fw-bold">Razón Social:</label>
-                                                    <span>{{ $registration->business_name }}</span>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Actualizar Pago</button>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
@@ -125,3 +187,37 @@
     </div>
 @stop
 
+@section('js')
+<script>
+    (() => {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+        }, false)
+    })
+    })()
+</script>
+<script>
+    let courseSelect = document.getElementById("validationCustom02");
+    let discountInput = document.getElementById("validationCustom07");
+
+    discountInput.addEventListener("input", function() {
+        let selectedCoursePrice = parseFloat(courseSelect.options[courseSelect.selectedIndex].text.split('|')[1].replace(' Bs.', '').trim());
+        let discountValue = parseFloat(discountInput.value);
+        let discountedPrice = selectedCoursePrice - (selectedCoursePrice * (discountValue / 100));
+        let discountedPriceElement = document.getElementById("discountedPrice");
+        discountedPriceElement.value = discountedPrice.toFixed(2);
+    });
+</script>
+@stop

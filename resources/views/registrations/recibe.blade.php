@@ -215,9 +215,9 @@
 
                 <div class="item-2 text-center mt-3">
                     <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". number_format($data->mount, 2, ',', '.')}}</span></span>&nbsp;&nbsp;
-                    <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ". number_format($discountRegistration - $data->mount, 2, ',', '.') }}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ". number_format($data->discounted_price - $data->mount, 2, ',', '.') }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>DESCUENTO:</b> <span class="dato">{{ $data->discount."%" }}</span></span>&nbsp;&nbsp;
-                    <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". number_format($discountRegistration, 2, ',', '.') }}</span></span>
+                    <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". number_format($data->discounted_price, 2, ',', '.') }}</span></span>
                 </div>
             </div>
 

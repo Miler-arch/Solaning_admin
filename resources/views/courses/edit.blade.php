@@ -71,20 +71,19 @@
 
                     <div class="col-lg-6 col-12">
                         <x-adminlte-input type="date" name="start_date" id="start_date" label="Fecha de Inicio :"
-                                        value="{{ optional($course->start_date)->format('Y-m-d') }}"
+                                        value="{{ old('start_date', \Carbon\Carbon::parse($course->start_date)->format('Y-m-d')) }}"
                                         label-class="text-secondary">
                             <x-slot name="prependSlot">
                             </x-slot>
                         </x-adminlte-input>
                         <span class="text-danger" id="error-start_date"></span>
                     </div>
-
                 </div>
             </div>
             <div class="text-center py-2 pb-4">
                 <div>
-                    <a class="btn btn-primary mx-3" href="{{route('courses.index')}}">Cancelar</a>
-                    <x-adminlte-button class="btn-flat rounded" type="submit" label="Guardar Cambios" theme="success" icon="fas fa-lg fa-save"/>
+                    <a class="btn btn-primary mx-3" href="{{ route('courses.index') }}">Cancelar</a>
+                    <button class="btn btn-success" id="update-course-btn">Guardar Cambios</button>
                 </div>
             </div>
         </form>

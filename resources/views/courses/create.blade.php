@@ -13,7 +13,7 @@
     </button>
 </div>
 <div class="modal fade" id="crearCursoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-light">
             <div class="modal-header">
                 <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Curso - Programa</h5>
@@ -25,7 +25,7 @@
                 <form action="{{ route('courses.store') }}" method="POST" id="crearCursoForm">
                     @csrf
                     <div class="row">
-                        <div class="col-lg-6 col-12">
+                        <div class="col-lg-12 col-12">
                             <x-adminlte-input type="text" name="name" id="name" label="Nombre :" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">

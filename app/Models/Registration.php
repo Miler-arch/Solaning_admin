@@ -9,9 +9,10 @@ class Registration extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'mount_update',
+        'date_update',
         'client_id',
-        'course_id',
-        'user_id'
+        'detail_register_id'
     ];
 
     public function client()
@@ -29,5 +30,8 @@ class Registration extends Model
         return $this->belongsTo(User::class);
     }
 
-
+    public function detailRegister()
+    {
+        return $this->hasOne(DetailRegister::class, 'id');
+    }
 }
