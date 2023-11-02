@@ -8,8 +8,8 @@
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Inscripciones</span>
 </div>
-<div class="contenedor-inscripciones mt-3">
-    <div class="card mt-4">
+<div class="mt-3">
+    <div class="contenedor-inscripciones card mt-4">
         <div class="card-body contenedor-card">
             <form action="{{route('registrations.store')}}" method="POST" class="needs-validation" novalidate>
                 @csrf
@@ -17,7 +17,7 @@
 
                     <input type="hidden" name="user_id">
                     <div class="col-12 d-flex flex-wrap justify-content-evenly">
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-4 mb-4">
                             <label for="validationCustom01" class="font-weight-bold">Estudiante :</label>
                             <select class="js-example-basic-single js-states form-control" id="validationCustom01" name="client_id" required>
                                 @foreach ($clients as $client)
@@ -32,7 +32,7 @@
                                 Bien hecho!
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <label for="validationCustom02" class="font-weight-bold">Curso :</label>
                             <select class="js-example-basic-single js-states form-control js-courses" id="validationCustom02" name="course_id" required>
                                 @foreach ($courses as $course)
