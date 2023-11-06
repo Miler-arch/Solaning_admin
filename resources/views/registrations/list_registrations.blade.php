@@ -26,10 +26,10 @@
                 <td>{{ $index + 1 }}</td>
                 <td>
                     <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-sm mr-1 btn-default text-primary shadow" data-toggle="modal" data-target="#registrationModal{{ $registration->id }}" title="Ver">
+                        <a class="btn btn-sm mr-1 btn-default text-primary shadow" data-toggle="modal" data-target="#registrationModal{{ $registration->id }}" title="Ver">
                             <i class="fa fa-fw fa-eye"></i>
                         </a>
-                        <a href="#" class="btn btn-sm mr-1 btn-default text-cyan shadow" data-toggle="modal" data-target="#updateModal{{ $registration->id }}" title="Actualizar Pago">
+                        <a class="btn btn-sm mr-1 btn-default text-cyan shadow" data-toggle="modal" data-target="#updateModal{{ $registration->id }}" title="Actualizar Pago">
                             <i class="fa fa-fw fa-edit"></i>
                         </a>
                         <a href="{{ route('list_registrations.pdf', $registration) }}" target="_blank" class="btn btn-sm btn-default text-dark shadow" title="Descargar PDF">
@@ -41,12 +41,13 @@
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title" id="registrationModalLabel">{{ $registration->course->name }} | {{ $registration->course->version }}</h5>
+                                    <h5 class="modal-title" id="registrationModalLabel">DETALLES DEL REGISTRO</h5>
                                     <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <h2>{{ $registration->course->name }} | {{ $registration->course->version }}</h2>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead>
@@ -84,22 +85,9 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div>
-                                            <label class="fw-bold">NIT:</label>
-                                            <span>{{ $registration->nit }}</span>
-                                        </div>
-                                        <div>
-                                            <label class="fw-bold">Razón Social:</label>
-                                            <span>{{ $registration->business_name }}</span>
-                                        </div>
-                                        <div>
-                                            <label class="fw-bold">Método de Pago:</label>
-                                            <span>{{ $registration->type_payment }}</span>
-                                        </div>
                                     </div>
 
-                                    <!-- Historial de Pagos -->
-                                    <h6 class="mt-3">Historial de Pagos</h6>
+                                    <h2 class="mt-3">HISTORIAL DE PAGOS</h2>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead>
@@ -124,7 +112,18 @@
                                             </tbody>
                                         </table>
                                     </div>
-
+                                    <div>
+                                        <label class="fw-bold">NIT:</label>
+                                        <span>{{ $registration->nit }}</span>
+                                    </div>
+                                    <div>
+                                        <label class="fw-bold">Razón Social:</label>
+                                        <span>{{ $registration->business_name }}</span>
+                                    </div>
+                                    <div>
+                                        <label class="fw-bold">Método de Pago:</label>
+                                        <span>{{ $registration->type_payment }}</span>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

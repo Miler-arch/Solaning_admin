@@ -41,7 +41,7 @@
                                 </div>
                                 <select name="category" class="form-control">
                                     <option value="">Seleccione una categoría</option>
-                                    <option value="Cursos Presenciales">Cursos Presenciales</option>
+                                    <option value="Curso presencial">Curso presencial</option>
                                     <option value="Curso virtual en vivo">Curso virtual en vivo</option>
                                     <option value="Curso virtual grabado">Curso virtual grabado</option>
                                 </select>

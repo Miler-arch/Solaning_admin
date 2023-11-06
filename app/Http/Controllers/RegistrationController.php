@@ -6,7 +6,6 @@ use App\Models\Client;
 use App\Models\Course;
 use App\Models\DetailRegister;
 use App\Models\Registration;
-use Carbon\Carbon;
 use Luecano\NumeroALetras\NumeroALetras;
 use Illuminate\Http\Request;
 
@@ -31,7 +30,7 @@ class RegistrationController extends Controller
         $discountedPrice = $coursePrice - ($coursePrice * ($request->input('discount') / 100));
 
         if ($request->input('mount') > $discountedPrice) {
-            toastr()->error('El monto ingresado es mayor al precio del curso');
+            flash()->addError('El monto ingresado es mayor al precio del curso.');
             return redirect()->route('registrations.index');
         }
 
@@ -82,13 +81,11 @@ class RegistrationController extends Controller
     {
         $registro = DetailRegister::findOrFail($id);
 
-        // Calcular el mount acumulado sumando el mount original y los mount_update del historial
         $accumulatedMount = $registro->mount;
         foreach ($registro->registrationes as $payment) {
             $accumulatedMount += $payment->mount_update;
         }
 
-        // Crear un nuevo registro en la tabla 'registrations' con el mount_update y la fecha de actualización
         Registration::create([
             'mount_update' => $request->input('updated_amount'),
             'date_update' => now(),
@@ -96,7 +93,7 @@ class RegistrationController extends Controller
             'client_id' => $registro->client_id,
         ]);
 
-        // Actualizar el campo mount del registro original con el mount acumulado
+
         $registro->mount = $accumulatedMount;
         $registro->save();
 

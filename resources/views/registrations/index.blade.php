@@ -57,7 +57,6 @@
 
                         <div class="col-md-4">
                             <label class="font-weight-bold">Precio con Descuento (Bs.):</label>
-                            {{-- <span id="discountedPrice"></span> --}}
                             <input type="text" class="form-control" min="0" value="0" readonly id="discountedPrice" name="discounted_price">
                         </div>
 

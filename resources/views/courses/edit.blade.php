@@ -39,7 +39,7 @@
                         <label for="category">Categorías :</label>
                         <select name="category" id="category" class="form-control">
                             <option value="">Seleccione una categoría</option>
-                            <option value="Cursos Presenciales" {{ $course->category === 'Cursos Presenciales' ? 'selected' : '' }}>Cursos Presenciales</option>
+                            <option value="Curso presencial" {{ $course->category === 'Curso presencial' ? 'selected' : '' }}>Curso presencial</option>
                             <option value="Curso virtual en vivo" {{ $course->category === 'Curso virtual en vivo' ? 'selected' : '' }}>Curso virtual en vivo</option>
                             <option value="Curso virtual grabado" {{ $course->category === 'Curso virtual grabado' ? 'selected' : '' }}>Curso virtual grabado</option>
                         </select>
