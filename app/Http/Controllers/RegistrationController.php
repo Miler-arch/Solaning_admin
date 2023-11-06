@@ -78,29 +78,24 @@ class RegistrationController extends Controller
 
 
     public function update(Request $request, $id)
-{
-    $registro = DetailRegister::findOrFail($id);
+    {
+        $registro = DetailRegister::findOrFail($id);
 
-    // Obtén el monto actualizado desde el formulario
-    $montoActualizado = $request->input('updated_amount');
+        $montoActualizado = $request->input('updated_amount');
 
-    // Calcula el monto acumulado sumando el monto actual y el monto actualizado
-    $montoAcumulado = $registro->mount + $montoActualizado;
+        $montoAcumulado = $registro->mount + $montoActualizado;
 
-    // Crea un nuevo registro de pago con el monto actualizado
-    Registration::create([
-        'mount_update' => $montoActualizado,
-        'date_update' => now(),
-        'detail_register_id' => $registro->id,
-        'client_id' => $registro->client_id,
-    ]);
+        Registration::create([
+            'mount_update' => $montoActualizado,
+            'date_update' => now(),
+            'detail_register_id' => $registro->id,
+            'client_id' => $registro->client_id,
+        ]);
 
-    // Actualiza la propiedad 'mount' del modelo DetailRegister con el monto acumulado
-    $registro->mount = $montoAcumulado;
-    $registro->save();
+        $registro->mount = $montoAcumulado;
+        $registro->save();
 
-    return redirect()->back()->with('success', 'Información de pago actualizada correctamente.');
-}
-
+        return redirect()->back()->with('success', 'Información de pago actualizada correctamente.');
+    }
 
 }
