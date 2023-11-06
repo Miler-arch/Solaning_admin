@@ -146,8 +146,8 @@
                                         @csrf
                                         @method('PUT')
                                         <div class="form-group">
-                                            <label for="updatedAmount">Nuevo Monto:</label>
-                                            <input type="number" class="form-control" id="updatedAmount" name="updated_amount" required>
+                                            <label for="updated_amount">Nuevo Monto:</label>
+                                            <input type="number" class="form-control" id="updated_amount" name="updated_amount" required>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
