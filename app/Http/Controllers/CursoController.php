@@ -66,13 +66,6 @@ class CursoController extends Controller
         }
     }
 
-
-    public function show(string $id)
-    {
-        $course = Course::findOrFail($id);
-        return view('courses.show', compact('course'));
-    }
-
     public function edit(string $id)
     {
         $course = Course::findOrFail($id);
@@ -111,31 +104,22 @@ class CursoController extends Controller
         ];
 
         if (array_key_exists($request->name, $codigoCursos)) {
-            $nameCode = $codigoCursos[$request->name];
-
-            // Obtener el último curso con el mismo nombre
-            $latestCourse = Course::where('name', $request->name)->latest('version')->first();
-
-            // Calcular la nueva versión del curso
-            $version = ($latestCourse) ? intval(substr($latestCourse->version, strlen($nameCode) + 1)) + 1 : 1;
-
             $price = $request->price;
             $discount = $request->discount;
             $finalPrice = $price - ($price * ($discount / 100));
 
-            // Actualizar el curso con la nueva versión
             $course->update([
                 'name' => $request->name,
-                'version' => $nameCode . '-' . $version,
                 'category' => $request->category,
                 'price' => $finalPrice,
+                'version' => $request->version,
                 'discount' => $request->discount,
                 'start_date' => date('j-M-Y', strtotime($request->start_date)),
             ]);
-
-            return redirect()->route('courses.index')->with('success', 'Curso actualizado exitosamente.');
+            flash()->addSuccess('Curso actualizado exitosamente', 'Muy Bien!');
+            return redirect()->route('courses.index');
         } else {
-            return response()->json(['error' => 'Nombre de curso no válido.'], 400);
+            return redirect()->back()->with('error', 'Nombre de curso no válido.');
         }
     }
 
@@ -143,12 +127,18 @@ class CursoController extends Controller
     public function destroy(string $id)
     {
         $course = Course::findOrFail($id);
+
         if ($course->detailRegisters->count() > 0) {
-            return response()->json(['error' => 'No se puede eliminar el curso porque tiene registros asignados.'], 400);
+            flash()->addWarning('No se puede eliminar el curso porque tiene registros asociados', 'Atención!');
+            return redirect()->route('courses.index');
         }
+
         $course->delete();
-        return response()->json(['success' => 'Curso eliminado exitosamente.']);
+
+        flash()->addSuccess('Curso eliminado exitosamente', 'Muy Bien!');
+        return redirect()->route('courses.index');
     }
+
 
     public function updateState(Course $course)
     {

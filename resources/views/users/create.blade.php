@@ -1,7 +1,7 @@
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Usuarios</span>
     <button type="button" class="btn btn-primary float-right mt-1" data-toggle="modal" data-target="#crearUsuarioModal">
-        <i class="fa fa-solid fa-user-graduate"></i>
+        <i class="fa fa-solid fa-user"></i>
         Nuevo Usuario
     </button>
 </div>
@@ -10,7 +10,7 @@
         <div class="modal-content bg-light">
             <div class="modal-header">
                 <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Usuario</h5>
-                <button type="button" class="bg-danger rounded border-0 ps-3 pb-1 pe-3" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -101,12 +101,11 @@
                             <div class="form-group">
                                 <label class="form-label">Roles:</label><br>
                                 @foreach($roles as $role)
-                                    <div class="form-check">
-                                        <input type="checkbox" name="roles[]" value="{{ $role->id }}" class="form-check-input">
-                                        <label class="form-check-label">{{ $role->name }}</label>
+                                    <div class="form-radio">
+                                        <input type="radio" name="roles[]" value="{{ $role->id }}" class="form-radio-input">
+                                        <label class="form-radio-label">{{ $role->name }}</label>
                                     </div>
                                 @endforeach
-                                <span class="text-danger" id="error-roles"></span>
                             </div>
                         </div>
 

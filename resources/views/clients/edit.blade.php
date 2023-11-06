@@ -8,7 +8,7 @@
         <div class="card-header bg-light">
             <h2>Editar Alumno</h2>
         </div>
-        <form action="{{route('clients.update', $client->id )}}" method="POST">
+        <form action="{{route('clients.update', $client->id )}}" method="POST" id="updateClientForm">
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -33,11 +33,11 @@
                         </x-adminlte-input>
                     </div>
 
-                    <div class="col-6">
-                        <x-adminlte-input name="age" label="Edad :" type="number" value="{{$client->age}}"  label-class="text-light-emphasis">
+                    <div class="col-lg-6 col-12">
+                        <x-adminlte-input name="birthdate" label="Fecha de nacimiento :" type="date" value="{{$client->birthdate}}" label-class="text-secondary">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
-                                    <i class="fas fa-user text-light-emphasis"></i>
+                                    <i class="fas fa-user text-secondary"></i>
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
@@ -87,7 +87,7 @@
             <div class="text-center py-2 pb-4">
                 <div>
                     <a class="btn btn-primary mx-3" href="{{route('clients.index')}}">Cancelar</a>
-                    <x-adminlte-button class="btn-flat rounded" type="submit" label="Guardar Cambios" theme="success" icon="fas fa-lg fa-save"/>
+                    <x-adminlte-button type="submit" class="btn-flat rounded" id="update-client-btn" label="Guardar Cambios" theme="success" icon="fas fa-lg fa-save"/>
                 </div>
             </div>
         </form>

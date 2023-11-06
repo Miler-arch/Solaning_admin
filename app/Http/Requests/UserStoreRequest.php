@@ -18,7 +18,7 @@ class UserStoreRequest extends FormRequest
             'lastname' => 'required',
             'ci' => 'required|unique:users',
             'email' => 'required|email|unique:users',
-            'phone' => 'required|unique:users',
+            'phone' => 'required|unique:users|numeric',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
         ];
@@ -35,6 +35,7 @@ class UserStoreRequest extends FormRequest
             'email.unique' => 'El correo electrónico ya se encuentra registrado.',
             'phone.required' => 'El campo teléfono es requerido.',
             'phone.unique' => 'El teléfono ya se encuentra registrado.',
+            'phone.numeric' => 'El campo teléfono debe ser un número.',
             'password.required' => 'El campo contraseña es requerido.',
             'password.min' => 'El campo contraseña debe tener al menos 8 caracteres.',
             'password_confirmation.required' => 'El campo confirmar contraseña es requerido.',

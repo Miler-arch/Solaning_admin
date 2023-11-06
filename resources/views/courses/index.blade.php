@@ -6,113 +6,110 @@
 @section('plugins.Sweetalert2', true)
 
 @section('content')
-    <div class="mt-2">
-        @include('courses.create')
-        <div class="text-secondary mt-4">
-            <table id="datatable" class="table responsive nowrap" style="width:100%">
-                <thead class="thead-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Versión</th>
-                        <th>Categoría</th>
-                        <th>Precio</th>
-                        <th>Descuento</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($courses as $index => $course)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $course->name }}</td>
-                        <td>{{ $course->version }}</td>
-                        <td>{{ $course->category }}</td>
-                        <td>{{ $course->price." Bs." }}</td>
-                        <td>{{ $course->discount. " %" }}</td>
-                        <td>{{ $course->start_date }}</td>
-                        <td>
-                            <form action="{{ route('courses.updateState', $course) }}" method="POST" class="updateStatus">
+    @include('courses.create')
+    <div class="mt-3">
+        <table id="datatable" class="table responsive nowrap" style="width:100%">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Acciones</th>
+                    <th>Estado</th>
+                    <th>Nombre</th>
+                    <th>Versión</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Fecha de Inicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($courses as $index => $course)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>
+                        <div class="d-flex">
+                            <a href="{{ route('courses.edit', $course) }}" class="btn btn-sm btn-default text-primary shadow mr-1" title="Editar">
+                                <i class="fa fa-fw fa-pen"></i>
+                            </a>
+                            <form action="{{ route('courses.destroy', $course) }}" method="POST" class="form-eliminar">
                                 @csrf
-                                @method('PUT')
-                                <input type="hidden" name="status" value="{{ $course->status }}">
-                                <button type="button" class="btn btn-xs btn-default text-{{ $course->status ? 'success' : 'danger' }} shadow updateButton" title="{{ $course->status ? 'Activo' : 'Inactivo' }}">
-                                    <i class="fa fa-fw fa-{{ $course->status ? 'check-circle' : 'times-circle' }}"></i> {{ $course->status ? 'Activo' : 'Inactivo' }}
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-default text-danger shadow" title="Eliminar">
+                                    <i class="fa fa-fw fa-trash"></i>
                                 </button>
                             </form>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('courses.edit', $course) }}" class="btn btn-xs btn-default text-primary shadow" title="Editar">
-                                    <i class="fa fa-fw fa-pen"></i>
-                                </a>
-                                <form action="{{ route('courses.destroy', $course) }}" method="POST" class="form-eliminar">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-xs btn-default text-danger shadow" title="Eliminar">
-                                        <i class="fa fa-fw fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </td>
+                    <td>
+                        <form action="{{ route('courses.updateState', $course) }}" method="POST" class="updateStatus">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="status" value="{{ $course->status }}">
+                            <button type="button" class="btn btn-flat btn-default text-{{ $course->status ? 'success' : 'danger' }} shadow updateButton" title="{{ $course->status ? 'Activo' : 'Inactivo' }}">
+                                <i class="fa fa-fw fa-{{ $course->status ? 'check-circle' : 'times-circle' }}"></i> {{ $course->status ? 'Activo' : 'Inactivo' }}
+                            </button>
+                        </form>
+                    </td>
+                    <td>{{ $course->name }}</td>
+                    <td>{{ $course->version }}</td>
+                    <td>{{ $course->category }}</td>
+                    <td>{{ $course->price." Bs." }}</td>
+                    <td>{{ $course->discount. " %" }}</td>
+                    <td>{{ $course->start_date }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @stop
 
 @section('js')
 <script>
-$('.form-eliminar').submit(function(e) {
-    e.preventDefault();
+    $('.form-eliminar').submit(function(e){
+        e.preventDefault();
 
-    Swal.fire({
-        title: '¿Está seguro?',
-        text: "El curso se eliminará definitivamente.",
-        icon: 'warning',
-        customClass: {
-            icon: "no-before-icon",
-        },
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.value) {
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El curso se eliminara definitivamente.",
+            icon: 'warning',
+            customClass: {
+                 icon: "no-before-icon",
+             },
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                this.submit();
+            }
+        })
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#update-course-btn').on('click', function(event) {
+            event.preventDefault();
+
             $.ajax({
-                type: 'DELETE',
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
+                url: $('#updateCourseForm').attr('action'),
+                type: 'PUT',
+                dataType: 'json',
+                data: $('#updateCourseForm').serialize(),
                 success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: response.success,
-                        showConfirmButton: false,
-                        timer: 1000
-                    }).then(() => {
-                        window.location.reload();
-                    });
+                    console.log(response);
+                    alert('Curso actualizado exitosamente.');
+                    window.location.href = '{{ route('courses.index') }}';
                 },
-                error: function(xhr, status, error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: xhr.responseJSON.error,
-                    });
+                error: function(error) {
+                    console.error(error);
+                    alert('Error al actualizar el curso.');
                 }
             });
-        }
+        });
     });
-});
-
 </script>
-
 <script>
 $('.updateStatus').on('click', '.updateButton', function(e){
     e.preventDefault();
@@ -157,44 +154,6 @@ $('.updateStatus').on('click', '.updateButton', function(e){
 
 </script>
 
-{{-- <script>
-$(document).ready(function() {
-    $('#update-course-btn').on('click', function(event) {
-        event.preventDefault();
-
-        var formData = $('#update-course-form').serialize(); // Serializa los datos del formulario
-
-        $.ajax({
-            url: "{{ route('courses.update', $course->id) }}",
-            type: 'PUT',
-            data: formData,
-            success: function(response) {
-                if (response.success) {
-                    // Redirigir a la página de índice de cursos después de la actualización
-                    window.location.href = "{{ route('courses.index') }}";
-                } else {
-                    // Manejar otros tipos de respuestas JSON si es necesario
-                    console.error(response.error);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: response.error,
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Hubo un error al actualizar el curso. Por favor, inténtalo de nuevo más tarde.',
-                });
-            }
-        });
-    });
-});
-
-</script> --}}
 
 <script>
     $(document).ready(function () {

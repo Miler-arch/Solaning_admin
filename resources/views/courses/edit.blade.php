@@ -8,7 +8,7 @@
         <div class="card-header bg-light">
             <h2>Editar Curso</h2>
         </div>
-        <form action="{{route('courses.update', $course->id )}}" method="POST">
+        <form action="{{route('courses.update', $course->id )}}" method="POST" id="updateCourseForm">
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -35,15 +35,14 @@
                         </x-adminlte-input>
                         <span class="text-danger" id="error-version"></span>
                     </div>
-
                     <div class="col-lg-6 col-12">
-                        <x-adminlte-input type="text" min="0" name="category" id="category" label="Categoría :" value="{{$course->category}}" label-class="text-light-emphasis">
-                            <x-slot name="prependSlot">
-                                <div class="input-group-text">
-                                    <i class="fas fa-layer-group"></i>
-                                </div>
-                            </x-slot>
-                        </x-adminlte-input>
+                        <label for="category">Categorías :</label>
+                        <select name="category" id="category" class="form-control">
+                            <option value="">Seleccione una categoría</option>
+                            <option value="Cursos Presenciales" {{ $course->category === 'Cursos Presenciales' ? 'selected' : '' }}>Cursos Presenciales</option>
+                            <option value="Curso virtual en vivo" {{ $course->category === 'Curso virtual en vivo' ? 'selected' : '' }}>Curso virtual en vivo</option>
+                            <option value="Curso virtual grabado" {{ $course->category === 'Curso virtual grabado' ? 'selected' : '' }}>Curso virtual grabado</option>
+                        </select>
                         <span class="text-danger" id="error-category"></span>
                     </div>
 

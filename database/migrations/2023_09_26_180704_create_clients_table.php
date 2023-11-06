@@ -12,9 +12,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
-            $table->integer('age');
+            $table->string('birthdate')->nullable();
+            $table->integer('age')->nullable();
             $table->integer('ci')->unique();
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->string('phone')->unique();
             $table->string('reference_phone')->nullable()->unique();
             $table->timestamps();

@@ -1,10 +1,3 @@
-{{-- <div class="card-header bg-dark">
-    <span class="display-4 font-weight-bold">Alumnos</span>
-        <button type="button" class="btn btn-primary float-right mt-3" data-toggle="modal" data-target="#crearClienteModal">
-        <i class="fas fa-book"></i>
-        Crear Alumno
-    </button>
-</div> --}}
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Alumnos</span>
     <button type="button" class="btn btn-primary float-right mt-1" data-toggle="modal" data-target="#crearClienteModal">
@@ -17,7 +10,7 @@
         <div class="modal-content bg-light">
             <div class="modal-header">
                 <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Alumno</h5>
-                <button type="button" class="bg-danger rounded border-0 ps-3 pb-1 pe-3" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -48,16 +41,15 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="age" label="Edad :" type="number" label-class="text-secondary">
+                            <x-adminlte-input name="birthdate" label="Fecha de nacimiento :" type="date" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-user text-secondary"></i>
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
-                            <span class="text-danger" id="error-age"></span>
                         </div>
-
+                        
                         <div class="col-lg-6 col-12">
                             <x-adminlte-input name="ci" label="Cédula de Identidad :" type="number" label-class="text-secondary">
                                 <x-slot name="prependSlot">
@@ -77,11 +69,10 @@
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
-                            <span class="text-danger" id="error-email"></span>
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="phone" label="Teléfono :" label-class="text-secondary">
+                            <x-adminlte-input name="phone" label="Teléfono :" type="tel" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-phone text-secondary"></i>
@@ -92,7 +83,7 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="reference_phone" label="Teléfono de Referencia :" label-class="text-secondary">
+                            <x-adminlte-input name="reference_phone" type="tel" label="Teléfono de Referencia :" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-phone text-secondary"></i>

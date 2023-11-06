@@ -61,17 +61,17 @@
                 },
                 "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'Todos']],
                 "pageLength": 50,
-                "dom": 'Bfrtip',
-                "buttons": [
-                    {
-                        extend: 'pageLength',
-                        className: 'btn btn-dark',
-                        text: 'Cantidad de filas'
-                    },
-                    // {
-                    //     extend: 'excelHtml5',
-                    //     className: 'btn btn-success',
-                    // },
+                
+                // "buttons": [
+                //     {
+                //         extend: 'pageLength',
+                //         className: 'btn btn-dark',
+                //         text: 'Cantidad de filas'
+                //     },
+                //     {
+                //         extend: 'excelHtml5',
+                //         className: 'btn btn-success',
+                //     },
                     // {
                     //     extend: 'pdfHtml5',
                     //     className: 'btn btn-danger',
@@ -89,12 +89,7 @@
                     //     extend: 'csv', // Agrega botón de copiar
                     //     className: 'btn btn-info',
                     // },
-                    // {
-                    //     extend: 'colvis',
-                    //     className: 'btn btn-dark',
-                    //     text: 'Columnas'
-                    // },
-                ],
+                // ],
                 responsive: true
             });
         });

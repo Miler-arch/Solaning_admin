@@ -1,10 +1,3 @@
-{{-- <div class="card-header bg-dark">
-    <span class="display-4 font-weight-bold">Cursos</span>
-        <button type="button" class="btn btn-primary float-right mt-3" data-toggle="modal" data-target="#crearCursoModal">
-        <i class="fas fa-book"></i>
-        Crear Curso
-    </button>
-</div> --}}
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Cursos</span>
     <button type="button" class="btn btn-primary float-right mt-1" data-toggle="modal" data-target="#crearCursoModal">
@@ -17,7 +10,7 @@
         <div class="modal-content bg-light">
             <div class="modal-header">
                 <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Curso - Programa</h5>
-                <button type="button" class="bg-danger rounded border-0 ps-3 pb-1 pe-3" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -40,14 +33,23 @@
 
                         <div class="col-lg-6 col-12">
                             <label>Categorías :</label>
-                            <select name="category" id="" class="form-select">
-                                <option value="">Seleccione una categoría</option>
-                                <option value="Cursos Presenciales">Cursos Presenciales</option>
-                                <option value="Curso virtual en vivo">Curso virtual en vivo</option>
-                                <option value="Curso virtual grabado">Curso virtual grabado</option>
-                            </select>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-list"></i>
+                                    </span>
+                                </div>
+                                <select name="category" class="form-control">
+                                    <option value="">Seleccione una categoría</option>
+                                    <option value="Cursos Presenciales">Cursos Presenciales</option>
+                                    <option value="Curso virtual en vivo">Curso virtual en vivo</option>
+                                    <option value="Curso virtual grabado">Curso virtual grabado</option>
+                                </select>
+                            </div>
                             <span class="text-danger" id="error-category"></span>
                         </div>
+
+
                         <div class="col-lg-6 col-12">
                             <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio (Bs):" label-class="text-secondary">
                                 <x-slot name="prependSlot">
@@ -70,14 +72,19 @@
                             <span class="text-danger" id="error-discount"></span>
                         </div>
 
-
                         <div class="col-lg-6 col-12">
                             <x-adminlte-input type="date" name="start_date" id="start_date" label="Fecha de Inicio :" label-class="text-secondary">
                                 <x-slot name="prependSlot">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
                                 </x-slot>
                             </x-adminlte-input>
                             <span class="text-danger" id="error-start_date"></span>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Cerrar</button>

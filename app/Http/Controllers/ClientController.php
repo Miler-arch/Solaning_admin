@@ -25,6 +25,7 @@ class ClientController extends Controller
         Client::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
+            'birthdate' => $request->birthdate,
             'age' => $request->age,
             'ci' => $request->ci,
             'email' => $request->email,
@@ -37,11 +38,6 @@ class ClientController extends Controller
         return response()->json(['success' => 'Alumno creado exitosamente.']);
     }
 
-    public function show()
-    {
-        return view('clients.show');
-    }
-
     public function edit($id)
     {
         $client = Client::findOrFail($id);
@@ -51,8 +47,20 @@ class ClientController extends Controller
     public function update(ClienteUpdateRequest $request, $id)
     {
         $client = Client::findOrFail($id);
-        $client->update($request->all());
-        toastr()->success('Alumno actualizado exitosamente!');
+        $client->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'birthdate' => $request->birthdate,
+            'age' => $request->age,
+            'ci' => $request->ci,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'reference_phone' => $request->reference_phone,
+            'mount_select' => $request->mount_select,
+            'nit' => $request->nit,
+            'business_name' => $request->business_name,
+        ]);
+        flash()->addSuccess('Alumno actualizado exitosamente', 'Muy Bien!');
         return redirect()->route('clients.index', compact('client'));
     }
 
@@ -60,11 +68,11 @@ class ClientController extends Controller
     {
         $client = Client::findOrFail($id);
         if ($client->detailRegisters->count() > 0) {
-            toastr()->error('No se puede eliminar el alumno porque tiene registros asignados!');
+            flash()->addWarning('No se puede eliminar el alumno porque tiene registros asociados', 'Atención!');
             return redirect()->route('clients.index');
         }
         $client->delete();
-        toastr()->success('Alumno eliminado exitosamente!');
+        flash()->addSuccess('Alumno eliminado exitosamente', 'Muy Bien!');
         return redirect()->route('clients.index');
     }
 

@@ -366,42 +366,58 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => 'https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css',
+                    'location' => 'vendor/datatables/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js',
+                    'location' => 'vendor/datatables/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => 'https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css',
+                    'location' => 'vendor/datatables/css/dataTables.bootstrap4.min.css',
+                ],
+
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.print.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/jszip/jszip.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/pdfmake.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/vfs_fonts.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => 'https://cdn.datatables.net/buttons/2.0.1/css/buttons.bootstrap5.min.css',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'https://cdn.datatables.net/buttons/2.0.1/js/buttons.bootstrap5.min.js',
+                    'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
                 ],
                 [
                     'type' => 'css',

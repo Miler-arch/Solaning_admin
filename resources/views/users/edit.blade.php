@@ -90,10 +90,10 @@
                         <div class="form-group">
                             <label class="form-label">Roles:</label><br>
                             @foreach($roles as $role)
-                                <div class="form-check">
-                                    <input type="checkbox" name="roles[]" value="{{ $role->id }}" class="form-check-input"
+                                <div class="form-radio">
+                                    <input type="radio" name="roles[]" value="{{ $role->id }}" class="form-radio-input"
                                         {{ $user->hasRole($role->name) ? 'checked' : '' }}>
-                                    <label class="form-check-label">{{ $role->name }}</label>
+                                    <label class="form-radio-label">{{ $role->name }}</label>
                                 </div>
                             @endforeach
                         </div>

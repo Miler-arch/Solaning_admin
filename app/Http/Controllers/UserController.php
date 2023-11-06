@@ -29,24 +29,18 @@ class UserController extends Controller
 
     public function store(UserStoreRequest $request)
     {
-        $password = bcrypt($request->password);
         $user = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
             'ci' => $request->ci,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => $password,
+            'password' => bcrypt($request->password),
         ]);
         $selectedRoles = $request->input('roles', []);
         $user->assignRole($selectedRoles);
 
         return response()->json(['success' => 'Usuario creado exitosamente.']);
-    }
-
-    public function show()
-    {
-        return view('users.show');
     }
 
     public function edit($id)
@@ -70,7 +64,7 @@ class UserController extends Controller
 
         $selectedRoles = $request->input('roles', []);
         $user->syncRoles($selectedRoles);
-        toastr()->success('Usuario actualizado exitosamente!');
+        flash()->addSuccess('Usuario actualizado exitosamente', 'Muy Bien!');
         return redirect()->route('users.index', compact('user'));
     }
 
@@ -78,7 +72,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        toastr()->success('Usuario eliminado exitosamente!');
+        flash()->addSuccess('Usuario eliminado exitosamente', 'Muy Bien!');
         return redirect()->route('users.index');
     }
 }
