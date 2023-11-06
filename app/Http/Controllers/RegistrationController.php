@@ -95,6 +95,10 @@ class RegistrationController extends Controller
         $registro->mount = $montoAcumulado;
         $registro->save();
 
+        if ($montoAcumulado >= $registro->course_price) {
+            $registro->update(['method_payment' => 1]);
+        }
+
         return redirect()->back()->with('success', 'Información de pago actualizada correctamente.');
     }
 

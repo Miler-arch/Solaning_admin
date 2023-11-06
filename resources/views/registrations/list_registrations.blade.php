@@ -92,20 +92,14 @@
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Monto Acumulado</th>
+                                                    <th>Monto Actualizado</th>
                                                     <th>Fecha de Actualización</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @php
-                                                    $accumulatedAmount = 0;
-                                                @endphp
                                                 @foreach($registration->registrationes as $payment)
                                                     <tr>
-                                                        @php
-                                                            $accumulatedAmount += $payment->mount_update;
-                                                        @endphp
-                                                        <td>{{ $accumulatedAmount . " Bs." }}</td>
+                                                        <td>{{ $payment->mount_update . " Bs." }}</td>
                                                         <td>{{ $payment->date_update }}</td>
                                                     </tr>
                                                 @endforeach
