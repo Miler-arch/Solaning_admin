@@ -80,10 +80,13 @@ class RegistrationController extends Controller
     public function update(Request $request, $id)
     {
         $registro = DetailRegister::findOrFail($id);
-
         $montoActualizado = $request->input('updated_amount');
 
         $montoAcumulado = $registro->mount + $montoActualizado;
+
+        if ($montoAcumulado > $registro->discounted_price) {
+            return redirect()->back()->with('error', 'El monto ingresado es mayor al precio del curso.');
+        }
 
         Registration::create([
             'mount_update' => $montoActualizado,
@@ -95,7 +98,7 @@ class RegistrationController extends Controller
         $registro->mount = $montoAcumulado;
         $registro->save();
 
-        if ($montoAcumulado >= $registro->course_price) {
+        if ($montoAcumulado >= $registro->discounted_price) {
             $registro->update(['method_payment' => 1]);
         }
 
