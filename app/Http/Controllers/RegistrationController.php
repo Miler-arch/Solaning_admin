@@ -102,7 +102,30 @@ class RegistrationController extends Controller
             $registro->update(['method_payment' => 1]);
         }
 
-        return redirect()->back()->with('success', 'Información de pago actualizada correctamente.');
+        $newDetailRegister = [
+            'id' => $registro->id,
+            'client_id' => $registro->client_id,
+            'course_id' => $registro->course_id,
+            'mount' => $montoActualizado,
+            'discount' => $registro->discount,
+            'discounted_price' => $registro->discounted_price,
+            'type_payment' => $registro->type_payment,
+            'business_name' => $registro->business_name,
+            'nit' => $registro->nit,
+            'method_payment' => $registro->method_payment,
+        ];
+
+        $data = auth()->user()->detailRegisters()->create($newDetailRegister);
+
+        $pdf = \PDF::loadView('registrations.recibe', [
+            'data' => $newDetailRegister,
+            'montoEnPalabrasString' => $registro->montoEnPalabrasString,
+            'discountRegistration' => $registro->discountRegistration,
+            'formattedId' => $registro->formattedId,
+        ]);
+
+        return $pdf->stream('recibe.pdf');
+        // return redirect()->back()->with('success', 'Información de pago actualizada correctamente.');
     }
 
 }

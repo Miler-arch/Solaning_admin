@@ -32,10 +32,30 @@
                         <a class="btn btn-sm mr-1 btn-default text-cyan shadow" data-toggle="modal" data-target="#updateModal{{ $registration->id }}" title="Actualizar Pago">
                             <i class="fa fa-fw fa-edit"></i>
                         </a>
-                        <a href="{{ route('list_registrations.pdf', $registration) }}" target="_blank" class="btn btn-sm btn-default text-dark shadow" title="Descargar PDF">
-                            <i class="fa fa-fw fa-print"></i>
+                        <a class="btn btn-sm mr-1 btn-default text-indigo shadow" data-toggle="modal" data-target="#pdfModal{{ $registration->id }}" title="Descargar PDF's">
+                            <i class="fa fa-fw fa-file-pdf"></i>
                         </a>
                     </div>
+
+                    <div class="modal fade" id="pdfModal{{ $registration->id }}" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="registrationModalLabel">LISTADO DE PAGOS</h5>
+                                    <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <a href="{{ route('list_registrations.pdf', $registration) }}" target="_blank" class="btn btn-sm btn-default text-danger shadow" title="Descargar PDF's">
+                                        <i class="fa fa-fw fa-file-pdf"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="modal fade" id="registrationModal{{ $registration->id }}" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -140,6 +160,8 @@
                                         @csrf
                                         @method('PUT')
                                         <div class="form-group">
+                                            <input type="hidden" name="user_id">
+
                                             <label for="updated_amount">Nuevo Monto:</label>
                                             <input type="number" class="form-control" id="updated_amount" name="updated_amount" required>
                                         </div>

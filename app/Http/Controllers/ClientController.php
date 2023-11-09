@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClienteStoreRequest;
 use App\Http\Requests\ClienteUpdateRequest;
 use App\Models\Client;
-use App\Models\Course;
 
 class ClientController extends Controller
 {
