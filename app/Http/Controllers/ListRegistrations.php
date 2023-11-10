@@ -13,11 +13,6 @@ class ListRegistrations extends Controller
         return view('registrations.list_registrations', compact('registrationsList'));
     }
 
-    public function show(string $id)
-    {
-
-    }
-
     public function pdf(string $id)
     {
         $data = DetailRegister::findOrfail($id);

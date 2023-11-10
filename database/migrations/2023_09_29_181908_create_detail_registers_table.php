@@ -19,8 +19,7 @@ return new class extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
-
-
+            
             $table->tinyInteger('method_payment')->default(0)->comment("0: 'Parcial', 1 : 'Completo'");
             $table->string('business_name')->nullable();
             $table->string('nit')->nullable();

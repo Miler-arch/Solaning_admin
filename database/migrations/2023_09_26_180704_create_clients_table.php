@@ -13,6 +13,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('birthdate')->nullable();
+            $table->string('city')->nullable();
+            $table->string('training')->nullable();
             $table->integer('age')->nullable();
             $table->integer('ci')->unique();
             $table->string('email')->nullable()->unique();

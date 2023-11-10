@@ -21,6 +21,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
+                        <span class="text-danger" id="error-name"></span>
                     </div>
 
                     <div class="col-6">
@@ -31,6 +32,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
+                        <span class="text-danger" id="error-lastname"></span>
                     </div>
 
                     <div class="col-lg-6 col-12">
@@ -41,6 +43,29 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
+                        <span class="text-danger" id="error-birthdate"></span>
+                    </div>
+
+                    <div class="col-lg-6 col-12">
+                        <x-adminlte-input name="city" label="Ciudad :" type="text" label-class="text-secondary" value="{{$client->city}}">
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text">
+                                    <i class="fas fa-city text-secondary"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                        <span class="text-danger" id="error-city"></span>
+                    </div>
+
+                    <div class="col-lg-6 col-12">
+                        <x-adminlte-input name="training" label="Formación Académica :" type="text" label-class="text-secondary" value="{{$client->training}}">
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text">
+                                    <i class="fas fa-graduation-cap text-secondary"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input>
+                        <span class="text-danger" id="error-training"></span>
                     </div>
 
                     <div class="col-6">
@@ -51,6 +76,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
+                        <span class="text-danger" id="error-ci"></span>
                     </div>
 
                     <div class="col-6">
@@ -61,6 +87,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
+                        <span class="text-danger" id="error-email"></span>
                     </div>
 
                     <div class="col-6">
@@ -71,6 +98,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
+                        <span class="text-danger" id="error-phone"></span>
                     </div>
 
                     <div class="col-6">
@@ -81,6 +109,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input>
+                        <span class="text-danger" id="error-reference_phone"></span>
                     </div>
                 </div>
             </div>

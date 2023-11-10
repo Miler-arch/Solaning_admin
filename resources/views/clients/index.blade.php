@@ -18,6 +18,8 @@
                     <th>Fecha de nacimiento</th>
                     <th>Edad</th>
                     <th>Ci / Pasaporte</th>
+                    <th>Ciudad</th>
+                    <th>Formación</th>
                     <th>Correo</th>
                     <th>Teléfono</th>
                     <th>Teléfono de referencia</th>
@@ -59,6 +61,21 @@
                         @endif
                     </td>
                     <td>{{ $client->ci }}</td>
+                    <td>
+                        @if ($client->city == null)
+                            <span class="badge badge-warning p-2">Sin ciudad</span>
+                        @else
+                            {{ $client->city }}
+                        @endif
+                    </td>
+
+                    <td>
+                        @if ($client->training == null)
+                            <span class="badge badge-warning p-2">Sin formación</span>
+                        @else
+                            {{ $client->training }}
+                        @endif
+                    </td>
                     <td>
                         @if ($client->email == null)
                             <span class="badge badge-warning p-2">Sin correo</span>
@@ -112,14 +129,14 @@
             event.preventDefault();
 
             $.ajax({
-                url: $('#updateClientForm').attr('action'), // Obtiene la URL del formulario de acción
-                type: 'PUT', // Método HTTP para la solicitud
+                url: $('#updateClientForm').attr('action'),
+                type: 'PUT',
                 dataType: 'json',
-                data: $('#updateClientForm').serialize(), // Serializa los datos del formulario
+                data: $('#updateClientForm').serialize(),
                 success: function(response) {
                     console.log(response);
                     alert('Alumno actualizado exitosamente.');
-                    window.location.href = '{{ route('courses.index') }}'; // Redirige a la lista de cursos después de la actualización
+                    window.location.href = '{{ route('courses.index') }}';
                 },
                 error: function(error) {
                     console.error(error);
@@ -149,10 +166,14 @@
                 $('#crearClienteForm')[0].reset();
                 $('#error-name').text('');
                 $('#error-lastname').text('');
+                $('#error-birthdate').text('');
+                $('#error-city').text('');
+                $('#error-training').text('');
+                $('#error-age').text('');
                 $('#error-ci').text('');
+                $('#error-email').text('');
                 $('#error-phone').text('');
                 $('#error-reference_phone').text('');
-
                 setTimeout(function() {
                     window.location.reload();
                 }, 700);
@@ -162,7 +183,12 @@
                     var errors = xhr.responseJSON.errors;
                     $('#error-name').text(errors.name ? errors.name[0] : '');
                     $('#error-lastname').text(errors.lastname ? errors.lastname[0] : '');
+                    $('#error-birthdate').text(errors.birthdate ? errors.birthdate[0] : '');
+                    $('#error-city').text(errors.city ? errors.city[0] : '');
+                    $('#error-training').text(errors.training ? errors.training[0] : '');
+                    $('#error-age').text(errors.age ? errors.age[0] : '');
                     $('#error-ci').text(errors.ci ? errors.ci[0] : '');
+                    $('#error-email').text(errors.email ? errors.email[0] : '');
                     $('#error-phone').text(errors.phone ? errors.phone[0] : '');
                     $('#error-reference_phone').text(errors.reference_phone ? errors.reference_phone[0] : '');
                 }

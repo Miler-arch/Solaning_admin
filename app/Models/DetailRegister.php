@@ -18,7 +18,8 @@ class DetailRegister extends Model
         'mount',
         'discount',
         'discounted_price',
-        'type_payment'
+        'type_payment',
+
     ];
 
     public function user()
@@ -38,7 +39,7 @@ class DetailRegister extends Model
 
     public function registrationes()
     {
-        return $this->hasMany(Registration::class, 'detail_register_id');
+        return $this->hasMany(Registration::class, 'detail_register_id', 'id');
     }
 }
 

@@ -36,6 +36,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('list_registrations/{id}', [ListRegistrations::class, 'pdf'])->name('list_registrations.pdf');
 
+    Route::get('/ver-pdf/{detailRegisterId}/{nombreArchivo}', [RegistrationController::class, 'mostrarPDF'])->name('ver.pdf');
+
+
+
     Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
 
     Route::resource('users', UserController::class)->name('', 'users');

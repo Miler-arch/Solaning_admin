@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->decimal('mount_update', 8, 2);
             $table->timestamp('date_update')->nullable();
-
+            $table->string('file_path')->nullable();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('detail_register_id')->references('id')->on('detail_registers');
             $table->timestamps();

@@ -12,7 +12,8 @@ class Registration extends Model
         'mount_update',
         'date_update',
         'client_id',
-        'detail_register_id'
+        'detail_register_id',
+        'file_path'
     ];
 
     public function client()
@@ -30,8 +31,7 @@ class Registration extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function detailRegister()
-    {
-        return $this->hasOne(DetailRegister::class, 'id');
+    public function detailRegisters(){
+        return $this->hasMany(DetailRegister::class);
     }
 }

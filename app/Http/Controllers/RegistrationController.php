@@ -8,6 +8,7 @@ use App\Models\DetailRegister;
 use App\Models\Registration;
 use Luecano\NumeroALetras\NumeroALetras;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RegistrationController extends Controller
 {
@@ -76,7 +77,6 @@ class RegistrationController extends Controller
         return $pdf->stream('recibe.pdf');
     }
 
-
     public function update(Request $request, $id)
     {
         $registro = DetailRegister::findOrFail($id);
@@ -88,13 +88,6 @@ class RegistrationController extends Controller
             return redirect()->back()->with('error', 'El monto ingresado es mayor al precio del curso.');
         }
 
-        Registration::create([
-            'mount_update' => $montoActualizado,
-            'date_update' => now(),
-            'detail_register_id' => $registro->id,
-            'client_id' => $registro->client_id,
-        ]);
-
         $registro->mount = $montoAcumulado;
         $registro->save();
 
@@ -102,30 +95,59 @@ class RegistrationController extends Controller
             $registro->update(['method_payment' => 1]);
         }
 
-        $newDetailRegister = [
-            'id' => $registro->id,
-            'client_id' => $registro->client_id,
-            'course_id' => $registro->course_id,
-            'mount' => $montoActualizado,
-            'discount' => $registro->discount,
-            'discounted_price' => $registro->discounted_price,
-            'type_payment' => $registro->type_payment,
-            'business_name' => $registro->business_name,
-            'nit' => $registro->nit,
-            'method_payment' => $registro->method_payment,
-        ];
+        $numberToWords = new NumeroALetras();
+        $montoDecimal = $montoActualizado;
+        if ($montoDecimal >= 1000) {
+            $montoEnPalabras = "UN MIL";
+            $centavos = $montoDecimal - 1000;
+            if ($centavos > 0) {
+                $montoEnPalabras .= " " . $numberToWords->toWords($centavos);
+            }
+        } else {
+            $montoEnPalabras = $numberToWords->toWords($montoDecimal);
+        }
+        $montoEnPalabrasString = $montoEnPalabras;
 
-        $data = auth()->user()->detailRegisters()->create($newDetailRegister);
 
-        $pdf = \PDF::loadView('registrations.recibe', [
-            'data' => $newDetailRegister,
-            'montoEnPalabrasString' => $registro->montoEnPalabrasString,
-            'discountRegistration' => $registro->discountRegistration,
-            'formattedId' => $registro->formattedId,
+        $formattedId = str_pad(DetailRegister::max('id') + 1, 5, '0', STR_PAD_LEFT);
+
+        $pdf = \PDF::loadView('registrations.recibe_partial', [
+            'data' => $registro,
+            'formattedId' => $formattedId,
+            'montoEnPalabrasString' => $montoEnPalabrasString,
+            'montoActualizado' => $montoActualizado,
         ]);
 
-        return $pdf->stream('recibe.pdf');
-        // return redirect()->back()->with('success', 'Información de pago actualizada correctamente.');
+        $nombreArchivo = 'pago_parcial_' . $registro->id . '_' . now()->format('d-m-Y-H-i-s') . '.pdf';
+
+        $rutaArchivo = 'public/pdfs/' . $registro->id . '/' . $nombreArchivo;
+
+        $pdfFile = new Registration();
+        $pdfFile->file_path = $nombreArchivo;
+        $pdfFile->detail_register_id = $registro->id;
+        $pdfFile->client_id = $registro->client_id;
+        $pdfFile->mount_update = $montoActualizado;
+        $pdfFile->date_update = now();
+
+        $pdfFile->save();
+
+        Storage::put($rutaArchivo, $pdf->output());
+
+        flash()->addSuccess('Pago registrado exitosamente', 'Muy Bien!');
+        return redirect()->back()->with('pdf_path', $rutaArchivo);
     }
 
+    public function mostrarPDF($detailRegisterId, $nombreArchivo)
+    {
+        if ($nombreArchivo === null) {
+            abort(404);
+        }
+        $rutaArchivo = 'public/pdfs/' . $detailRegisterId . '/' . $nombreArchivo;
+        if (Storage::exists($rutaArchivo)) {
+            $contenido = Storage::get($rutaArchivo);
+            return response($contenido, 200)->header('Content-Type', 'application/pdf');
+        } else {
+            abort(404);
+        }
+    }
 }

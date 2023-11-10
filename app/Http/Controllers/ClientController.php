@@ -25,14 +25,13 @@ class ClientController extends Controller
             'name' => $request->name,
             'lastname' => $request->lastname,
             'birthdate' => $request->birthdate,
+            'city' => $request->city,
+            'training' => $request->training,
             'age' => $request->age,
             'ci' => $request->ci,
             'email' => $request->email,
             'phone' => $request->phone,
             'reference_phone' => $request->reference_phone,
-            'mount_select' => $request->mount_select,
-            'nit' => $request->nit,
-            'business_name' => $request->business_name,
         ]);
         return response()->json(['success' => 'Alumno creado exitosamente.']);
     }
@@ -50,14 +49,13 @@ class ClientController extends Controller
             'name' => $request->name,
             'lastname' => $request->lastname,
             'birthdate' => $request->birthdate,
+            'city' => $request->city,
+            'training' => $request->training,
             'age' => $request->age,
             'ci' => $request->ci,
             'email' => $request->email,
             'phone' => $request->phone,
             'reference_phone' => $request->reference_phone,
-            'mount_select' => $request->mount_select,
-            'nit' => $request->nit,
-            'business_name' => $request->business_name,
         ]);
         flash()->addSuccess('Alumno actualizado exitosamente', 'Muy Bien!');
         return redirect()->route('clients.index', compact('client'));

@@ -12,6 +12,8 @@ class Client extends Model
         'name',
         'lastname',
         'birthdate',
+        'city',
+        'training',
         'age',
         'ci',
         'email',
