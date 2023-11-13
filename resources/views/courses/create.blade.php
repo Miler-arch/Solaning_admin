@@ -8,10 +8,10 @@
 <div class="modal fade" id="crearCursoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content bg-light">
-            <div class="modal-header">
+            <div class="modal-header bg-modal">
                 <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Curso - Programa</h5>
-                <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
@@ -19,10 +19,10 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-12 col-12">
-                            <x-adminlte-input type="text" name="name" id="name" label="Nombre :" label-class="text-secondary">
+                            <x-adminlte-input type="text" name="name" id="name" label="Nombre :" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
-                                        <i class="fas fa-book"></i>
+                                        <i class="fas fa-book text-secondary"></i>
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
@@ -32,11 +32,11 @@
                         <input type="hidden" name="version" id="version" value="version">
 
                         <div class="col-lg-6 col-12">
-                            <label>Categorías :</label>
+                            <label class="campo-requerido">Categorías :</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="fas fa-list"></i>
+                                        <i class="fas fa-list text-secondary"></i>
                                     </span>
                                 </div>
                                 <select name="category" class="form-control">
@@ -51,10 +51,10 @@
 
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio (Bs):" label-class="text-secondary">
+                            <x-adminlte-input type="number" min="0" name="price" id="price" label="Precio (Bs):" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
-                                        <i class="fas fa-money-bill"></i>
+                                        <i class="fas fa-money-bill text-secondary"></i>
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
@@ -65,7 +65,7 @@
                             <x-adminlte-input type="number" min="0" name="discount" value="0" id="discount" label="Descuento (%):" label-class="text-secondary">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
-                                        <i class="fas fa-tag"></i>
+                                        <i class="fas fa-tag text-secondary"></i>
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
@@ -73,11 +73,11 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input type="date" name="start_date" id="start_date" label="Fecha de Inicio :" label-class="text-secondary">
+                            <x-adminlte-input type="date" name="start_date" id="start_date" label="Fecha de Inicio :" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-calendar-alt"></i>
+                                            <i class="fas fa-calendar-alt text-secondary"></i>
                                         </span>
                                     </div>
                                 </x-slot>
@@ -87,7 +87,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close"><i class="fas fa-ban"></i> Cancelar</button>
                         <x-adminlte-button class="btn-flat rounded boton-registro-modal" type="submit" label="Registrar" theme="success" icon="fas fa-lg fa-save"/>
                     </div>
                 </form>

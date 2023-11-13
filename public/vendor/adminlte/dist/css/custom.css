@@ -29,7 +29,9 @@
 
 
 .body-contenedor-login {
-    background-color: #F0F6FC;
+    /* background-color: #F0F6FC; */
+    background-image: url("../../../../img/bg.png");
+    background-size: cover;
     width: 100vw;
     height: 100vh;
 }
@@ -316,4 +318,25 @@ label:not(.form-check-label):not(.custom-file-label) {
 .ov-btn-slide-left:hover .arrow {
     transform: translateX(0);
     opacity: 1;
+}
+
+
+
+/**Campos requeridos  */
+.campo-requerido::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+/** header-modales */
+.bg-modal {
+    background: #336cfc;
+    color: #fff
+}
+.header-modal {
+    font-size: 1.05rem;
+    padding: 0.1em 0.7em;
+    background-color: #F32258;
+    color: #fff;
 }
