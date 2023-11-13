@@ -47,7 +47,7 @@
                     <td>{{ $user->phone }}</td>
                     <td>
                         @if($user->roles->count() > 0)
-                            <span class="bg-dark rounded p-1">{{ $user->roles[0]->name }}</span>
+                            <span class="bg-primary rounded p-1">{{ $user->roles[0]->name }}</span>
                         @else
                             Sin Rol Asignado
                         @endif

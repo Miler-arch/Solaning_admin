@@ -8,10 +8,10 @@
 <div class="modal fade" id="crearUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-light">
-            <div class="modal-header">
+            <div class="modal-header bg-modal">
                 <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Usuario</h5>
-                <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
@@ -19,7 +19,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="name" label="Nombre :" label-class="text-secondary">
+                            <x-adminlte-input name="name" label="Nombre :" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-user text-secondary"></i>
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="lastname" label="Apellidos :" label-class="text-secondary">
+                            <x-adminlte-input name="lastname" label="Apellidos :" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-user text-secondary"></i>
@@ -42,7 +42,7 @@
 
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="ci" label="Cédula de Identidad :" type="number" label-class="text-secondary">
+                            <x-adminlte-input name="ci" label="Cédula de Identidad :" type="number" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-id-card text-secondary"></i>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="phone" label="Teléfono :" label-class="text-secondary">
+                            <x-adminlte-input name="phone" label="Teléfono :" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-phone text-secondary"></i>
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="col-lg-12 col-12">
-                            <x-adminlte-input name="email" label="Correo Electrónico :" type="email" label-class="text-secondary">
+                            <x-adminlte-input name="email" label="Correo Electrónico :" type="email" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-envelope text-secondary"></i>
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="password" label="Contraseña :" type="password" label-class="text-secondary">
+                            <x-adminlte-input name="password" label="Contraseña :" type="password" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-lock text-secondary"></i>
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <x-adminlte-input name="password_confirmation" label="Confirmar Contraseña :" type="password" label-class="text-secondary">
+                            <x-adminlte-input name="password_confirmation" label="Confirmar Contraseña :" type="password" label-class="text-secondary campo-requerido">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                        <i class="fas fa-lock text-secondary"></i>
@@ -111,7 +111,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close"><i class="fas fa-ban"></i> Cancelar</button>
                         <x-adminlte-button class="btn-flat rounded boton-registro-modal" type="submit" label="Registrar" theme="success" icon="fas fa-lg fa-save"/>
                     </div>
                 </form>

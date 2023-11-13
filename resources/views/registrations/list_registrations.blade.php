@@ -42,8 +42,8 @@
                             <div class="modal-content">
                                 <div class="modal-header bg-dark">
                                     <h5 class="modal-title text-bold" id="registrationModalLabel">LISTADO DE PAGOS</h5>
-                                    <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                    <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
+                                        <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                                 <div class="modal-body">
@@ -75,8 +75,8 @@
                             <div class="modal-content">
                                 <div class="modal-header bg-dark">
                                     <h5 class="modal-title text-bold" id="registrationModalLabel">DETALLES DEL REGISTRO</h5>
-                                    <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                    <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
+                                        <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                                 <div class="modal-body">
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-warning text-bold" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-warning text-bold" data-dismiss="modal"><i class="fas fa-ban"></i> Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -180,8 +180,8 @@
                             <div class="modal-content">
                                 <div class="modal-header bg-dark text-white">
                                     <h5 class="modal-title" id="registrationModalLabel">Pago Parcial</h5>
-                                    <button type="button" class="bg-danger rounded border-0 px-3 py-2" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                    <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
+                                        <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                                 <div class="modal-body">
@@ -195,8 +195,8 @@
                                             <input type="number" class="form-control" id="updated_amount" name="updated_amount" required>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-warning text-bold" data-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary text-bold">Pagar</button>
+                                            <button type="button" class="btn btn-warning text-bold" data-dismiss="modal"><i class="fas fa-ban"></i> Cerrar</button>
+                                            <button type="submit" class="btn btn-primary text-bold"><i class="fas fa-money-bill"></i> Pagar</button>
                                         </div>
                                     </form>
                                 </div>

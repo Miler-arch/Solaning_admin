@@ -319,7 +319,7 @@ return [
         [
             'text'        => 'Alumnos',
             'url'         => 'clients',
-            'icon'        => 'fas fa-users',
+            'icon'        => 'fa fa-solid fa-user-graduate',
         ],
         [
             'text'        => 'Cursos',
