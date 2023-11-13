@@ -303,7 +303,7 @@ return [
             'can' => 'dashboard.index',
 
         ],
-        ['header' => 'Incripciones'],
+        ['header' => 'INCRIPCIONES'],
         [
             'text'        => 'Inscripciones',
             'url'         => 'registrations',
@@ -326,14 +326,19 @@ return [
             'url'         => 'courses',
             'icon'        => 'fas fa-book',
         ],
-        ['header' => 'Administración', 'can' => 'users.index'],
-
+        ['header' => 'ADMINISTRACIÓN', 'can' => 'users.index'],
         [
-                'text' => 'Usuarios',
-                'url'  => 'users',
-                'icon' => 'fas fa-users',
-                'can' => 'users.index',
+            'text' => 'Usuarios',
+            'url'  => 'users',
+            'icon' => 'fas fa-users',
+            'can' => 'users.index',
         ],
+        ['header'  => 'REPORTES'],
+        [
+            'text' => 'Reporte de inscripciones',
+            'url'  => 'report_registrations',
+            'icon' => 'fas fa-file-pdf',
+        ]
 
     ],
 

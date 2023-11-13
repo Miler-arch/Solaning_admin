@@ -150,4 +150,13 @@ class RegistrationController extends Controller
             abort(404);
         }
     }
+
+    public function Report()
+    {
+        $reports = DetailRegister::all();
+
+        $pdf = \PDF::loadView('registrations.all_report', compact('reports'))->setPaper('a4', 'landscape');
+
+        return $pdf->stream('all_report.pdf');
+    }
 }

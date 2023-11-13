@@ -8,6 +8,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListRegistrations;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
@@ -21,6 +22,8 @@ Auth::routes();
 // });
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::resource('users', UserController::class)->name('', 'users');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -36,13 +39,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('list_registrations/{id}', [ListRegistrations::class, 'pdf'])->name('list_registrations.pdf');
 
+    Route::get('all_report', [RegistrationController::class, 'Report'])->name('all_report.pdf');
+
     Route::get('/ver-pdf/{detailRegisterId}/{nombreArchivo}', [RegistrationController::class, 'mostrarPDF'])->name('ver.pdf');
 
-
+    Route::resource('report_registrations', ReportController::class)->name('','report_registrations');
 
     Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
-
-    Route::resource('users', UserController::class)->name('', 'users');
 });
 
 

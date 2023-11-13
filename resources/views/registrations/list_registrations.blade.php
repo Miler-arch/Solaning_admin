@@ -7,6 +7,10 @@
 @section('content')
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Lista de Inscritos</span>
+    {{-- ver todos los reportes en pdf --}}
+    <a href="{{ route('all_report.pdf') }}" target="_blank" class="btn btn-danger btn-sm shadow">
+        <i class="fa fa-fw fa-file-pdf"></i> <b>Ver todos los reportes en PDF</b>
+    </a>
 </div>
 <div class="mt-3">
     <table id="datatable" class="table responsive nowrap" style="width:100%">
@@ -123,7 +127,7 @@
                                         </table>
                                     </div>
                                     <hr>
-                                    <h4 class="text-bold text-center bg-dark">HISTORIAL DE PAGOS PARCIALES</h4>
+                                    <h5 class="text-bold bg-dark p-2 text-center">HISTORIAL DE PAGOS PARCIALES</h5>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-dark">
