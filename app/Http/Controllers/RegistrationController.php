@@ -51,16 +51,19 @@ class RegistrationController extends Controller
         $montoEnPalabrasString = $montoEnPalabras;
 
         $discountRegistration = $coursePrice - $discountedPrice;
-
         $formattedId = str_pad(DetailRegister::max('id') + 1, 5, '0', STR_PAD_LEFT);
+        $montoInicial = $request->input('mount');
+        $tipoDePago = $request->input('type_payment');
         $registrationData = [
             'id' => $formattedId,
             'client_id' => $request->input('client_id'),
             'course_id' => $request->input('course_id'),
+            'mount_initial' => $montoInicial,
             'mount' => $request->input('mount'),
             'discount' => $request->input('discount'),
             'discounted_price' => $discountedPrice,
             'type_payment' => $request->input('type_payment'),
+            'updated_type_payment' => $tipoDePago,
             'business_name' => $request->input('business_name'),
             'nit' => $request->input('nit'),
             'method_payment' => $estadoPago,
@@ -77,11 +80,21 @@ class RegistrationController extends Controller
         return $pdf->stream('recibe.pdf');
     }
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $registro = DetailRegister::findOrFail($id);
-        $montoActualizado = $request->input('updated_amount');
 
+        $maxPartialPayments = 3;
+        $currentPartialPayments = Registration::where('detail_register_id', $registro->id)->count();
+
+        if ($currentPartialPayments >= $maxPartialPayments) {
+            return redirect()->back()->with('error', 'Se ha alcanzado el límite de 3 pagos parciales para este registro.');
+        }
+
+        $montoInicial = $registro->mount_initial;
+        $dateStart = $registro->created_at;
+
+        $montoActualizado = $request->input('updated_amount');
+        $typePayment = $request->input('updated_type_payment');
         $montoAcumulado = $registro->mount + $montoActualizado;
 
         if ($montoAcumulado > $registro->discounted_price) {
@@ -89,6 +102,7 @@ class RegistrationController extends Controller
         }
 
         $registro->mount = $montoAcumulado;
+        $registro->type_payment = $typePayment;
         $registro->save();
 
         if ($montoAcumulado >= $registro->discounted_price) {
@@ -108,7 +122,6 @@ class RegistrationController extends Controller
         }
         $montoEnPalabrasString = $montoEnPalabras;
 
-
         $formattedId = str_pad(DetailRegister::max('id') + 1, 5, '0', STR_PAD_LEFT);
 
         $pdf = \PDF::loadView('registrations.recibe_partial', [
@@ -116,6 +129,7 @@ class RegistrationController extends Controller
             'formattedId' => $formattedId,
             'montoEnPalabrasString' => $montoEnPalabrasString,
             'montoActualizado' => $montoActualizado,
+            'typePayment' => $typePayment,
         ]);
 
         $nombreArchivo = 'pago_parcial_' . $registro->id . '_' . now()->format('d-m-Y-H-i-s') . '.pdf';
@@ -128,6 +142,9 @@ class RegistrationController extends Controller
         $pdfFile->client_id = $registro->client_id;
         $pdfFile->mount_update = $montoActualizado;
         $pdfFile->date_update = now();
+        $pdfFile->mount_inicial = $montoInicial;
+        $pdfFile->date_start = $dateStart;
+        $pdfFile->updated_type_payment = $typePayment;
 
         $pdfFile->save();
 
@@ -136,6 +153,7 @@ class RegistrationController extends Controller
         flash()->addSuccess('Pago registrado exitosamente', 'Muy Bien!');
         return redirect()->back()->with('pdf_path', $rutaArchivo);
     }
+
 
     public function mostrarPDF($detailRegisterId, $nombreArchivo)
     {
@@ -159,4 +177,27 @@ class RegistrationController extends Controller
 
         return $pdf->stream('all_report.pdf');
     }
+
+    public function destroy(Request $request){
+        $registration = Registration::where('detail_register_id', $request->registration_id)->first();
+        if ($registration) {
+
+            $detailRegister = DetailRegister::findOrFail($registration->detail_register_id);
+
+            $detailRegister->mount -= $request->mount_update;
+
+            if ($detailRegister->method_payment == 1) {
+                $detailRegister->method_payment = 0;
+            }
+
+            $detailRegister->save();
+            $registration->delete();
+
+            flash()->addSuccess('Pago eliminado exitosamente', 'Muy Bien!');
+        } else {
+            flash()->addError('No se encontró el pago para eliminar', 'Error');
+        }
+        return redirect()->back();
+    }
+
 }

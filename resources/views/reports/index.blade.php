@@ -3,19 +3,41 @@
 @section('title', 'Reportes')
 
 @section('plugins.Datatables', true)
+@section('plugins.Select2', true)
 
 @section('content')
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Reportes</span>
+    <div class="mt-3">
+<form action="{{ route('report.pdf', ['course_id' => 'selected_course_id_here']) }}" method="GET">
+    @csrf
+    <div class="row">
+        <div class="col-4">
+            <select class="js-example-basic-single js-states form-control js-courses_id" id="validationCustom02" name="course_id" required>
+                <option value="" disabled selected>Select a version</option>
+                @foreach ($courses as $course)
+                    <option value="{{ $course->id }}">{{ $course->version }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-dark">CONSULTAR</button>
+        </div>
+    </div>
+</form>
+
+
+    </div>
 </div>
 <div class="mt-3">
     <table id="datatable" class="table responsive nowrap" style="width:100%">
         <thead class="thead-light">
             <tr>
                 <th>ID</th>
-                <th>Acciones</th>
-                <th>Estado</th>
                 <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>Versión</th>
             </tr>
         </thead>
         <tbody>
@@ -23,13 +45,23 @@
             <tr>
                 <td>{{$index + 1}}</td>
                 <td>{{$report->client->name}}</td>
-                <td></td>
-                <td></td>
+                <td>{{$report->client->lastname}}</td>
+                <td>{{$report->course->name}}</td>
+                <td>{{$report->course->version}}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
 @stop
-
-
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('.js-courses_id').select2({
+            placeholder: "Seleccione un curso",
+            allowClear: true,
+            width: '100%'
+        });
+    });
+</script>
+@stop

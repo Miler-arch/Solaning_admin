@@ -44,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ver-pdf/{detailRegisterId}/{nombreArchivo}', [RegistrationController::class, 'mostrarPDF'])->name('ver.pdf');
 
     Route::resource('report_registrations', ReportController::class)->name('','report_registrations');
+Route::get('/getVersion/{course_id}', [ReportController::class, 'getVersion'])->name('report.pdf');
+
 
     Route::get('recibe/{id}', [RegistrationController::class, 'pdf'])->name('recibe');
 });

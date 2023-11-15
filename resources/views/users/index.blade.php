@@ -109,6 +109,7 @@
                 $('#error-phone').text('');
                 $('#error-passowrd').text('');
                 $('#error-password-confirm').text('');
+                $('#error-roles').text('');
                 // setTimeout(function() {
                 //     $('#crearCursoModal').modal('hide');
                 // });
@@ -126,6 +127,7 @@
                     $('#error-phone').text(errors.phone ? errors.phone[0] : '');
                     $('#error-password').text(errors.password ? errors.password[0] : '');
                     $('#error-password-confirm').text(errors.password_confirmation ? errors.password_confirmation[0] : '');
+                    $('#error-roles').text(errors.roles ? errors.roles[0] : '');
                 }
             }
         });

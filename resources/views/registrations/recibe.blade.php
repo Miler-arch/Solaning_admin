@@ -143,7 +143,7 @@
 
                         <div class="contenedor-2">
                             <span class=" numeros-1"><b>RECIBO N°</b> <b class="text-red border border-secondary p-1 px-5">{{ $formattedId }}</b></span>
-                            <span class=" numeros-2"><b>POR: <span class="border border-secondary p-1 px-4">{{"Bs. ". number_format($data->mount, 2, ',', '.')}}</span></b></span>
+                            <span class=" numeros-2"><b>POR: <span class="border border-secondary p-1 px-4">{{"Bs. ". number_format($data->mount_initial, 2, ',', '.')}}</span></b></span>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                         </td>
                         <td colspan="4">
                             <div class="item-2 text-uppercase" style="margin-left: -50px !important">
-                               <b>LA CANTIDAD DE:</b> &nbsp; <span class="px-3"><span class="dato">{{"Bs. ". number_format($data->mount, 2, ',', '.') }}</span></span></span>
+                               <b>LA CANTIDAD DE:</b> &nbsp; <span class="px-3"><span class="dato">{{"Bs. ". number_format($data->mount_initial, 2, ',', '.') }}</span></span></span>
                             </div>
                         </td>
                     </tr>
@@ -214,8 +214,8 @@
                 </table>
 
                 <div class="item-2 text-center mt-3">
-                    <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". number_format($data->mount, 2, ',', '.')}}</span></span>&nbsp;&nbsp;
-                    <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ". number_format($data->discounted_price - $data->mount, 2, ',', '.') }}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>A CUENTA:</b> <span class="dato">{{"Bs. ". number_format($data->mount_initial, 2, ',', '.')}}</span></span>&nbsp;&nbsp;
+                    <span class="mx-3"><b>SALDO:</b> <span class="dato">{{"Bs. ". number_format($data->discounted_price - $data->mount_initial, 2, ',', '.') }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>DESCUENTO:</b> <span class="dato">{{ $data->discount."%" }}</span></span>&nbsp;&nbsp;
                     <span class="mx-3"><b>TOTAL:</b> <span class="dato">{{"Bs. ". number_format($data->discounted_price, 2, ',', '.') }}</span></span>
                 </div>

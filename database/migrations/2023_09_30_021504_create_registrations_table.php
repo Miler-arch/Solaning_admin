@@ -14,7 +14,10 @@ return new class extends Migration
             $table->unsignedBigInteger('detail_register_id');
 
             $table->decimal('mount_update', 8, 2);
+            $table->decimal('mount_inicial', 8, 2);
+            $table->string('date_start');
             $table->timestamp('date_update')->nullable();
+            $table->string('updated_type_payment')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
             $table->string('file_path')->nullable();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('detail_register_id')->references('id')->on('detail_registers');

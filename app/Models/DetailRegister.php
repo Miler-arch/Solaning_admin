@@ -16,6 +16,7 @@ class DetailRegister extends Model
         'business_name',
         'nit',
         'mount',
+        'mount_initial',
         'discount',
         'discounted_price',
         'type_payment',

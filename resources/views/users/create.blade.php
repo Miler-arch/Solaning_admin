@@ -6,8 +6,8 @@
     </button>
 </div>
 <div class="modal fade" id="crearUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content bg-light">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content bg-light ">
             <div class="modal-header bg-modal">
                 <h5 class="modal-title font-weight-bold text-light-emphasis" id="exampleModalLabel">Nuevo Usuario</h5>
                 <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
@@ -96,19 +96,18 @@
                             <span class="text-danger" id="error-password-confirm"></span>
                         </div>
 
-
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="form-label">Roles:</label><br>
+                                <label class="form-label campo-requerido">Roles:</label><br>
                                 @foreach($roles as $role)
                                     <div class="form-radio">
                                         <input type="radio" name="roles[]" value="{{ $role->id }}" class="form-radio-input">
                                         <label class="form-radio-label">{{ $role->name }}</label>
                                     </div>
                                 @endforeach
+                                <span class="text-danger" id="error-roles"></span>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close"><i class="fas fa-ban"></i> Cancelar</button>

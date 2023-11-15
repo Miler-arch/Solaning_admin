@@ -194,7 +194,7 @@
                         <td>
                             <div class="item-2 text-uppercase">
                                 <span class="dato text-uppercase">
-                                    {{ $data->type_payment }}
+                                    {{ $typePayment }}
                                 </span>
                             </div>
                         </td>

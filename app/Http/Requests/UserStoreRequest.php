@@ -21,6 +21,7 @@ class UserStoreRequest extends FormRequest
             'phone' => 'required|unique:users|numeric',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password',
+            'roles' => 'required',
         ];
     }
 
@@ -40,6 +41,7 @@ class UserStoreRequest extends FormRequest
             'password.min' => 'El campo contraseña debe tener al menos 8 caracteres.',
             'password_confirmation.required' => 'El campo confirmar contraseña es requerido.',
             'password_confirmation.same' => 'Las contraseñas no coinciden.',
+            'roles.required' => 'El campo rol es requerido.',
         ];
     }
 }

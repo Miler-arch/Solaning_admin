@@ -11,9 +11,12 @@ class Registration extends Model
     protected $fillable = [
         'mount_update',
         'date_update',
+        'mount_inicial',
+        'date_start',
         'client_id',
         'detail_register_id',
-        'file_path'
+        'file_path',
+        'updated_type_payment'
     ];
 
     public function client()

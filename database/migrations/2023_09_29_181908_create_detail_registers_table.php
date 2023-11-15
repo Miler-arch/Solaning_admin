@@ -19,14 +19,16 @@ return new class extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
-            
+
             $table->tinyInteger('method_payment')->default(0)->comment("0: 'Parcial', 1 : 'Completo'");
             $table->string('business_name')->nullable();
             $table->string('nit')->nullable();
+            $table->decimal('mount_initial', 8, 2);
             $table->decimal('mount', 8, 2);
             $table->decimal('discount', 8, 2)->default(0);
             $table->decimal('discounted_price', 8, 2)->default(0);
             $table->string('type_payment')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
+            $table->string('updated_type_payment')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
             $table->timestamps();
         });
     }
