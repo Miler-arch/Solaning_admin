@@ -21,7 +21,7 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <button type="submit" class="btn btn-dark">CONSULTAR</button>
+                    <button type="submit" class="btn btn-primary">CONSULTAR</button>
                 </div>
             </div>
         </form>

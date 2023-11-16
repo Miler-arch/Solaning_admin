@@ -18,11 +18,15 @@
         th, td {
             text-align: center;
         }
+        .titulo {
+            font-weight: bold;
+            font-size: 1rem !important;
+        }
     </style>
 </head>
 <body>
     <div class="text-center">
-        <h2>CURSO - {{ $selectedCourse->name ?? 'TODOS LOS CURSOS' }} (VERSIÓN: {{ $selectedCourse->version ?? 'N/A' }})</h2>
+        <h2 class="titulo">CURSO - {{ $selectedCourse->name ?? 'TODOS LOS CURSOS' }} (VERSIÓN: {{ $selectedCourse->version ?? 'N/A' }})</h2>
     </div>
         <table class="table table-bordered">
             <thead class="thead-light">
