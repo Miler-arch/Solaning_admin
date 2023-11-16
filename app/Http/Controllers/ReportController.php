@@ -11,7 +11,7 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $reports = DetailRegister::all();
+        $reports = DetailRegister::with('client', 'course')->get();
         $courses = Course::where('status', '1')->get();
         return view('reports.index', compact('courses', 'reports'));
     }
@@ -28,7 +28,7 @@ class ReportController extends Controller
 
         // Obtener información del curso seleccionado
         $selectedCourse = Course::find($course_id);
-    
+
         $pdf = \PDF::loadView('reports.version', compact('clients', 'detailRegisters', 'selectedCourse'));
         return $pdf->stream('version.pdf');
     }
