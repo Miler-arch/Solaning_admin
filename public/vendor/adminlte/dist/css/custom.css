@@ -331,7 +331,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 
 /** header-modales */
 .bg-modal {
-    background: #336cfc;
+    background: #336cfc !important;
     color: #fff
 }
 .header-modal {
@@ -340,3 +340,36 @@ label:not(.form-check-label):not(.custom-file-label) {
     background-color: #F32258;
     color: #fff;
 }
+
+
+
+.custom-loader {
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:conic-gradient(#0000 10%,#766DF4);
+    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation:s3 0.5s infinite linear;
+  }
+  @keyframes s3 {to{transform: rotate(1turn)}}
+
+
+  /** Tabla de detalles de registro  */
+  .bg-tabla {
+    background-color: #1841b3 !important;
+    color: #ffffff;
+  }
+
+  .titulo-curso {
+    background: #e0ebff;
+    display: inline;
+    padding: 0.5em;
+    border-radius: 10px;
+  }
+
+  /** icono de eidtar y eliminar  */
+  .fa-editado {
+    width: 2.2rem!important;
+    height: auto!important;
+    font-weight: 900;
+  }

@@ -32,13 +32,13 @@
                     <td>{{ $index + 1 }}</td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-sm btn-default text-primary shadow mr-2" title="Editar">
+                            <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-sm btn-default text-primary shadow mr-2 rounded-circle fa-editado" title="Editar">
                                 <i class="fa fa-fw fa-pen"></i>
                             </a>
                             <form action="{{ route('clients.destroy', $client->id) }}" method="POST" class="form-eliminar">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-default text-danger shadow" title="Eliminar">
+                                <button type="submit" class="btn btn-sm btn-default text-danger shadow rounded-circle fa-editado" title="Eliminar">
                                     <i class="fa fa-fw fa-trash"></i>
                                 </button>
                             </form>

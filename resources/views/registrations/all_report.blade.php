@@ -18,11 +18,16 @@
         th, td {
             text-align: center;
         }
+
+        .titulo {
+            font-weight: bold;
+            font-size: 2rem !important;
+        }
     </style>
 </head>
 <body>
     <div class="text-center">
-        <h2>REPORTE GENERAL</h2>
+        <p class="titulo">REPORTE GENERAL</p>
     </div>
 <div>
     <table class="table table-bordered ">

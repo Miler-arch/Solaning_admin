@@ -108,10 +108,13 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center">
-                        <button class="ov-btn-slide-left" type="submit">INSCRIBIR<span class="arrow"><i class="fas fa-chevron-right fa-fw"></i></span></button>
+                        <button class="ov-btn-slide-left" type="submit">
+                            INSCRIBIR<span class="arrow"><i class="fas fa-chevron-right fa-fw"></i></span>
+                        </button>
                     </div>
                 </div>
             </form>
+            <!-- <div class="custom-loader"></div> -->
         </div>
     </div>
 </div>

@@ -81,7 +81,7 @@
             </div>
             <div class="text-center py-2 pb-4">
                 <div>
-                    <a class="btn btn-primary mx-3" href="{{ route('courses.index') }}"><i class="fas fa-ban"></i> Cancelar</a>
+                    <a class="btn btn-primary mx-3" href="{{ route('courses.index') }}"><i class="fas fa-arrow-circle-left"></i> Atrás</a>
                     <button class="btn btn-success" id="update-course-btn"><i class="fas fa-save"></i> Guardar Cambios</button>
                 </div>
             </div>

@@ -76,17 +76,17 @@
                     <div class="modal fade" id="registrationModal{{ $registration->id }}" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
-                                <div class="modal-header bg-dark">
-                                    <h5 class="modal-title text-bold" id="registrationModalLabel">DETALLES DEL REGISTRO</h5>
+                                <div class="modal-header bg-modal">
+                                    <h5 class="modal-title" id="registrationModalLabel">DETALLES DEL REGISTRO</h5>
                                     <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h6><b>CURSO:</b> <span class="text-info">{{ $registration->course->name }}</span>  | <b>VERSIÓN:</b> <span class="text-info">{{ $registration->course->version }}</span></h6>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead class="bg-dark">
+                                    <h6 class="titulo-curso"><b>CURSO:</b> {{ $registration->course->name }}  | <b>VERSIÓN:</b> {{ $registration->course->version }}</h6>
+                                    <div class="table-responsive mt-3">
+                                        <table class="table">
+                                            <thead class="thead-light">
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Pago</th>
@@ -96,8 +96,8 @@
                                                     <th>Fecha / Hora</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr class="text-bold">
+                                            <tbody class="font-weight-normal">
+                                                <tr>
                                                     <td>1</td>
                                                     <td>{{ $registration->mount." Bs."}}</td>
                                                     <td>
@@ -126,27 +126,29 @@
                                         </table>
                                     </div>
                                     <hr>
-                                    <h5 class="text-bold bg-dark p-2 text-center">HISTORIAL DE PAGOS PARCIALES</h5>
+                                    <h5 class="text-bold p-2 d-block text-center titulo-curso">HISTORIAL DE PAGOS PARCIALES</h5>
                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead class="bg-dark">
+                                        <table class="table">
+                                            <thead class="thead-light">
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Monto Inicial</th>
+                                                    <th>Tipo de Pago</th>
                                                     <th>Fecha / Hora</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="font-weight-normal">
                                                 @php
                                                     $counter = 1;
                                                     $foundInitialAmount = false;
                                                 @endphp
                                                 @if($registration->registrationes->count() > 0)
                                                     @foreach($registration->registrationes as $index => $payment)
-                                                        @if ($payment->mount_inicial && !$foundInitialAmount && $payment->date_start)
-                                                            <tr class="text-bold">
+                                                        @if ($payment->mount_inicial && !$foundInitialAmount && $payment->date_start && $payment->updated_type_payment)
+                                                            <tr>
                                                                 <td>{{ $counter++ }}</td>
                                                                 <td>{{ $payment->mount_inicial . " Bs." }}</td>
+                                                                <td>{{ $payment->updated_type_payment }}</td>
                                                                 <td>{{ \Carbon\Carbon::parse($payment->date_start)->format('d-m-Y H:i:s A') }}</td>
                                                             </tr>
                                                             @php
@@ -154,14 +156,18 @@
                                                             @endphp
                                                         @endif
                                                     @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td colspan="4" class="text-center text-bold text-secondary">No hay pagos parciales</td>
+                                                    </tr>
                                                 @endif
                                             </tbody>
                                         </table>
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead class="bg-dark">
+                                        <table class="table">
+                                            <thead class="thead-light">
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Pago</th>
@@ -169,14 +175,14 @@
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="font-weight-normal">
                                                 @php
                                                     $counter = 1;
                                                 @endphp
                                                 @if($registration->registrationes->count() > 0)
                                                     @foreach($registration->registrationes as $index => $payment)
                                                         @if ($payment->mount_update && $payment->date_update)
-                                                            <tr class="text-bold">
+                                                            <tr>
                                                                 <td>{{ $counter++ }}</td>
                                                                 <td>{{ $payment->mount_update . " Bs." }}</td>
                                                                 <td>{{ \Carbon\Carbon::parse($payment->date_update)->format('d-m-Y H:i:s A') }}</td>
@@ -197,28 +203,28 @@
                                                     @endforeach
                                                 @else
                                                     <tr>
-                                                        <td colspan="4" class="text-center text-bold">No hay pagos parciales.</td>
+                                                        <td colspan="4" class="text-center text-bold text-secondary">No hay pagos parciales.</td>
                                                     </tr>
                                                 @endif
                                             </tbody>
                                         </table>
                                     </div>
                                     <div>
-                                        <label class="fw-bold">NIT:</label>
+                                        <label class="font-weight-bolder">NIT:</label>
                                         <span>{{ $registration->nit }}</span>
                                     </div>
                                     <div>
-                                        <label class="fw-bold">Razón Social:</label>
+                                        <label class="font-weight-bolder">Razón Social:</label>
                                         <span>{{ $registration->business_name }}</span>
                                     </div>
                                     <div>
-                                        <label class="fw-bold">Método de Pago:</label>
+                                        <label class="font-weight-bolder">Método de Pago:</label>
                                         <span>{{ $registration->type_payment }}</span>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-warning text-bold" data-dismiss="modal"><i class="fas fa-ban"></i> Cerrar</button>
-                                </div>
+                               <!--  <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning text-bold" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                                </div> -->
                             </div>
                         </div>
                     </div>

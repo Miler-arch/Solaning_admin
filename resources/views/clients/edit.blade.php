@@ -115,7 +115,7 @@
             </div>
             <div class="text-center py-2 pb-4">
                 <div>
-                    <a class="btn btn-primary mx-3" href="{{route('clients.index')}}"><i class="fas fa-ban"></i> Cancelar</a>
+                    <a class="btn btn-primary mx-3" href="{{route('clients.index')}}"><i class="fas fa-arrow-circle-left"></i> Atrás</a>
                     <x-adminlte-button type="submit" class="btn-flat rounded" id="update-client-btn" label="Guardar Cambios" theme="success" icon="fas fa-lg fa-save"/>
                 </div>
             </div>
