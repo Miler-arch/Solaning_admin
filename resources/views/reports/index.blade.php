@@ -9,24 +9,22 @@
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Reportes</span>
     <div class="mt-3">
-<form action="{{ route('report.pdf', ['course_id' => 'selected_course_id_here']) }}" method="GET">
-    @csrf
-    <div class="row">
-        <div class="col-4">
-            <select class="js-example-basic-single js-states form-control js-courses_id" id="validationCustom02" name="course_id" required>
-                <option value="" disabled selected>Select a version</option>
-                @foreach ($courses as $course)
-                    <option value="{{ $course->id }}">{{ $course->version }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-6">
-            <button type="submit" class="btn btn-dark">CONSULTAR</button>
-        </div>
-    </div>
-</form>
-
-
+        <form action="{{ route('report.pdf') }}" method="GET">
+            @csrf
+            <div class="row">
+                <div class="col-4">
+                    <select class="js-example-basic-single js-states form-control js-courses_id" id="validationCustom02" name="course_id" required>
+                        <option value="" disabled selected>Selecciona una versión</option>
+                        @foreach ($courses as $course)
+                            <option value="{{ $course->id }}">{{ $course->version }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-dark">CONSULTAR</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <div class="mt-3">
