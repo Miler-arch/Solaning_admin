@@ -27,8 +27,9 @@ return new class extends Migration
             $table->decimal('mount', 8, 2);
             $table->decimal('discount', 8, 2)->default(0);
             $table->decimal('discounted_price', 8, 2)->default(0);
+            $table->string('type_payment_initial')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
+            $table->string('save_mount_in_words')->nullable();
             $table->string('type_payment')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
-            $table->string('updated_type_payment')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
             $table->timestamps();
         });
     }

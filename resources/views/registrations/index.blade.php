@@ -14,7 +14,6 @@
             <form action="{{route('registrations.store')}}" method="POST" class="needs-validation" novalidate>
                 @csrf
                 <div class="form-row">
-
                     <input type="hidden" name="user_id">
                     <div class="col-12 d-flex flex-wrap justify-content-evenly">
                         <div class="col-md-4 mb-4">

@@ -16,7 +16,8 @@ class Registration extends Model
         'client_id',
         'detail_register_id',
         'file_path',
-        'updated_type_payment'
+        'updated_type_payment',
+        'type_payment_inicial'
     ];
 
     public function client()

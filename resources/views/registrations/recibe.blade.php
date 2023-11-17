@@ -173,7 +173,7 @@
                         </td>
                         <td colspan="3">
                             <div class="item-2 text-uppercase">
-                                <span class="dato">{{$montoEnPalabrasString}} 00/100 BOLIVIANOS</span>
+                                <span class="dato">{{ $data->save_mount_in_words }} 00/100 BOLIVIANOS</span>
                             </div>
                         </td>
                     </tr>
@@ -194,7 +194,7 @@
                         <td>
                             <div class="item-2 text-uppercase">
                                 <span class="dato text-uppercase">
-                                    {{ $data->type_payment }}
+                                    {{ $data->type_payment_initial }}
                                 </span>
                             </div>
                         </td>

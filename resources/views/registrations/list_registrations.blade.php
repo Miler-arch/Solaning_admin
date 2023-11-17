@@ -3,12 +3,16 @@
 @section('title', 'Lista de inscripciones')
 
 @section('plugins.Datatables', true)
+@section('plugins.Sweetalert2', true)
 
 @section('content')
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Lista de Inscritos</span>
     <a href="{{ route('all_report.pdf') }}" target="_blank" class="btn btn-primary btn-sm p-2 shadow float-right">
         <i class="fa fa-fw fa-file-pdf"></i> <b>VER REPORTE GENERAL</b>
+    </a>
+    <a href="{{ route('export_excel') }}" class="btn btn-success btn-sm p-2 shadow float-right mr-2">
+        <i class="fa fa-fw fa-file-excel"></i> <b>EXPORTAR EXCEL</b>
     </a>
 </div>
 <div class="mt-3">
@@ -29,11 +33,11 @@
                 <td>{{ $index + 1 }}</td>
                 <td>
                     <div class="d-flex gap-2">
-                        <a class="btn btn-sm mr-1 btn-default text-primary shadow" data-toggle="modal" data-target="#registrationModal{{ $registration->id }}" title="Ver">
-                            <i class="fa fa-fw fa-eye"></i>
+                        <a class="btn btn-sm mr-1 btn-default text-cyan shadow" data-toggle="modal" data-target="#registrationModal{{ $registration->id }}" title="Ver">
+                            <i style='font-size:20px' class='fas'>&#xf15c;</i>
                         </a>
-                        <a class="btn btn-sm mr-1 btn-default text-cyan shadow" data-toggle="modal" data-target="#updateModal{{ $registration->id }}" title="Actualizar Pago">
-                            <i class="fas fa-money-check-alt"></i>
+                        <a class="btn btn-sm mr-1 btn-default text-primary shadow" data-toggle="modal" data-target="#updateModal{{ $registration->id }}" title="Actualizar Pago">
+                            <i style='font-size:15px' class="fas fa-money-check-alt"></i>
                         </a>
                         <a class="btn btn-sm mr-1 btn-default text-warning shadow" data-toggle="modal" data-target="#pdfModal{{ $registration->id }}" title="Descargar PDF's">
                             <img src="{{asset('img/folder.ico')}}" style="width:20px; height:20px">
@@ -144,11 +148,11 @@
                                                 @endphp
                                                 @if($registration->registrationes->count() > 0)
                                                     @foreach($registration->registrationes as $index => $payment)
-                                                        @if ($payment->mount_inicial && !$foundInitialAmount && $payment->date_start && $payment->updated_type_payment)
+                                                        @if ($payment->mount_inicial && !$foundInitialAmount && $payment->date_start && $payment->type_payment_inicial)
                                                             <tr>
                                                                 <td>{{ $counter++ }}</td>
                                                                 <td>{{ $payment->mount_inicial . " Bs." }}</td>
-                                                                <td>{{ $payment->updated_type_payment }}</td>
+                                                                <td>{{ $payment->type_payment_inicial }}</td>
                                                                 <td>{{ \Carbon\Carbon::parse($payment->date_start)->format('d-m-Y H:i:s A') }}</td>
                                                             </tr>
                                                             @php
@@ -171,23 +175,25 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Pago</th>
+                                                    <th>Tipo de Pago</th>
                                                     <th>Fecha / Hora</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="font-weight-normal">
                                                 @php
-                                                    $counter = 1;
+                                                    $counter = 2;
                                                 @endphp
                                                 @if($registration->registrationes->count() > 0)
                                                     @foreach($registration->registrationes as $index => $payment)
-                                                        @if ($payment->mount_update && $payment->date_update)
+                                                        @if ($payment->mount_update && $payment->date_update && $payment->updated_type_payment)
                                                             <tr>
                                                                 <td>{{ $counter++ }}</td>
                                                                 <td>{{ $payment->mount_update . " Bs." }}</td>
+                                                                <td>{{ $payment->updated_type_payment }}</td>
                                                                 <td>{{ \Carbon\Carbon::parse($payment->date_update)->format('d-m-Y H:i:s A') }}</td>
                                                                 <td>
-                                                                    <form action="{{route('registrations.destroy', $registration)}}" method="POST">
+                                                                    <form action="{{route('registrations.destroy', $registration)}}" method="POST" class="form-eliminar">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <input type="hidden" name="registration_id" value="{{ $registration->id }}">
@@ -289,4 +295,29 @@
         </tbody>
     </table>
 </div>
+@stop
+@section('js')
+<script>
+    $('.form-eliminar').submit(function(e){
+        e.preventDefault();
+
+            Swal.fire({
+            title: '¿Está seguro?',
+            text: "El pago se eliminara definitivamente.",
+            icon: 'warning',
+            customClass: {
+                 icon: "no-before-icon",
+             },
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                this.submit();
+            }
+        })
+    });
+</script>
 @stop
