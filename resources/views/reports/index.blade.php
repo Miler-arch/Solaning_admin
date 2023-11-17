@@ -56,7 +56,7 @@
 <script>
     $(document).ready(function() {
         $('.js-courses_id').select2({
-            placeholder: "Seleccione un curso",
+            placeholder: "Seleccione un versión",
             allowClear: true,
             width: '100%'
         });

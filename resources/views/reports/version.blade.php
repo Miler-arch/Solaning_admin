@@ -34,7 +34,7 @@
                     <th scope="col">#</th>
                     <th scope="col">APELLIDOS</th>
                     <th scope="col">NOMBRES</th>
-                    <th scope="col">NOMBRE DEL CURSO</th>
+                    <th scope="col">CURSO INSCRITO</th>
                     <th scope="col">VERSIÓN</th>
                 </tr>
             </thead>

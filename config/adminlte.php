@@ -294,8 +294,7 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        ['header' => 'Panel de Administración', 'can' => 'dashboard.index'],
+        ['header' => 'PANEL DE ADMINISTRACIÓN', 'can' => 'dashboard.index', 'classes' => 'text-bold'],
         [
             'text' => 'Dashboard',
             'url'  => 'dashboard',
@@ -303,7 +302,7 @@ return [
             'can' => 'dashboard.index',
 
         ],
-        ['header' => 'INCRIPCIONES'],
+        ['header' => 'INCRIPCIONES', 'classes' => 'text-bold'],
         [
             'text'        => 'Inscripciones',
             'url'         => 'registrations',
@@ -326,14 +325,14 @@ return [
             'url'         => 'courses',
             'icon'        => 'fas fa-book',
         ],
-        ['header' => 'ADMINISTRACIÓN', 'can' => 'users.index'],
+        ['header' => 'ADMINISTRACIÓN', 'can' => 'users.index', 'classes' => 'text-bold'],
         [
             'text' => 'Usuarios',
             'url'  => 'users',
             'icon' => 'fas fa-users',
             'can' => 'users.index',
         ],
-        ['header'  => 'REPORTES'],
+        ['header'  => 'REPORTES', 'classes' => 'text-bold'],
         [
             'text' => 'Reporte por versiones',
             'url'  => 'report_registrations',

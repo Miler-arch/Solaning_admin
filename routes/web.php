@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('list_registrations/{id}', [ListRegistrations::class, 'pdf'])->name('list_registrations.pdf');
 
     Route::get('all_report', [RegistrationController::class, 'Report'])->name('all_report.pdf');
+    Route::get('all_report/excel', [RegistrationController::class, 'exportExcel'])->name('export_excel');
 
     Route::get('/ver-pdf/{detailRegisterId}/{nombreArchivo}', [RegistrationController::class, 'mostrarPDF'])->name('ver.pdf');
 

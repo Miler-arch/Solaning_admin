@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RegistrationsExport;
 use App\Models\Client;
 use App\Models\Course;
 use App\Models\DetailRegister;
@@ -9,6 +10,7 @@ use App\Models\Registration;
 use Luecano\NumeroALetras\NumeroALetras;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrationController extends Controller
 {
@@ -17,10 +19,6 @@ class RegistrationController extends Controller
         $clients = Client::all();
         $courses = Course::where('status', '1')->get();
         return view('registrations.index', compact('clients', 'courses'));
-    }
-    public function create()
-    {
-        return view('registrations.index');
     }
 
     public function store(Request $request)
@@ -50,10 +48,12 @@ class RegistrationController extends Controller
         }
         $montoEnPalabrasString = $montoEnPalabras;
 
+
         $discountRegistration = $coursePrice - $discountedPrice;
         $formattedId = str_pad(DetailRegister::max('id') + 1, 5, '0', STR_PAD_LEFT);
         $montoInicial = $request->input('mount');
         $tipoDePago = $request->input('type_payment');
+        $saveMountInWords = $montoEnPalabrasString;
         $registrationData = [
             'id' => $formattedId,
             'client_id' => $request->input('client_id'),
@@ -62,11 +62,12 @@ class RegistrationController extends Controller
             'mount' => $request->input('mount'),
             'discount' => $request->input('discount'),
             'discounted_price' => $discountedPrice,
+            'type_payment_initial' => $tipoDePago,
             'type_payment' => $request->input('type_payment'),
-            'updated_type_payment' => $tipoDePago,
             'business_name' => $request->input('business_name'),
             'nit' => $request->input('nit'),
             'method_payment' => $estadoPago,
+            'save_mount_in_words' => $saveMountInWords,
         ];
 
         $data = auth()->user()->detailRegisters()->create($registrationData);
@@ -93,6 +94,7 @@ class RegistrationController extends Controller
         $montoInicial = $registro->mount_initial;
         $dateStart = $registro->created_at;
 
+        $tipoDePago = $registro->type_payment_initial;
         $montoActualizado = $request->input('updated_amount');
         $typePayment = $request->input('updated_type_payment');
         $montoAcumulado = $registro->mount + $montoActualizado;
@@ -145,6 +147,7 @@ class RegistrationController extends Controller
         $pdfFile->mount_inicial = $montoInicial;
         $pdfFile->date_start = $dateStart;
         $pdfFile->updated_type_payment = $typePayment;
+        $pdfFile->type_payment_inicial = $tipoDePago;
 
         $pdfFile->save();
 
@@ -178,6 +181,10 @@ class RegistrationController extends Controller
         return $pdf->stream('all_report.pdf');
     }
 
+    public function exportExcel(){
+        return Excel::download(new RegistrationsExport, 'reporte_general.xlsx');
+    }
+
     public function destroy(Request $request){
         $registration = Registration::where('detail_register_id', $request->registration_id)->first();
         if ($registration) {
@@ -199,5 +206,4 @@ class RegistrationController extends Controller
         }
         return redirect()->back();
     }
-
 }

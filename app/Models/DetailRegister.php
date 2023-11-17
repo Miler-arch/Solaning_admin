@@ -20,7 +20,8 @@ class DetailRegister extends Model
         'discount',
         'discounted_price',
         'type_payment',
-
+        'type_payment_initial',
+        'save_mount_in_words'
     ];
 
     public function user()

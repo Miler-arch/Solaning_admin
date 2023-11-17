@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Alumnos')
+@section('title', 'Usuarios')
 
 @section('plugins.Datatables', true)
 @section('plugins.Sweetalert2', true)

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('date_start');
             $table->timestamp('date_update')->nullable();
             $table->string('updated_type_payment')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
+            $table->string('type_payment_inicial')->nullable()->comment("0: 'Efectivo', 1 : 'DepositoBancario', 2: 'Transferencia', 3: 'QR'");
             $table->string('file_path')->nullable();
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('detail_register_id')->references('id')->on('detail_registers');
