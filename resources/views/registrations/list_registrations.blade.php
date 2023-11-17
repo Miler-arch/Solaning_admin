@@ -43,8 +43,8 @@
                     <div class="modal fade" id="pdfModal{{ $registration->id }}" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header bg-dark">
-                                    <h5 class="modal-title text-bold" id="registrationModalLabel">LISTADO DE PAGOS</h5>
+                                <div class="modal-header bg-modal">
+                                    <h5 class="modal-title" id="registrationModalLabel">LISTADO DE PAGOS</h5>
                                     <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
                                         <i class="fas fa-times"></i>
                                     </button>
@@ -232,7 +232,7 @@
                     <div class="modal fade" id="updateModal{{ $registration->id }}" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
-                                <div class="modal-header bg-dark text-white">
+                                <div class="modal-header bg-modal text-white">
                                     <h5 class="modal-title" id="registrationModalLabel">Pago Parcial</h5>
                                     <button type="button" class="border-0 rounded-sm header-modal" data-dismiss="modal" aria-label="Close">
                                         <i class="fas fa-times"></i>
@@ -245,7 +245,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <input type="hidden" name="user_id">
-                                                <label for="updated_amount">Monto a pagar :</label>
+                                                <label for="updated_amount" class="font-weight-bold">Monto a pagar :</label>
                                                 <input type="text" class="form-control" id="updated_amount" name="updated_amount" min="0" step="0.01" required>
                                             </div>
                                             <div class="col-6">
@@ -261,7 +261,7 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-warning text-bold" data-dismiss="modal"><i class="fas fa-ban"></i> Cerrar</button>
+                                            <button type="button" class="btn btn-outline-primary text-bold" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Atrás</button>
                                             <button type="submit" class="btn btn-primary text-bold"><i class="fas fa-money-bill"></i> Pagar</button>
                                         </div>
                                     </form>
