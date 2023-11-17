@@ -6,13 +6,13 @@
 @section('plugins.Select2', true)
 
 @section('content')
-<div class="mt-3 p-3 rounded contenedor-header">
+<div class="mt-3 p-3 rounded align-items-center contenedor-header">
     <span class="font-weight-bold titulo-header">Reportes</span>
     <div class="mt-3">
         <form action="{{ route('report.pdf') }}" method="GET">
             @csrf
-            <div class="row">
-                <div class="col-4">
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class="mx-2 mt-1">
                     <select class="js-example-basic-single js-states form-control js-courses_id" id="validationCustom02" name="course_id" required>
                         <option value="" disabled selected>Selecciona una versión</option>
                         @foreach ($courses as $course)
@@ -20,7 +20,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-6">
+                <div class="mt-1">
                     <button type="submit" class="btn btn-primary">CONSULTAR</button>
                 </div>
             </div>

@@ -8,12 +8,14 @@
 @section('content')
 <div class="mt-3 p-3 rounded contenedor-header">
     <span class="font-weight-bold titulo-header">Lista de Inscritos</span>
-    <a href="{{ route('all_report.pdf') }}" target="_blank" class="btn btn-primary btn-sm p-2 shadow float-right">
-        <i class="fa fa-fw fa-file-pdf"></i> <b>VER REPORTE GENERAL</b>
-    </a>
-    <a href="{{ route('export_excel') }}" class="btn btn-success btn-sm p-2 shadow float-right mr-2">
-        <i class="fa fa-fw fa-file-excel"></i> <b>EXPORTAR EXCEL</b>
-    </a>
+    <div>
+        <a href="{{ route('all_report.pdf') }}" target="_blank" class="btn btn-primary btn-sm p-2 shadow">
+            <i class="fa fa-fw fa-file-pdf"></i> <b>VER REPORTE GENERAL</b>
+        </a>
+        <a href="{{ route('export_excel') }}" class="btn btn-success btn-sm p-2 shadow mr-2">
+            <i class="fa fa-fw fa-file-excel"></i> <b>EXPORTAR EXCEL</b>
+        </a>
+    </div>
 </div>
 <div class="mt-3">
     <table id="datatable" class="table responsive nowrap" style="width:100%">
